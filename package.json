@@ -1,0 +1,38 @@
+{
+  "name": "yunhan-toolbox",
+  "version": "0.4.0",
+  "description": "A HoTo Game Toolbox",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "back-dev": "nodemon server/main.cjs",
+    "back-run": "node server/main.cjs",
+    "get-data": "cd ./src/data && curl -L https://github.com/DGP-Studio/Snap.Metadata/archive/refs/heads/main.zip -o main.zip && unzip main.zip && rm main.zip"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.14",
+    "@fullcalendar/daygrid": "^6.1.14",
+    "@fullcalendar/interaction": "^6.1.14",
+    "@fullcalendar/vue3": "^6.1.14",
+    "@varlet/touch-emulator": "^3.2.13",
+    "@varlet/ui": "^3.2.13",
+    "cors": "^2.8.5",
+    "dom-to-image": "^2.6.0",
+    "express": "^4.19.2",
+    "github-markdown-css": "^5.5.1",
+    "markdown-it": "^14.1.0",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2",
+    "vuetify": "^3.6.8"
+  },
+  "devDependencies": {
+    "@varlet/unplugin-icon-builder": "^0.2.27",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "nodemon": "^3.1.3",
+    "vite": "^5.2.13"
+  }
+}
