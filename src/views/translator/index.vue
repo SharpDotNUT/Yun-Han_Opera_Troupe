@@ -112,7 +112,7 @@ watch(
 </script>
 
 <template>
-  <Markdown :content="Text"></Markdown>
+  <Markdown :content="Text" height="50vh"></Markdown>
   <br />
   <var-tabs v-model:active="translate_order">
     <var-tab>正向翻译</var-tab>

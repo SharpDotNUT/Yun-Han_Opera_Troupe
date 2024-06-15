@@ -1,7 +1,4 @@
 
-export default
-`
-
 你好，欢迎使用云翰工具箱。
 
 这是一个虽然在开发中但是进度约等于没有的[米家](https://mihoyo.com/)游戏工具箱。
@@ -18,5 +15,3 @@ export default
 
 - Github : [CN_Chestnut](https://github.com/CN-Chestnut)
 - Bilibili : [SDN_Chestnut](https://space.bilibili.com/650631530)
-
-`

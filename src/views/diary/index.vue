@@ -1,6 +1,6 @@
 <script setup>
 
-console.clear()
+//console.clear()
 
 import { ref, watch } from 'vue'
 

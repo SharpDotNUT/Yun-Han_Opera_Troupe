@@ -1,6 +1,6 @@
 {
   "name": "yunhan-toolbox",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A HoTo Game Toolbox",
   "private": true,
   "type": "module",
@@ -9,8 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "back-dev": "nodemon server/main.cjs",
-    "back-run": "node server/main.cjs",
-    "get-data": "cd ./src/data && curl -L https://github.com/DGP-Studio/Snap.Metadata/archive/refs/heads/main.zip -o main.zip && unzip main.zip && rm main.zip"
+    "back-run": "node server/main.cjs"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.14",

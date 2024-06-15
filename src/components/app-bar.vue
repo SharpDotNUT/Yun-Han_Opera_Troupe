@@ -1,13 +1,20 @@
 <script setup>
+
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
+import { useMainStore } from "@/stores/main";
+import { RouterLink } from "vue-router";
+
+//const ComponentChangelogs = import("@/views/change_logs/index.vue")
+import ComponentChangelogs from "@/views/change_logs/index.vue"
+const is_open_changelog = ref(false)
+
 const title = ref("");
 
 const router = useRouter();
 console.log(router)
 
-import { useMainStore } from "@/stores/main";
-import { RouterLink } from "vue-router";
+
 const mainStore = useMainStore();
 watch(
   () => mainStore.title,
@@ -32,6 +39,10 @@ const display_menu = ref(false);
     <RouterLink to="/">
       <var-button>首页</var-button>
     </RouterLink>
+    <var-button @click="is_open_changelog = true">更新日志</var-button>
+    <var-dialog v-model:show="is_open_changelog" :cancel-button="false">
+      <ComponentChangelogs style="max-height: 80vh; overflow-y: auto;"></ComponentChangelogs>
+    </var-dialog>
     <hr />
     <RouterLink to="/calendar">
       <var-button>活动日程表(0.0.1)</var-button>
@@ -39,5 +50,10 @@ const display_menu = ref(false);
     <RouterLink to="/translator">
       <var-button>翻译器(1.1.0)</var-button>
     </RouterLink>
+    <p>
+      作者&反馈: <a href="https://space.bilibili.com/650631530">SDN_Chestnut</a>
+      <br />
+      目前代码比较垃圾，暂时不开源，后续会开源。
+    </p>
   </var-dialog>
 </template>

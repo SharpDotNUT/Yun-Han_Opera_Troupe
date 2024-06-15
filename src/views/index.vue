@@ -1,7 +1,7 @@
 <script setup>
 import Markdown from "@/components/markdown.vue";
 
-import intro from "./intro.md.js";
+import intro from "./intro.md?raw";
 
 import { useMainStore } from '@/stores/main.js';
 useMainStore().setTitle('首页')
