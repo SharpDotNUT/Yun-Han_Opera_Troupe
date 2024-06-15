@@ -9,8 +9,8 @@ const router = createRouter({
       component: () => import('../views/index.vue')
     },
     {
-      path:"/changelog",
-      name:"changelog",
+      path:"/change_logs",
+      name:"change logs",
       component: () => import('../views/change_logs/index.vue')
     },
     {

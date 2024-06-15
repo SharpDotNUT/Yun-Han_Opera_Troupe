@@ -40,8 +40,13 @@ const display_menu = ref(false);
       <var-button>首页</var-button>
     </RouterLink>
     <var-button @click="is_open_changelog = true">更新日志</var-button>
-    <var-dialog v-model:show="is_open_changelog" :cancel-button="false">
-      <ComponentChangelogs style="max-height: 80vh; overflow-y: auto;"></ComponentChangelogs>
+    <var-dialog v-model:show="is_open_changelog" :cancel-button="false" style="width: 90vw;max-height: 90vh; overflow-y: auto;">
+      <RouterLink to="/change_logs">
+        <var-button type="primary" @click="is_open_changelog = false;display_menu = false">跳转到更新日志页面</var-button>
+      </RouterLink>
+      <br />
+      <ComponentChangelogs></ComponentChangelogs>
+      <template #title>更新日志</template>
     </var-dialog>
     <hr />
     <RouterLink to="/calendar">

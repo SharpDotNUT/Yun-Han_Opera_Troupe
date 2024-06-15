@@ -1,7 +1,9 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, nextTick, onMounted } from "vue";
 
 import Markdown from "../../components/markdown.vue";
+
+import { Snackbar } from '@varlet/ui'
 
 import domtoimage from "dom-to-image";
 
@@ -25,12 +27,24 @@ FontData.map((item) => {
 const raw_text = ref("Type your text here");
 const result_text = ref("Type your text here");
 const result_img_url = ref("");
-const translate_order = ref(1);
+const translate_order = ref(1)
 const display = ref({
-  non_ascii: false,
   result: true,
   result_img: false,
 });
+
+
+function copy_to_clipboard() {
+  navigator.clipboard.writeText(result_text.value)
+    .then(() => {
+      Snackbar("复制成功")
+    })
+    .catch(err => {
+      Snackbar("复制失败:" + err.message)
+      new Error(err)
+    });
+}
+
 const keyboard_key = {
   "keys": [
     ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
@@ -41,18 +55,54 @@ const keyboard_key = {
   "controls": [
     ["Space", "Enter", "Backspace", "Clear"]]
 }
+const textarea_start = ref(raw_text.value.length);
+watch(textarea_start, (new_value, old_value) => {
+  console.log('textarea_start', new_value)
+})
+let dom_textarea
+onMounted(() => {
+  dom_textarea = document.getElementById("raw-text")
+  dom_textarea.addEventListener('keydown', (e) => {
+    console.log((/[a-zA-z0-9]{1}/).test(e.key))
+    if ((/[a-zA-z0-9]/).test(e.key) && e.key.length == 1) {
+      e.preventDefault()
+      Snackbar('请使用软键盘输入！')
+    }
+    else {
+      textarea_start.value = e.target.selectionStart;
+    }
+  })
+  dom_textarea.addEventListener('click', (e) => {
+    textarea_start.value = e.target.selectionStart;
+  })
+})
 function handle_key(key_name) {
   if (key_name == "Space") {
-    raw_text.value += " ";
+    raw_text.value = raw_text.value.slice(0, textarea_start.value) + " " + raw_text.value.slice(textarea_start.value)
+    textarea_start.value += 1;
   } else if (key_name == "Enter") {
-    raw_text.value += "\n";
+    raw_text.value = raw_text.value.slice(0, textarea_start.value) + "\n" + raw_text.value.slice(textarea_start.value)
+    textarea_start.value += 1;
   } else if (key_name == "Backspace") {
-    raw_text.value = raw_text.value.slice(0, -1);
+    if (textarea_start.value > 0) {
+      raw_text.value = raw_text.value.slice(0, textarea_start.value - 1) + raw_text.value.slice(textarea_start.value)
+      textarea_start.value -= 1;
+    }
+    else {
+      Snackbar('不能再删除了 φ(*￣0￣)')
+    }
   } else if (key_name == "Clear") {
     raw_text.value = "";
+    textarea_start.value = 0;
   } else {
     raw_text.value += key_name;
+    textarea_start.value += 1;
   }
+  dom_textarea.focus()
+  nextTick(() => {
+    dom_textarea.setSelectionRange(textarea_start.value, textarea_start.value);
+  });
+  console.log('--textarea_start', textarea_start.value)
 }
 
 function save_as_image() {
@@ -94,8 +144,17 @@ function handle_font_change() {
   }
   console.log(font_info.value)
 }
+
+let cache__raw_text = "";
 watch(translate_order, (new_value, old_value) => {
   handle_font_change();
+  if (new_value == 1) {
+    cache__raw_text = raw_text.value
+    raw_text.value = ''
+  }
+  else if (new_value == 0) {
+    raw_text.value = cache__raw_text
+  }
 });
 handle_font_change(translate_order.value);
 
@@ -133,7 +192,7 @@ watch(
       <br />
       <div>
         <h3>原文</h3>
-        <textarea id="raw-text" v-model="raw_text" :class="font_info.raw_class" style="width: 100%; 
+        <textarea id="raw-text" v-model="raw_text" @click="handle_textarea_click" :class="font_info.raw_class" style="width: 100%; 
           height: 200px;
           padding: 12px;
           font-size: 24px;"></textarea>
@@ -150,6 +209,7 @@ watch(
             {{ key }}
           </var-chip>
         </div>
+        <br />
         <var-select placeholder="请选择要输入的源语言" v-model="font_info.font" variant="outlined">
           <var-option v-for="item in font_data" :label="item.description" :key="item.id" :value="item.id" />
         </var-select>
@@ -157,7 +217,9 @@ watch(
     </var-tab-item>
   </var-tabs-items>
   <br />
-  字体大小：<var-counter v-model="font_info.size" /> 自动换行：<var-switch v-model="font_info.auto_wrap" />
+  字体大小：<var-counter v-model="font_info.size" />
+  自动换行：<var-switch v-model="font_info.auto_wrap" />
+  <var-button type="primary" @click="copy_to_clipboard()" v-if="translate_order">复制结果</var-button>
   <div id="result" v-if="display.result">
     <br />
     <hr />
