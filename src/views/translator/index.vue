@@ -64,12 +64,10 @@ onMounted(() => {
   dom_textarea = document.getElementById("raw-text")
   dom_textarea.addEventListener('keydown', (e) => {
     console.log((/[a-zA-z0-9]{1}/).test(e.key))
+    textarea_start.value = e.target.selectionStart;
     if ((/[a-zA-z0-9]/).test(e.key) && e.key.length == 1) {
       e.preventDefault()
       Snackbar('请使用软键盘输入！')
-    }
-    else {
-      textarea_start.value = e.target.selectionStart;
     }
   })
   dom_textarea.addEventListener('click', (e) => {
@@ -95,7 +93,7 @@ function handle_key(key_name) {
     raw_text.value = "";
     textarea_start.value = 0;
   } else {
-    raw_text.value += key_name;
+    raw_text.value = raw_text.value.slice(0, textarea_start.value) + key_name + raw_text.value.slice(textarea_start.value)
     textarea_start.value += 1;
   }
   dom_textarea.focus()

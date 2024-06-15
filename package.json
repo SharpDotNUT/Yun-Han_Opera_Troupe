@@ -1,7 +1,7 @@
 {
   "name": "yunhan-toolbox",
-  "version": "0.4.2",
-  "description": "A HoTo Game Toolbox",
+  "version": "0.4.3",
+  "description": "A HoYo Game Toolbox",
   "private": true,
   "type": "module",
   "scripts": {
