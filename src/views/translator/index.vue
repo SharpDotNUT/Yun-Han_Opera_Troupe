@@ -2,6 +2,7 @@
 import { ref, watch, nextTick, onMounted } from "vue";
 
 import Markdown from "../../components/markdown.vue";
+import FontSelector from './font-selector.vue'
 
 import { Snackbar } from '@varlet/ui'
 
@@ -169,7 +170,8 @@ watch(
 </script>
 
 <template>
-  <Markdown :content="Text" height="50vh"></Markdown>
+  <div style="border: 1px solid #ddd;padding:10px">
+  <Markdown :content="Text" height="50vh"></Markdown></div>
   <br />
   <var-tabs v-model:active="translate_order">
     <var-tab>正向翻译</var-tab>
@@ -197,10 +199,10 @@ watch(
       </div>
       <div id="visual-keyboard">
         <div v-for="row in keyboard_key.keys" :key="row" class="keyboard-row">
-          <var-chip v-for="key in row" :key="key" @click="handle_key(key)"
+          <div v-for="key in row" :key="key" @click="handle_key(key)"
             :class="'keyboard-key ' + font_info.raw_class" v-ripple>
             {{ key }}
-          </var-chip>
+          </div>
         </div>
         <div v-for="row in keyboard_key.controls" :key="row" class="keyboard-row">
           <var-chip v-for="key in row" :key="key" @click="handle_key(key)" class="keyboard-key" v-ripple>
@@ -244,6 +246,7 @@ watch(
       </div>
     </var-dialog>
   </div>
+  <FontSelector :fontList="font_data" :fontInfo="font_info"></FontSelector>
 </template>
 
 <style scoped>
@@ -278,21 +281,31 @@ watch(
   display: flex;
   flex-direction: column;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .keyboard-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
-  /* 可选：设置行间距 */
+  margin-bottom: 1vh;
 }
 
 .keyboard-key {
   flex: 1;
-  margin: 0 2px;
-  /* 可选：设置键间距 */
+  margin: 0 0.2vw;
   text-align: center;
-  padding: 10px;
-  /* 可选：设置键的内边距 */
+  padding: 0.2vw;
+  box-sizing: border-box;
+  border-radius: 2vw;
+  font-size: 4vw;
+
+  background-color: #ddd;
 }
+
+@media screen and (min-width: 600px) {
+  .keyboard-key{
+    font-size: 24px;
+  }
+}
+
 </style>

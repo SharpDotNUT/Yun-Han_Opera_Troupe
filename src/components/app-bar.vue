@@ -14,7 +14,6 @@ const title = ref("");
 const router = useRouter();
 console.log(router)
 
-
 const mainStore = useMainStore();
 watch(
   () => mainStore.title,
@@ -39,7 +38,8 @@ const display_menu = ref(false);
     <RouterLink to="/">
       <var-button>首页</var-button>
     </RouterLink>
-    <var-button @click="is_open_changelog = true">更新日志</var-button>
+    <var-button @click="is_open_changelog = true">更新日志</var-button><br/>
+    <var-button @click="$emit('changeIsFullWidth')">界面全宽优化（测试中功能）</var-button>
     <var-dialog v-model:show="is_open_changelog" :cancel-button="false" style="width: 90vw;max-height: 90vh; overflow-y: auto;">
       <RouterLink to="/change_logs">
         <var-button type="primary" @click="is_open_changelog = false;display_menu = false">跳转到更新日志页面</var-button>

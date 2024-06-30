@@ -10,7 +10,7 @@ const isFullWidth = ref(false)
 
 <template>
   <div id="app-bar">
-    <AppBar />
+    <AppBar @changeIsFullWidth="isFullWidth = !isFullWidth"/>
   </div>
   <div id="app" class="elevation-12" :style="{ width: isFullWidth ? '100%' : 'min(100%, 600px)' }" >
     <RouterView/>
