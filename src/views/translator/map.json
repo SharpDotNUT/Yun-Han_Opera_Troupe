@@ -11,6 +11,19 @@
         }
     },
     {
+        "font_name": "FonteAinee-Regular",
+        "font_family_name": "Font Ainee",
+        "types": {
+            "otf": "hoyo-glyphs-FonteAinee-Regular-otf",
+            "ttf": "hoyo-glyphs-FonteAinee-Regular-ttf",
+            "woff2": "hoyo-glyphs-FonteAinee-Regular-woff2"
+        },
+        "description": {
+            "zh": "枫丹字母",
+            "en": "Fontaine Alphabets"
+        }
+    },
+    {
         "font_name": "InazumaNeue-Regular",
         "font_family_name": "Inazuma Neue",
         "types": {

@@ -21,17 +21,27 @@ FontData.map((item) => {
     id: i,
     name: item.font_name,
     description: item.description.zh,
+    class:item.types.otf
   });
   i++;
 });
 
 const raw_text = ref("Type your text here");
+const isASCII = ref(true);
 const result_text = ref("Type your text here");
 const result_img_url = ref("");
 const translate_order = ref(1)
 const display = ref({
   result: true,
   result_img: false,
+});
+const font_info = ref({
+  font: 5,
+  class: "hoyo-glyphs-DeshretNeue-Regular-otf",
+  raw_class: "hoyo-glyphs-DeshretNeue-Regular-otf",
+  result_class: "hoyo-glyphs-DeshretNeue-Regular-otf",
+  size: 32,
+  auto_wrap: false,
 });
 
 
@@ -118,17 +128,12 @@ function save_as_image() {
     });
 }
 
-const font_info = ref({
-  font: 5,
-  class: "hoyo-glyphs-DeshretNeue-Regular-otf",
-  raw_class: "hoyo-glyphs-DeshretNeue-Regular-otf",
-  result_class: "hoyo-glyphs-DeshretNeue-Regular-otf",
-  size: 32,
-  auto_wrap: false,
-});
-
 watch(raw_text, (new_value, old_value) => {
   result_text.value = new_value;
+
+  // 检测是否有非 ASCII 字符
+  isASCII.value = /[^\x00-\x7F]/.test(new_value)
+
 });
 
 function handle_font_change() {
@@ -171,7 +176,8 @@ watch(
 
 <template>
   <div style="border: 1px solid #ddd;padding:10px">
-  <Markdown :content="Text" height="50vh"></Markdown></div>
+    <Markdown :content="Text" height="50vh"></Markdown>
+  </div>
   <br />
   <var-tabs v-model:active="translate_order">
     <var-tab>正向翻译</var-tab>
@@ -183,9 +189,10 @@ watch(
       <var-input v-model="raw_text" textarea placeholder="请输入要翻译的内容" variant="outlined"
         :class="font_info.raw_class"></var-input>
       <br />
-      <var-select placeholder="请选择翻译后的语言" v-model="font_info.font" variant="outlined">
-        <var-option v-for="item in font_data" :label="item.description" :key="item.id" :value="item.id" />
-      </var-select>
+      <var-chip type="warning" block v-if="isASCII">
+        请注意：中文或者其他非 ASCII 字符并不能直接翻译。
+      </var-chip>
+      <br />
     </var-tab-item>
 
     <var-tab-item>
@@ -199,8 +206,8 @@ watch(
       </div>
       <div id="visual-keyboard">
         <div v-for="row in keyboard_key.keys" :key="row" class="keyboard-row">
-          <div v-for="key in row" :key="key" @click="handle_key(key)"
-            :class="'keyboard-key ' + font_info.raw_class" v-ripple>
+          <div v-for="key in row" :key="key" @click="handle_key(key)" :class="'keyboard-key ' + font_info.raw_class"
+            v-ripple>
             {{ key }}
           </div>
         </div>
@@ -210,12 +217,11 @@ watch(
           </var-chip>
         </div>
         <br />
-        <var-select placeholder="请选择要输入的源语言" v-model="font_info.font" variant="outlined">
-          <var-option v-for="item in font_data" :label="item.description" :key="item.id" :value="item.id" />
-        </var-select>
       </div>
     </var-tab-item>
   </var-tabs-items>
+  <FontSelector :fontList="font_data" :fontInfo="font_info"></FontSelector>
+  <br />
   <br />
   字体大小：<var-counter v-model="font_info.size" />
   自动换行：<var-switch v-model="font_info.auto_wrap" />
@@ -223,6 +229,7 @@ watch(
   <div id="result" v-if="display.result">
     <br />
     <hr />
+    <div style="min-height: 30vh;padding-bottom: 10vh">
     <div id="result-text" :class="font_info.result_class" :style="{
       fontSize: font_info.size + 'px',
       overflow: 'auto',
@@ -230,7 +237,7 @@ watch(
       wordBreak: font_info.auto_wrap ? 'break-all' : 'keep-all',
     }">
       {{ result_text }}
-    </div>
+    </div></div>
     <br />
     <var-fab type="primary" inactive-icon="share">
       <var-button @click="save_as_image()">
@@ -246,7 +253,6 @@ watch(
       </div>
     </var-dialog>
   </div>
-  <FontSelector :fontList="font_data" :fontInfo="font_info"></FontSelector>
 </template>
 
 <style scoped>
@@ -303,9 +309,8 @@ watch(
 }
 
 @media screen and (min-width: 600px) {
-  .keyboard-key{
+  .keyboard-key {
     font-size: 24px;
   }
 }
-
 </style>

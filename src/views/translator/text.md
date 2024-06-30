@@ -14,6 +14,18 @@
 
 1. 仙舟罗浮文字就是取首字母的拼音。比如 `仙舟 罗浮` 就是 `XZ LF` 的字体变体。
 
+## 关于
+
+字体文件 : [CNChestnut/Packaged_HoYo-Glyphs](https://github.com/CNChestnut/Packaged_HoYo-Glyphs)
+
+原始字体 : [SpeedyOrc-C/HoYo-Glyphs](https://github.com/SpeedyOrc-C/HoYo-Glyphs)
+
+字体作者 : [SpeedyOrc-C](https://github.com/SpeedyOrc-C)
+
+如果你对字体有任何的疑问，建议和讨论，请前往 [SpeedyOrc-C/HoYo-Glyphs -> issues](https://github.com/SpeedyOrc-C/HoYo-Glyphs/issues) 进行讨论。
+
+后续会考虑制作 OCR 识别，敬请期待。
+
 ## 介绍视频
 
 <iframe src="//player.bilibili.com/player.html?bvid=BV1SE421P7qS&autoplay=0"
