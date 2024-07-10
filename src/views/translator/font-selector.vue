@@ -46,7 +46,8 @@ const prop = defineProps({
 }
 
 .font-item {
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-primary	);
+    border-radius: 10px;
     margin: 10px;
     padding: 10px;
 }
@@ -56,7 +57,7 @@ const prop = defineProps({
 }
 
 .font-selected {
-    background-color: #111;
+    background-color: var(--color-primary);
     color: #eee;
 }
 </style>

@@ -24,6 +24,11 @@ const router = createRouter({
       component: () => import('../views/translator/index.vue')
     },
     {
+      name:'song-guesser',
+      path:'/song-guesser',
+      component: () => import('../views/song-guesser/index.vue')
+    },
+    {
       name:'diary',
       path:'/diary',
       component: () => import('../views/diary/index.vue')

@@ -13,6 +13,7 @@
 ## 注意事项
 
 1. 仙舟罗浮文字就是取首字母的拼音。比如 `仙舟 罗浮` 就是 `XZ LF` 的字体变体。
+2. 崩坏三火星文请访问 [honkai-3rd-ii-martian.vercel.app](https://honkai-3rd-ii-martian.vercel.app/)
 
 ## 关于
 
