@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'DIN';
+    src: url("/font/DIN-Regular-2.otf");
+}
+
+:root {
+    --font-family: 'DIN', 'Source Han Sans', 'Microsoft YaHei UI', "HarmonyOS Sans";
+}
+
+body {
+    font-family: var(--font-family);
+}

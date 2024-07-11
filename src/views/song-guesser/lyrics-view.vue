@@ -1,12 +1,17 @@
 <script setup>
 
-import { computed, ref } from 'vue'
+import { watch,computed, ref } from 'vue'
 
 const props = defineProps({
-    lyrics_url: String
+    lyrics_url: String,
+    height:{
+        type: String,
+        default: '50vh'
+    }
 })
 
 const lyrics = ref()
+let isValidLyrics = true
 
 function timeToMilliseconds(timeStr) {
     const [minutes, seconds] = timeStr.split(':');
@@ -24,51 +29,67 @@ console.log(milliseconds); // 输出 1000
 
 
 async function fetchLyrics() {
-    const response = await fetch(props.lyrics_url)
-    let data = await response.text()
-    data = data.split('\n')
-    data = data.filter(line => line!== '')
-    console.log(data)
-    lyrics.value = []
-    data.forEach((line, index) => {
-        let timestamp_p = line.indexOf(']'), text
-        lyrics.value.push({
-            timestamp: timeToMilliseconds(line.slice(1, timestamp_p)),
-            text: line.slice(timestamp_p+1, line.length)
+    isValidLyrics = true
+        const response = await fetch(props.lyrics_url)
+        let data = await response.text()
+        data = data.split('\n')
+        data = data.filter(line => line !== '')
+        console.log(data)
+        lyrics.value = []
+        data.forEach((line, index) => {
+            let timestamp_p = line.indexOf(']')
+            let timestamp
+            if(timestamp_p === -1) {
+                isValidLyrics = false,
+                timestamp = '00:00.000'
+            }
+            else{
+                timestamp = line.slice(1, timestamp_p)
+            }
+            lyrics.value.push({
+                timestamp: timeToMilliseconds(timestamp),
+                text: line.slice(timestamp_p + 1, line.length)
+            })
         })
-    })
+        console.log(lyrics.value)
 }
 fetchLyrics()
+watch(() => props.lyrics_url, () => {
+    fetchLyrics()
+})
 
 const nowPlayingLyrics = ref()
 const nowPlayedTime = ref()
 let intervalId = 0
 
-function pause(){
+function pause() {
     clearInterval(intervalId)
 }
 
 function play(timestamp = 0) {
-    let starPlayTime = new Date().getTime()
-    function getPlayedTime(){
-        return new Date().getTime() - starPlayTime + timestamp
-    }
-    let i = 0
-    for(let j = 0; j < lyrics.value.length; j++){
-        if(lyrics.value[j].timestamp <= getPlayedTime()){
-            i = j
-        }
-        else{
-            break
-        }
-    }
     if (intervalId) {
         clearInterval(intervalId)
         console.log('clear interval', intervalId)
     }
+    if (!isValidLyrics) {
+        return
+    }
+    let starPlayTime = new Date().getTime()
+    function getPlayedTime() {
+        return new Date().getTime() - starPlayTime + timestamp
+    }
+    let i = 0
+    for (let j = 0; j < lyrics.value.length; j++) {
+        if (lyrics.value[j].timestamp <= getPlayedTime()) {
+            i = j
+        }
+        else {
+            break
+        }
+    }
     intervalId = setInterval(() => {
         nowPlayedTime.value = getPlayedTime()
-        if (getPlayedTime() >= lyrics.value[lyrics.value.length-1].timestamp) {
+        if (getPlayedTime() >= lyrics.value[lyrics.value.length - 1].timestamp) {
             clearInterval(intervalId)
             return
         }
@@ -89,18 +110,34 @@ defineExpose({
 
 <template>
     <div>
+        <div id="lyrics-container" :style="{ height: props.height }">
         <p>Index of lyrics: {{ nowPlayingLyrics }}</p>
         <p>Timestamp of lyrics: {{ nowPlayedTime }} ms</p>
-        <div style="height:80vh; overflow-y:scroll">
-        <p v-for="(lyric, index) in lyrics" :key="index" :class="nowPlayingLyrics === index ?'now-playing-lyrics':''">
-            [{{ lyric.timestamp/1000 }}] - {{ lyric.text }}
-        </p>
-    </div>
+            <p v-for="(lyric, index) in lyrics" :key="index"
+                :class="(nowPlayingLyrics === index && isValidLyrics) ? 'now-playing lyrics' : 'lyrics'">
+                {{ lyric.text }}
+            </p>
+        </div>
     </div>
 </template>
 
 <style scoped>
-.now-playing-lyrics {
+
+#lyrics-container {
+    overflow-y: auto;
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #eee;
+}
+.lyrics {
+    transition: color 0.5s, font-size 0.5s;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.now-playing {
     color: red;
+    font-size: 150%
 }
 </style>

@@ -26,11 +26,14 @@ const display_menu = ref(false);
 </script>
 
 <template>
-  <var-app-bar :title="title">
+  <div style="height:var(--app-bar-height);">
+  <var-app-bar :title="title" style="position: fixed; top: 0; left: 0; right: 0">
     <template #right>
       <var-icon name="menu" @click="display_menu = true" />
     </template>
+    <template #left></template>
   </var-app-bar>
+</div>
   <var-dialog v-model:show="display_menu" :cancel-button="false">
     <template #title>菜单</template>
     <p>本菜单还在开发中，效果可能不太理想。</p>
@@ -61,4 +64,5 @@ const display_menu = ref(false);
       目前代码比较垃圾，暂时不开源，后续会开源。
     </p>
   </var-dialog>
+  
 </template>
