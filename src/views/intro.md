@@ -8,6 +8,7 @@
 > 右上角菜单可以跳转到各个功能页面。
 
 - [原神，崩铁，绝区零字体翻译器](#/translator)
+- [米游音乐播放器](#/song/player)
 - [**开发中 DIARY Build 0.0.0**](#/diary)
 - [**开发中 CALENDER Build 0.0.0**](#/calender)
 
