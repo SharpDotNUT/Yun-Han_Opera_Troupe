@@ -1,0 +1,54 @@
+.achievement-container {
+    display: flex;
+    flex-direction: row;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.achievement-container>div {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.achievement-goal-list {
+    flex: 1;
+    flex-direction: column;
+}
+
+.achievement-goal-list>div {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.achievement-list {
+    flex: 3;
+}
+
+.achievement-group-list,
+.achievement-item {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.achievement-actions{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+    .achievement-container {
+        flex-direction: column;
+    }
+    .achievement-goal-list {
+        flex:1;
+    }
+    .achievement-goal-list>div {
+        text-decoration: row;
+        display: inline-block;
+    }
+    .achievement-list{
+        flex: 5;
+    }
+}

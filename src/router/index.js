@@ -36,6 +36,10 @@ const router = createRouter({
       name:'diary',
       path:'/diary',
       component: () => import('../views/diary/index.vue')
+    },
+    {
+      path:"/achievement",
+      component: () => import('../views/achievement/index.vue')
     }
   ]
 })
