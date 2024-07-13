@@ -1,12 +1,7 @@
 .achievement-container {
+    --achievement-container-height: 70vh;
     display: flex;
     flex-direction: row;
-    max-height: 80vh;
-    overflow-y: auto;
-}
-
-.achievement-container>div {
-    max-height: 80vh;
     overflow-y: auto;
 }
 
@@ -15,40 +10,46 @@
     flex-direction: column;
 }
 
-.achievement-goal-list>div {
-    margin: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+/* 成就集和成就列表 */
+.achievement-goal-list,
+.achievement-group-list {
+    max-height: 100%;
+    overflow-y: auto;
+    margin: 10px;
+    height: var(--achievement-container-height);
 }
-.achievement-list {
+
+.achievement-group-list {
     flex: 3;
 }
 
-.achievement-group-list,
+.achievement-group-list-item,
 .achievement-item {
-    margin: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: 10px 5px;
+    padding: 10px;
+    border-radius: 10px;
 }
-.achievement-actions{
+
+.achievement-actions {
     cursor: pointer;
+    display: inline-block;
+    padding: 5px;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 1000px) {
     .achievement-container {
-        flex-direction: column;
+        display: block;
     }
+
     .achievement-goal-list {
-        flex:1;
+        height: calc(var(--achievement-container-height) / 4);
+
     }
-    .achievement-goal-list>div {
-        text-decoration: row;
-        display: inline-block;
-    }
-    .achievement-list{
-        flex: 5;
+
+    .achievement-group-list {
+        height: calc(var(--achievement-container-height) / 4 * 3)
     }
 }
