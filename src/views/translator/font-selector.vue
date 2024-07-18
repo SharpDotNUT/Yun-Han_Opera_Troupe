@@ -19,7 +19,7 @@ const prop = defineProps({
 
 <template>
 
-    <var-button @click="isOpen_dialog = true">{{ placeholder + ' 当前选择:' + prop.fontList.find(font => font.id == prop.fontInfo.font).name }}</var-button>
+    <var-button block @click="isOpen_dialog = true">{{ placeholder + ' 当前选择:' + prop.fontList.find(font => font.id == prop.fontInfo.font).name }}</var-button>
 
     <var-dialog v-model:show="isOpen_dialog" title="字体选择">
         <div id="font-selector-dialog">

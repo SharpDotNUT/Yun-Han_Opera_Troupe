@@ -27,6 +27,9 @@ const timeStr = '00:01.000';
 const milliseconds = timeToMilliseconds(timeStr);
 console.log(milliseconds); // 输出 1000
 
+const timeFormat = (time) => {
+    return `${Math.floor(time / 60)}:${Math.floor(time % 60).toString().padStart(2, '0')}`
+}
 
 async function fetchLyrics() {
     isValidLyrics = true
@@ -53,7 +56,7 @@ async function fetchLyrics() {
             translation_p = line.length
         }
         else {
-            translation = line.slice(translation_p + 2, line.length -1)
+            translation = line.slice(translation_p + 2, line.length - 1)
         }
         lyrics.value.push({
             timestamp: timeToMilliseconds(timestamp),
@@ -70,16 +73,19 @@ watch(() => props.lyrics_url, () => {
 
 const nowPlayingLyrics = ref()
 const nowPlayedTime = ref()
-let intervalId = 0
+let lastRAF
+let isPlaying = 0
+let frame = 0
 
 function pause() {
-    clearInterval(intervalId)
+    isPlaying = 0
 }
 
 function play(timestamp = 0) {
-    if (intervalId) {
-        clearInterval(intervalId)
-        console.log('clear interval', intervalId)
+    pause()
+    if (isPlaying) {
+        clearInterval(isPlaying)
+        console.log('clear interval', isPlaying)
     }
     if (!isValidLyrics) {
         return
@@ -97,18 +103,26 @@ function play(timestamp = 0) {
             break
         }
     }
-    intervalId = setInterval(() => {
+    isPlaying = 1
+    cancelAnimationFrame(lastRAF)
+    function playNext() {
         nowPlayedTime.value = getPlayedTime()
-        if (getPlayedTime() >= lyrics.value[lyrics.value.length - 1].timestamp) {
-            clearInterval(intervalId)
+        if (getPlayedTime() >= lyrics.value[lyrics.value.length-1].timestamp) {
+            clearInterval(isPlaying)
             return
         }
+        // 当前歌词播放完毕时，切换到下一句
         if (lyrics.value[i].timestamp <= getPlayedTime()) {
             nowPlayingLyrics.value = i
             i++
         }
-    }, 100)
-    console.log('create interval', intervalId)
+        // 如果歌词还没播放完，则继续播放
+        if (isPlaying) {
+            lastRAF = requestAnimationFrame(playNext)
+            frame++
+        }
+    }
+    lastRAF = requestAnimationFrame(playNext)
 }
 
 defineExpose({
@@ -119,14 +133,28 @@ defineExpose({
 </script>
 
 <template>
+    <!-- <var-slider v-model="process" @start="onChangeProcess = true"
+        @end="audio.currentTime = process; onChangeProcess = false; hasChangedProcess = true" min="0"
+        :max="Math.ceil(processMax)" :disabled="!data" block label-visible="never" />
+    <p>
+
+    </p>
+    <var-button @click="pause = !pause" :disabled="!data" block>{{ pause ? '播放' : '暂停' }} - {{ timeFormat(process) }} /
+        {{ timeFormat(processMax) }}</var-button>
+    <br> -->
+    <audio :src="songURL" ref="audio"></audio>
     <div>
-        <div id="lyrics-container" :style="{ height: props.height }">
-            <p v-for="(lyric, index) in lyrics" :key="index"
-                :class="(nowPlayingLyrics === index && isValidLyrics) ? 'now-playing lyrics' : 'lyrics'">
-                {{ lyric.text }}
-                <br v-if="lyric.translation">
-                <span v-if="isValidLyrics" style="font-size: 80%;">{{ lyric.translation }}</span>
-            </p>
+        <!-- <h3>作者：{{ data[0].artist }}</h3> -->
+        <div>
+            <!-- {{ frame }} | {{ isPlaying }} | {{ nowPlayingLyrics }} | {{ nowPlayedTime }} -->
+            <div id="lyrics-container" :style="{ height: props.height }">
+                <p v-for="(lyric, index) in lyrics" :key="index"
+                    :class="(nowPlayingLyrics === index && isValidLyrics) ? 'now-playing lyrics' : 'lyrics'">
+                    {{ lyric.text }}
+                    <br v-if="lyric.translation">
+                    <span v-if="isValidLyrics" style="font-size: 80%;">{{ lyric.translation }}</span>
+                </p>
+            </div>
         </div>
     </div>
 </template>

@@ -14,11 +14,6 @@ const router = createRouter({
       component: () => import('../views/change_logs/index.vue')
     },
     {
-      path: '/calendar',
-      name: 'calendar',
-      component: () => import('../views/calendar/index.vue')
-    },
-    {
       name:'translator',
       path:'/translator',
       component: () => import('../views/translator/index.vue')
@@ -26,11 +21,7 @@ const router = createRouter({
     {
       name:'/song-player',
       path:'/song/player',
-      component: () => import('../views/song-guesser/index.vue')
-    },
-    {
-      path:"/song-guesser",
-      redirect:"/song/player"
+      component: () => import('../views/song/player/index.vue')
     },
     {
       name:'diary',

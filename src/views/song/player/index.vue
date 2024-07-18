@@ -14,9 +14,11 @@ const router = useRouter()
 
 const _log = console.log
 
+import { useMainStore } from "@/stores/main";
+useMainStore().setTitle('音乐播放器')
+
 const selectedAlbum = ref(0)
 watch(selectedAlbum, () => {
-    selectedSong.value = 0
     router.push({ query: { album: selectedAlbum.value, song: selectedSong.value } })
 })
 const selectedSong = ref(0)

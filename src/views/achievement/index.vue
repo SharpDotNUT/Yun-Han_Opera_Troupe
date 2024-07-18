@@ -2,42 +2,94 @@
 
 const _log = console.log
 
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
-import Data from './achievement.json'
-const userData = ref([])
-Data.data.forEach(achievementGoal => {
-    if (achievementGoal != null) {
-        achievementGoal.achievements.forEach(achievementGroup => {
-            if (achievementGroup != null) {
-                achievementGroup.forEach(achievement => {
-                    userData.value.push({
-                        id: achievement.id,
-                        current: achievement.current,
-                    })
-                });
-            }
-        });
+import IntroText from './intro.md?raw'
+import Intro from '@/components/intro.vue';
+
+import { useMainStore } from '@/stores/main';
+useMainStore().setTitle('成就工具')
+
+import AchievementData from './achievement.json'
+const userUIAF = ref({})
+const versions = AchievementData.versions
+
+const selectedVersion = ref(versions[0])
+const selectedGoal = ref(0)
+const finished = ref('所有')
+
+if (localStorage.getItem('userUIAF')) {
+    const list = JSON.parse(localStorage.getItem('userUIAF'))
+    userUIAF.value = {}
+    for (const achievement of list) {
+        userUIAF.value[achievement.id] = achievement
     }
-});
+}
 
-const userUIAF = ref()
+const renderedAchievementsGoal = ref([])
+const searchString = ref('')
+function filterAchievements() {
+    let _out = []
+    function _check(_goal) {
+        let _ = true
+        if (_goal[0].name.indexOf(searchString.value) == -1) {
+            _ = false
+        }
+        if (_goal[0].description.indexOf(searchString.value) == -1) {
+            _ = false
+        }
+        if (selectedVersion.value != '所有' && _goal[0].version != selectedVersion.value) {
+            _ = false
+        }
+        if (finished.value != '所有') {
+            _ = false
+        }
+        else {
+            if (userUIAF.value[_goal[_goal.length - 1].id]) { }
+        }
+        return _
+    }
+    if (selectedGoal.value == -1) {
+        for (const _goal of AchievementData.data) {
+            for (const _group of _goal.achievements) {
+                if (_check(_group)) {
+                    _out.push(_group)
+                }
+            }
+        }
+    } else {
+        const _achievementsGoal = AchievementData.data[selectedGoal.value].achievements
+        _achievementsGoal.forEach(_goal => {
+            _out.push([])
+            _goal.forEach((_achievement) => {
+                if (_check(_goal)) {
+                    _out[_out.length - 1].push(_achievement)
+                }
+            })
+            if (_out[_out.length - 1].length == 0) {
+                _out.pop()
+            }
+        })
+    }
+    renderedAchievementsGoal.value = _out
+}
+filterAchievements()
+watch(searchString, filterAchievements)
+watch(selectedGoal, filterAchievements)
+watch(selectedVersion, filterAchievements)
+
 function handleUIAFUpload(file) {
     const reader = new FileReader()
     reader.readAsText(file.file)
     reader.onload = function () {
         const list = JSON.parse(reader.result).list
+        localStorage.setItem('userUIAF', JSON.stringify(list))
         userUIAF.value = {}
         for (const achievement of list) {
             userUIAF.value[achievement.id] = achievement
         }
-
-        _log(userUIAF.value)
-
     }
 }
-
-const selectedGoal = ref(0)
 
 function searchAchievement(name, platform) {
     let url
@@ -53,19 +105,33 @@ function searchAchievement(name, platform) {
 </script>
 
 <template>
+    <Intro :content="IntroText" height="50vh" />
     <var-uploader accept="application/json" @after-read="handleUIAFUpload">
         <var-button type="primary" size="large">导入你的 UIAF 数据</var-button>
     </var-uploader>
+    <var-input v-model="searchString" placeholder="搜索成就名称" clearable></var-input>
+    <var-select v-model="selectedVersion" placeholder="选择版本">
+        <var-option v-for="(version, index) in versions" :key="index" :label="version"></var-option>
+    </var-select>
+    <!-- <var-select v-model="finished" placeholder="是否完成">
+        <var-option v-for="(version, index) in ['所有', '已完成', '未完成']" :key="index" :label="version"></var-option>
+    </var-select> -->
     <div class="achievement-container">
         <div class="achievement-goal-list var-elevation--3">
-            <var-cell border ripple v-for="(goal, index) in Data.data" :key="index" @click="selectedGoal = index">
+            <var-cell border ripple @click="selectedGoal = -1">
+                <p style="font-size:120%">所有成就</p>
+                <p>{{ AchievementData.numberOfGroup }} 个成就组 | {{ AchievementData.numberOfAchievement }} 个成就</p>
+                <p></p>
+            </var-cell>
+            <var-cell border ripple v-for="(goal, index) in AchievementData.data" :key="index"
+                @click="selectedGoal = index">
                 <p style="font-size:120%">{{ goal?.name }}</p>
                 <p>{{ goal.achievements.length }} 个成就组 | {{ goal.number }} 个成就</p>
             </var-cell>
         </div>
         <div class="achievement-group-list var-elevation--3">
-            <div v-if="Data.data[selectedGoal]">
-                <div v-for="(achievementGroup, index) in Data.data[selectedGoal].achievements" :key="index"
+            <div>
+                <div v-for="(achievementGroup, index) in renderedAchievementsGoal" :key="index"
                     class="achievement-group-list-item">
                     <div v-for="(achievement, index) in achievementGroup" :key="index">
                         <h3>{{ achievement.name }}</h3>

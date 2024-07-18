@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch, nextTick, onMounted } from "vue";
 
-import Markdown from "../../components/markdown.vue";
+import Intro from "../../components/intro.vue";
 import FontSelector from './font-selector.vue'
 
 import { Snackbar } from '@varlet/ui'
@@ -21,7 +21,7 @@ FontData.map((item) => {
     id: i,
     name: item.font_name,
     description: item.description.zh,
-    class:item.types.otf
+    class: item.types.otf
   });
   i++;
 });
@@ -74,7 +74,6 @@ let dom_textarea
 onMounted(() => {
   dom_textarea = document.getElementById("raw-text")
   dom_textarea.addEventListener('keydown', (e) => {
-    console.log((/[a-zA-z0-9]{1}/).test(e.key))
     textarea_start.value = e.target.selectionStart;
     if ((/[a-zA-z0-9]/).test(e.key) && e.key.length == 1) {
       e.preventDefault()
@@ -111,7 +110,6 @@ function handle_key(key_name) {
   nextTick(() => {
     dom_textarea.setSelectionRange(textarea_start.value, textarea_start.value);
   });
-  console.log('--textarea_start', textarea_start.value)
 }
 
 function save_as_image() {
@@ -137,8 +135,6 @@ watch(raw_text, (new_value, old_value) => {
 });
 
 function handle_font_change() {
-  console.log('changing font to', font_info.value.class)
-
   if (translate_order.value == 1) {
     font_info.value.raw_class = font_info.value.class;
     font_info.value.result_class = "";
@@ -146,7 +142,6 @@ function handle_font_change() {
     font_info.value.raw_class = "";
     font_info.value.result_class = font_info.value.class;
   }
-  console.log(font_info.value)
 }
 
 let cache__raw_text = "";
@@ -175,9 +170,7 @@ watch(
 </script>
 
 <template>
-  <div style="border: 1px solid #ddd;padding:10px">
-    <Markdown :content="Text" height="50vh"></Markdown>
-  </div>
+  <Intro :content="Text" height="50vh"></Intro>
   <br />
   <var-tabs v-model:active="translate_order">
     <var-tab>正向翻译</var-tab>
@@ -199,7 +192,8 @@ watch(
       <br />
       <div>
         <h3>原文</h3>
-        <textarea id="raw-text" v-model="raw_text" @click="handle_textarea_click" :class="font_info.raw_class" style="width: 100%; 
+        <textarea disable id="raw-text" v-model="raw_text" @click="handle_textarea_click" :class="font_info.raw_class"
+          style="width: 100%; 
           height: 200px;
           padding: 12px;
           font-size: 24px;"></textarea>
@@ -225,19 +219,20 @@ watch(
   <br />
   字体大小：<var-counter v-model="font_info.size" />
   自动换行：<var-switch v-model="font_info.auto_wrap" />
-  <var-button type="primary" @click="copy_to_clipboard()" v-if="translate_order">复制结果</var-button>
+  <var-button @click="copy_to_clipboard()" v-if="translate_order">复制结果</var-button>
   <div id="result" v-if="display.result">
     <br />
     <hr />
     <div style="min-height: 30vh;padding-bottom: 10vh">
-    <div id="result-text" :class="font_info.result_class" :style="{
-      fontSize: font_info.size + 'px',
-      overflow: 'auto',
-      whiteSpace: font_info.auto_wrap ? 'pre-wrap' : 'pre',
-      wordBreak: font_info.auto_wrap ? 'break-all' : 'keep-all',
-    }">
-      {{ result_text }}
-    </div></div>
+      <div id="result-text" :class="font_info.result_class" :style="{
+        fontSize: font_info.size + 'px',
+        overflow: 'auto',
+        whiteSpace: font_info.auto_wrap ? 'pre-wrap' : 'pre',
+        wordBreak: font_info.auto_wrap ? 'break-all' : 'keep-all',
+      }">
+        {{ result_text }}
+      </div>
+    </div>
     <br />
     <var-fab type="primary" inactive-icon="share">
       <var-button @click="save_as_image()">

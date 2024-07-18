@@ -3,16 +3,18 @@
 
 这是一个虽然在开发中但是进度约等于没有的[米家](https://mihoyo.com/)游戏工具箱。
 
-## 目前已有的功能
-
-> 右上角菜单可以跳转到各个功能页面。
+## 目前~~成熟~~已有的功能
 
 - [原神，崩铁，绝区零字体翻译器](#/translator)
 - [米游音乐播放器](#/song/player)
-- [**开发中 DIARY Build 0.0.0**](#/diary)
-- [**开发中 CALENDER Build 0.0.0**](#/calender)
+- [成就工具](#/achievement/)
+
+## 应用程序
+
+你可以再 [蓝奏云](https://chestnut-lyf.lanzoue.com/ibJtN24wdlyh) 
+下载本地版，本地版会在你的 Windows 设备本地创建一个服务器，并提供一个网页界面来访问。
 
 ## 关于作者
 
-- Github : [CN_Chestnut](https://github.com/CN-Chestnut)
+- Github : [CNChestnut](https://github.com/CNChestnut)
 - Bilibili : [SDN_Chestnut](https://space.bilibili.com/650631530)

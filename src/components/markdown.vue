@@ -8,8 +8,6 @@ const md = new MarkdownIt({
     html: true
 })
 
-const router = useRouter();
-
 const props = defineProps({
     content: String,
     height:{
