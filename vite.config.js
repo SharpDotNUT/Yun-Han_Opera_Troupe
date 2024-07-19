@@ -42,6 +42,6 @@ export default defineConfig({
   },
   build:{
     sourcemap: 'hidden',
-    outDir: 'dist' // 确保这是相对路径
+    outDir: './dist' // 确保这是相对路径
   }
 })
