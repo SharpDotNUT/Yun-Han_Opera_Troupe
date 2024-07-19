@@ -26,7 +26,7 @@ export default defineConfig({
       resolvers: [VarletImportResolver({ autoImport: true })]
     }),
     visualizer({
-      filename:'/dist/visualizer/stats.html',
+      filename:'./dist/visualizer/stats.html',
       open: true
     }),
     inspect()
