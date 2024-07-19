@@ -41,6 +41,7 @@ export default defineConfig({
     host: '0.0.0.0',
   },
   build:{
-    sourcemap: 'hidden'
+    sourcemap: 'hidden',
+    outDir: './dist' // 确保这是相对路径
   }
 })
