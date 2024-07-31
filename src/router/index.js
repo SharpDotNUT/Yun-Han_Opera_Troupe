@@ -31,6 +31,10 @@ const router = createRouter({
     {
       path:"/achievement",
       component: () => import('../views/achievement/index.vue')
+    },
+    {
+      path:'/xp',
+      component: () => import('../views/xp/index.vue')
     }
   ]
 })

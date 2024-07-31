@@ -144,6 +144,8 @@ function searchAchievement(name, platform) {
                                 Date(userUIAF[achievement.id].timestamp * 1000).toLocaleString() }}</p>
                             <var-progress style="margin-top: 5px;" :value="userUIAF[achievement.id].current / achievement.progress * 100 ||
                                 userUIAF[achievement.id].status > index ? 100 : 0"></var-progress>
+                        <span @click="userUIAF[achievement.id].status = index">
+                            标记为{{(userUIAF[achievement.id].status > index) ? '未完成' : '已完成'}}</span>
                         </div>
                         <div v-else>
                             <p>未达成或数据缺失</p>

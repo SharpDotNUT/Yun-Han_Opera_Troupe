@@ -13,7 +13,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <var-paper :elevation="1" style="padding:10px">
+    <var-paper :elevation="1" style="padding:10px;margin-bottom:10px">
         <Markdown :content="props.content" :height="props.height"></Markdown>
     </var-paper>
 </template>
