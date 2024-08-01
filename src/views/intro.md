@@ -8,13 +8,11 @@
 - [原神，崩铁，绝区零字体翻译器](#/translator)
 - [米游音乐播放器](#/song/player)
 - [成就工具](#/achievement/)
+- [XP 分析工具](#/xp/)
 
 ## 应用程序
 
-你可以再 [蓝奏云](https://chestnut-lyf.lanzoue.com/ibJtN24wdlyh) 
+你可以再 [GitHub Releases](https://github.com/SharpDotNUT/yunhan-toolbox/releases/) 
 下载本地版，本地版会在你的 Windows 设备本地创建一个服务器，并提供一个网页界面来访问。
 
-## 关于作者
-
-- Github : [CNChestnut](https://github.com/CNChestnut)
-- Bilibili : [SDN_Chestnut](https://space.bilibili.com/650631530)
+![GitHub Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=SharpDotNUT&repo=yunhan-toolbox)

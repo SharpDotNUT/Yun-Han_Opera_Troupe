@@ -6,14 +6,14 @@ const props = defineProps({
     content: String,
     height:{
         type: String,
-        default: '100%'
+        default: '50vh'
     }
 })
 
 </script>
 
 <template>
-    <var-paper :elevation="1" style="padding:10px;margin-bottom:10px">
+    <var-paper :elevation="1" style="padding:20px;margin-bottom:10px">
         <Markdown :content="props.content" :height="props.height"></Markdown>
     </var-paper>
 </template>

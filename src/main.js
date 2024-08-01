@@ -4,6 +4,8 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router/index";
 
+import './style/main.css'
+
 import { Themes, StyleProvider } from '@varlet/ui'
 StyleProvider(Themes.md3Light)
 

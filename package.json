@@ -1,6 +1,6 @@
 {
   "name": "yunhan-toolbox",
-  "version": "1.1.0 - Build 202407311-1",
+  "version": "1.1.0",
   "description": "A HoYo Game Toolbox",
   "private": true,
   "type": "module",
