@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, nextTick } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import Markdown from "@/components/markdown.vue";
 import LyricsView from './lyrics-view.vue'
@@ -18,33 +18,28 @@ import { useMainStore } from "@/stores/main";
 useMainStore().setTitle('音乐播放器')
 
 const selectedAlbum = ref(0)
-watch(selectedAlbum, () => {
-    router.push({ query: { album: selectedAlbum.value, song: selectedSong.value } })
-})
 const selectedSong = ref(0)
-watch(selectedSong, () => {
-    fetchData()
-    route.query.song = selectedSong.value
-    router.push({ query: { album: selectedAlbum.value, song: selectedSong.value } })
-})
 
 function randomASong() {
     selectedAlbum.value = Math.floor(Math.random() * Data.length)
     selectedSong.value = Math.floor(Math.random() * Data[selectedAlbum.value].songs.length)
-    router.push({ query: { album: selectedAlbum.value, song: selectedSong.value } })
     fetchData()
 }
-function copyLink(){
-    copyToClipboard(location.href, () => Snackbar.success('复制成功'))
+function copyLink() {
+    let url = new URL(window.location.href)
+    url.searchParams.set('alnum', Data.length - selectedAlbum.value)
+    url.searchParams.set('song', selectedSong.value)
+    copyToClipboard(url, () => Snackbar.success('复制成功'))
 }
 
 if (route.query.album) {
-    selectedAlbum.value = parseInt(route.query.album)
+    selectedAlbum.value = Data.length - parseInt(route.query.album)
+    router.push({ query: { album: undefined } })
 }
 if (route.query.song) {
     selectedSong.value = parseInt(route.query.song)
+    router.push({ query: { song: undefined } })
 }
-router.push({ query: { album: selectedAlbum.value, song: selectedSong.value } })
 
 const data = ref()
 const songURL = ref('')

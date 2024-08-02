@@ -133,15 +133,6 @@ defineExpose({
 </script>
 
 <template>
-    <!-- <var-slider v-model="process" @start="onChangeProcess = true"
-        @end="audio.currentTime = process; onChangeProcess = false; hasChangedProcess = true" min="0"
-        :max="Math.ceil(processMax)" :disabled="!data" block label-visible="never" />
-    <p>
-
-    </p>
-    <var-button @click="pause = !pause" :disabled="!data" block>{{ pause ? '播放' : '暂停' }} - {{ timeFormat(process) }} /
-        {{ timeFormat(processMax) }}</var-button>
-    <br> -->
     <audio :src="songURL" ref="audio"></audio>
     <div>
         <!-- <h3>作者：{{ data[0].artist }}</h3> -->
@@ -165,7 +156,7 @@ defineExpose({
     margin-top: 10px;
     padding: 20px;
     border-radius: 20px;
-    background-color: #eee;
+    background-color: var(--color-body);
 }
 
 .lyrics {
@@ -176,7 +167,7 @@ defineExpose({
 }
 
 .now-playing {
-    color: red;
+    color: var(--color-primary);
     font-size: 170%
 }
 </style>

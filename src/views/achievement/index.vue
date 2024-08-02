@@ -156,7 +156,8 @@ function searchAchievement(name, platform) {
                         <span class="achievement-actions"
                             @click="searchAchievement(achievementGroup[0].name, 'bilibili')">
                             在哔哩哔哩搜索
-                        </span><span class="achievement-actions"
+                        </span>
+                        <span class="achievement-actions"
                             @click="searchAchievement(achievementGroup[0].name, 'miyoushe')">
                             在米游社搜索
                         </span>

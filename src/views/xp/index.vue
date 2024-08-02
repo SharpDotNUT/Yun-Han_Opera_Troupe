@@ -20,7 +20,9 @@ const display_achiever = ref(false)
 
 if (route.query?.data) {
     try {
-        data.value = atob(JSON.parse(route.query.data))
+        _log(route.query.data)
+        // _log(atob(JSON.parse(route.query.data)))
+        // data.value = atob(JSON.parse(route.query.data))
         Snackbar.success('成功读取分享数据')
     } catch (e) {
         Dialog('分享数据解析失败')
@@ -123,7 +125,8 @@ function computeResult() {
 
 <template>
     <Intro :content="IntroText"></Intro>
-    <var-paper :elevation="2" style="padding: 20px" id="input">
+    <var-divider />
+    <var-paper class="paper" id="input">
         <var-menu id="character-selector">
             <var-cell border v-ripple v-for="(character, index) in Tags" @click="selected = index">
                 {{ character.name }}
@@ -141,14 +144,16 @@ function computeResult() {
             <var-chip block>武器类别 - {{ Tags[selected].weapon }}</var-chip><br />
             <var-chip block>体型 - {{ Tags[selected].body }}</var-chip><br />
             <hr />
-            XP 值 : <var-slider style="padding: 20px" v-model="data[selected]" :min="0" :max="1" :step="0.01"></var-slider>
+            XP 值 : <var-slider style="padding: 20px" v-model="data[selected]" :min="0" :max="1"
+                :step="0.01"></var-slider>
             <hr />
             <var-chip class="tags" v-for="(tag, index) in Tags[selected].tags">
                 {{ tag }}
             </var-chip>
         </div>
     </var-paper>
-    <var-paper :elevation="2" style="padding: 20px;margin-top: 20px">
+    <var-divider />
+    <var-paper class="paper">
         <div style="display: flex;gap: 10px;flex-direction: column;">
             <var-button block @click="result = {}; computeResult()">计算</var-button>
             <var-button block @click="initData(); result = {}">清空</var-button>
@@ -173,7 +178,8 @@ function computeResult() {
             </var-dialog>
         </div>
     </var-paper>
-    <var-paper :elevation="2" style="padding: 20px;margin-top: 20px" id="result" v-if="Object.keys(result).length > 0">
+    <var-divider />
+    <var-paper class="paper" id="result" v-if="Object.keys(result).length > 0">
         <var-table>
             <table>
                 <thead>
@@ -203,13 +209,14 @@ function computeResult() {
     flex: 1;
     max-height: 50vh;
     overflow: auto;
+    padding: 20px;
 }
 
 #character-panel {
     flex: 2;
     max-height: 50vh;
     overflow: auto;
-    padding: 10px
+    padding: 20px
 }
 
 .tags {

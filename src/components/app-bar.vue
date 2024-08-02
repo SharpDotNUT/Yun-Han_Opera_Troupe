@@ -5,13 +5,13 @@ import { useRouter } from "vue-router";
 import { useMainStore } from "@/stores/main";
 import { RouterLink } from "vue-router";
 import { routes } from "@/router";
-import { Themes, StyleProvider } from "@varlet/ui";
 
 import PackageJSON from "@/../package.json";
 import ChangeLog from '../../CHANGELOGS.md?raw';
 import Markdown from '@/components/markdown.vue';
 
 const title = ref("");
+const theme = ref("light");
 const display_changeLog = ref(false);
 const display_menu = ref(false);
 
@@ -30,6 +30,17 @@ function openGithub() {
   window.open("https://github.com/SharpDotNUT/yunhan-toolbox/");
 }
 
+watch(theme,()=>{
+  mainStore.setTheme(theme.value);
+})
+function changeTheme(theme){
+  if(theme === 'light'){
+    mainStore.setTheme('light');
+  }else{
+    mainStore.setTheme('dark');
+  }
+}
+
 </script>
 
 <template>
@@ -46,10 +57,11 @@ function openGithub() {
       <template #left></template>
     </var-app-bar>
   </div>
-  <var-popup position="right" style="width:min(70vw,600px);padding:10vh 3vw;" v-model:show="display_menu"
+  <var-popup position="right" style="width:min(70vw,600px);padding:10vh 20px;" v-model:show="display_menu"
     :cancel-button="false">
     <div style="display:flex;flex-direction:column;gap:10px">
       <h1>菜单<var-badge :value="'v ' + PackageJSON.version"></var-badge></h1>
+      <p>「红毹婵娟，庄谐并举」</p>
       <p>作者 :
         <var-link href="https://github.com/SharpDotNUT">#.NUT Studio - OpenSource 团队</var-link>
         |
@@ -62,8 +74,13 @@ function openGithub() {
       </RouterLink>
       <var-button block @click="openGithub()">Github 仓库</var-button>
       <var-button block @click="$emit('changeIsFullWidth')">界面全宽优化（测试中功能）</var-button>
-      <var-button block @click="StyleProvider(Themes.md3Light)">回到浅色模式</var-button>
-      <var-button block @click="StyleProvider(Themes.md3Dark)">深色模式（测试中功能）</var-button>
+      <var-select variant="outlined" v-model="theme" placeholder="选择主题">
+        <template #prepend-icon>
+          <var-icon name="palette" /></template>
+        <var-option label="浅色模式" value="light"></var-option>
+        <var-option label="深色模式" value="dark"></var-option>
+        <var-option label="跟随系统" value="system"></var-option>
+      </var-select>
       <hr />
       <RouterLink v-for="route in routes" :to="route.path">
         <var-button block>{{ route.name }}</var-button>

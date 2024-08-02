@@ -193,10 +193,8 @@ watch(
       <div>
         <h3>原文</h3>
         <textarea disable id="raw-text" v-model="raw_text" @click="handle_textarea_click" :class="font_info.raw_class"
-          style="width: 100%; 
-          height: 200px;
-          padding: 12px;
-          font-size: 24px;"></textarea>
+          style="width: 100%; height: 200px;padding: 12px;
+        font-size: 24px;background-color: transparent;color:var(--color-text);"></textarea>
       </div>
       <div id="visual-keyboard">
         <div v-for="row in keyboard_key.keys" :key="row" class="keyboard-row">
@@ -206,9 +204,9 @@ watch(
           </div>
         </div>
         <div v-for="row in keyboard_key.controls" :key="row" class="keyboard-row">
-          <var-chip v-for="key in row" :key="key" @click="handle_key(key)" class="keyboard-key" v-ripple>
+          <div v-for="key in row" :key="key" @click="handle_key(key)" class="keyboard-key" v-ripple>
             {{ key }}
-          </var-chip>
+          </div>
         </div>
         <br />
       </div>
@@ -217,8 +215,8 @@ watch(
   <FontSelector :fontList="font_data" :fontInfo="font_info"></FontSelector>
   <br />
   <br />
-  字体大小：<var-counter v-model="font_info.size" />
-  自动换行：<var-switch v-model="font_info.auto_wrap" />
+  <span>字体大小：</span><var-counter v-model="font_info.size" />
+  <span>自动换行：</span><var-switch v-model="font_info.auto_wrap" />
   <var-button @click="copy_to_clipboard()" v-if="translate_order">复制结果</var-button>
   <div id="result" v-if="display.result">
     <br />
@@ -228,7 +226,7 @@ watch(
         fontSize: font_info.size + 'px',
         overflow: 'auto',
         whiteSpace: font_info.auto_wrap ? 'pre-wrap' : 'pre',
-        wordBreak: font_info.auto_wrap ? 'break-all' : 'keep-all',
+        wordBreak: font_info.auto_wrap ? 'break-all' : 'keep-all'
       }">
         {{ result_text }}
       </div>
@@ -260,12 +258,15 @@ watch(
 }
 
 #result-img-dialog {
-  background-color: white;
   overflow: auto;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   padding: 10%;
+}
+
+#result-text {
+  color: var(--color-text)
 }
 
 #result-img {
@@ -299,8 +300,8 @@ watch(
   box-sizing: border-box;
   border-radius: 2vw;
   font-size: 4vw;
-
-  background-color: #ddd;
+  color: var(--button-default-text-color);
+  background-color: var(--button-default-color);
 }
 
 @media screen and (min-width: 600px) {

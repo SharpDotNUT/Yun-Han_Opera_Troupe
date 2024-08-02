@@ -6,9 +6,6 @@ import router from "./router/index";
 
 import './style/main.css'
 
-import { Themes, StyleProvider } from '@varlet/ui'
-StyleProvider(Themes.md3Light)
-
 const app = createApp(App);
 app.use(createPinia());
 app.use(router)
@@ -19,3 +16,4 @@ import '@varlet/touch-emulator'
 
 import { useMainStore } from './stores/main';
 useMainStore().setTitle('')
+useMainStore().setTheme()

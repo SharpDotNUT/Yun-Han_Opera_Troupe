@@ -1,8 +1,7 @@
 <script setup>
-import 'github-markdown-css/github-markdown-light.css'
-import { computed, ref } from 'vue'
+
+import { computed, ref, watch } from 'vue'
 import MarkdownIt from 'markdown-it'
-import { useRouter } from 'vue-router'
 
 const md = new MarkdownIt({
     html: true
@@ -10,7 +9,7 @@ const md = new MarkdownIt({
 
 const props = defineProps({
     content: String,
-    height:{
+    height: {
         type: String,
         default: '100%'
     }
@@ -29,8 +28,25 @@ const style = ref({
     overflowY: 'auto'
 })
 
+import GithubMarkdownCSSLight from 'github-markdown-css/github-markdown-light.css?url'
+import GithubMarkdownCSSDark from 'github-markdown-css/github-markdown-dark.css?url'
+import { useMainStore } from '@/stores/main';
+const mainStore = useMainStore()
+const CssHref = ref('')
+function updateCss(){
+    if (mainStore.theme === 'dark') {
+        CssHref.value = GithubMarkdownCSSDark
+    }
+    else {
+        CssHref.value = GithubMarkdownCSSLight
+    }
+}
+updateCss()
+watch(() => mainStore.theme, updateCss)
+
 </script>
 
 <template>
+    <link :href="CssHref" rel="stylesheet">
     <div class="markdown-body" v-html="renderedMarkdown" :style="style"></div>
 </template>
