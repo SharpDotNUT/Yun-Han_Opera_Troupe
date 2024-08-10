@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "app-build":"node app/build.js"
+    "app-build": "node app/build.js",
+    "test": "pkg -i meta.mjs -t node20-win-x64 -c --out-path dist"
   },
   "dependencies": {
     "@varlet/touch-emulator": "^3.2.13",
