@@ -17,7 +17,7 @@ const _log = console.log
 import { useMainStore } from "@/stores/main";
 useMainStore().setTitle('音乐播放器')
 
-const selectedAlbum = ref(0)
+const selectedAlbum = ref(5)
 const selectedSong = ref(0)
 
 function randomASong() {
@@ -27,19 +27,21 @@ function randomASong() {
 }
 function copyLink() {
     let url = new URL(window.location.href)
-    url.searchParams.set('alnum', Data.length - selectedAlbum.value)
+    url.searchParams.set('album', Data.length - selectedAlbum.value)
     url.searchParams.set('song', selectedSong.value)
     copyToClipboard(url, () => Snackbar.success('复制成功'))
 }
 
 if (route.query.album) {
     selectedAlbum.value = Data.length - parseInt(route.query.album)
-    router.push({ query: { album: undefined } })
+    _log("selectedAlbum: ", route.query.album)
 }
 if (route.query.song) {
     selectedSong.value = parseInt(route.query.song)
-    router.push({ query: { song: undefined } })
+    _log("selectedSong: ", route.query.song)
 }
+router.push({ query: { album: undefined } })
+router.push({ query: { song: undefined } })
 
 const data = ref()
 const songURL = ref('')
@@ -91,6 +93,29 @@ onMounted(() => {
     })
 })
 
+function download() {
+    Snackbar.loading('正在下载')
+    fetch(songURL.value)
+        .then(response => response.blob())
+        .then(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none'; // 隐藏 <a> 标签
+            document.body.appendChild(a); // 将 <a> 标签添加到 body 中
+            a.href = url;
+            a.download = `${Data[selectedAlbum.value].name} - ${Data[selectedAlbum.value].songs[selectedSong.value].name}.mp3`;
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            Snackbar.success('下载成功');
+        })
+        .catch(error => {
+            Snackbar.error('下载失败：' + error.message);
+        });
+}
+
+
+
 function fetchData() {
     _log("f:fetchData - ", selectedAlbum.value, selectedSong.value)
     _log(Data[selectedAlbum.value].name, Data[selectedAlbum.value].songs[selectedSong.value].name)
@@ -110,10 +135,10 @@ function fetchData() {
 <template>
     <Markdown :content="intro"></Markdown>
     <br>
-    <var-select v-model="selectedAlbum" :placeholder="`请选择专辑，HoYo-Mix 一共发行了${Data.length}张专辑`">
+    <var-select v-model="selectedAlbum" :placeholder="`请选择专辑，HoYo-Mix 一共发行了${Data.length}张专辑 专辑ID:${selectedAlbum}`">
         <var-option v-for="(item, index) in Data" :key="item.id" :value="index" :label="item.name"></var-option>
     </var-select>
-    <var-select v-model="selectedSong" :placeholder="`请选择歌曲，该专辑共有${Data[selectedAlbum].songs.length}首歌曲`">
+    <var-select v-model="selectedSong" :placeholder="`请选择歌曲，该专辑共有${Data[selectedAlbum].songs.length}首歌曲 歌曲ID:${selectedSong}`">
         <var-option v-for="(item, index) in Data[selectedAlbum].songs" :key="item.id" :value="index"
             :label="item.name"></var-option>
     </var-select>
@@ -122,6 +147,7 @@ function fetchData() {
         <var-button @click="fetchData()" block>选定</var-button>
         <var-button @click="copyLink()" block>获取分享链接</var-button>
         <var-button @click="randomASong()" block>随机选一首</var-button>
+        <var-button @click="download()" block>下载当前歌曲</var-button>
     </div>
     <br>
     <var-slider v-model="process" @start="onChangeProcess = true"

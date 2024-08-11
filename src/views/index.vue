@@ -1,7 +1,6 @@
 <script setup>
 
 import { ref, onMounted } from 'vue'
-import { routes } from "@/router";
 
 import { useMainStore } from '@/stores/main.js';
 useMainStore().setTitle('首页')
@@ -19,9 +18,8 @@ let id_rAF = undefined
 onMounted(() => {
   const ctx = canvas.value.getContext('2d')
   const dpr = window.devicePixelRatio || 1
-  let rect, width, height, _distance;
+  let rect = canvas.value.getBoundingClientRect(), width, height, _distance;
   function init() {
-    rect = canvas.value.getBoundingClientRect()
     // 设置 canvas 的实际尺寸
     canvas.value.width = rect.width * dpr
     canvas.value.height = rect.height * dpr
@@ -114,12 +112,13 @@ onMounted(() => {
     <div>
       <div id="content">
         <div id="title">
-          <h1>云翰社</h1>
+          <h1>{{ $t('name') }}</h1>
           <h2>Yun-Han Opera Troupe | <ruby>雲翰社<rt>うんかんしゃ</rt></ruby></h2>
         </div>
         <div>
           <p>「 云婵娟来花婵娟，风流尽在山水间。 」</p>
           <p>云翰社是一个在 <var-link href="https://github.com/SharpDotNUT/yunhan-toolbox">GitHub</var-link> 开源的米哈游游戏工具箱。</p>
+          <p>首页未完工，使用请点击右上角菜单</p>
         </div>
       </div>
     </div>

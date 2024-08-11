@@ -25,6 +25,11 @@ export const routes = [
     name:'XP 分析工具',
     path:'/xp',
     component: () => import('../views/xp/index.vue')
+  },
+  {
+    name:"卡池(测试)",
+    path:"/gacha/view",
+    component: () => import('../views/gacha/view/index.vue')
   }
 ]
 

@@ -137,7 +137,8 @@ function searchAchievement(name, platform) {
                         <h3>{{ achievement.name }}</h3>
                         <h5>{{ achievement.description }}</h5>
                         <p style="color:rgb(0,0,0, 0.7)">
-                            更新版本 {{ achievement.version }} | 奖励 {{ achievement.rewards }} 原石</p>
+                            更新版本 {{ achievement.version }} | 奖励 {{ achievement.rewards }} 
+                        <img src="https://homdgcat.wiki/homdgcat-res/Csxylic/Primo.png" style="height:16px"></p>
                         <div v-if="userUIAF?.[achievement.id]">
                             <p>{{ (userUIAF[achievement.id].status > index) ? '已达成' : '未达成' }}</p>
                             <p v-if="userUIAF[achievement.id].status > index">达成时间 {{ new

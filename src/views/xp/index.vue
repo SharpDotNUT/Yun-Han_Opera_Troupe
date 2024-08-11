@@ -129,6 +129,7 @@ function computeResult() {
     <var-paper class="paper" id="input">
         <var-menu id="character-selector">
             <var-cell border v-ripple v-for="(character, index) in Tags" @click="selected = index">
+                <img :src="character.icon" style="height:20px">
                 {{ character.name }}
                 <span v-if="data[index] > 0">
                     - {{ data[index] }}
@@ -140,6 +141,7 @@ function computeResult() {
             </h1>
             <h3>{{ Tags[selected].description }}</h3>
             <br>
+            <img :src="Tags[selected].icon">
             <var-chip block>元素 - {{ Tags[selected].vision }}</var-chip><br />
             <var-chip block>武器类别 - {{ Tags[selected].weapon }}</var-chip><br />
             <var-chip block>体型 - {{ Tags[selected].body }}</var-chip><br />
