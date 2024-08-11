@@ -1,6 +1,7 @@
 <script setup>
 
 import { ref, onMounted } from 'vue'
+import { routes } from "@/router";
 
 import { useMainStore } from '@/stores/main.js';
 useMainStore().setTitle('首页')
@@ -12,19 +13,6 @@ function randomFloat(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-const subtitle_raw = '一个在 Github 开源的米家游戏工具箱'
-let subtitle_start = new Date().getTime()
-const subtitle = ref('')
-const title = ref('')
-function typing() {
-  const delay = 200
-  if (new Date().getTime() - subtitle_start > subtitle_raw.length * delay + 10 * delay) {
-    subtitle_start = new Date().getTime()
-  }
-  subtitle.value = subtitle_raw.slice(0, Math.floor((new Date().getTime() - subtitle_start) / delay)) + '_'
-  requestAnimationFrame(typing)
-}
-requestAnimationFrame(typing)
 
 const canvas = ref(null)
 let id_rAF = undefined
@@ -44,7 +32,7 @@ onMounted(() => {
     _distance = (width ** 2 + height ** 2) ** 0.5 * 0.25;
   }
   init()
-  const numberOfPoints = width * height / 30000;
+  const numberOfPoints = width * height / 50000;
   console.log(numberOfPoints)
   class Point {
     constructor(width, height) {
@@ -54,23 +42,33 @@ onMounted(() => {
       this.vx = randomFloat(-50, 50);
       this.vy = randomFloat(-50, 50);
       this.timeOfLastFrame = Date.now();
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          this.timeOfLastFrame = undefined;
+        }
+      })
     }
+
     draw(ctx) {
-      const theme = useMainStore().theme
-      this.x += this.vx * (Date.now() - this.timeOfLastFrame) / 1000;
-      this.y += this.vy * (Date.now() - this.timeOfLastFrame) / 1000;
-      this.timeOfLastFrame = Date.now();
+      const theme = useMainStore().theme;
+      const now = Date.now();
+      if (now - this.timeOfLastFrame < 100) {
+        this.x += this.vx * (now - (this.timeOfLastFrame ? this.timeOfLastFrame : 0)) / 1000;
+        this.y += this.vy * (now - (this.timeOfLastFrame ? this.timeOfLastFrame : 0)) / 1000;
+      }
+      this.timeOfLastFrame = now;
       if (this.x < this.r || this.x > width - this.r) {
         this.vx = -this.vx;
       }
       if (this.y < this.r || this.y > height - this.r) {
         this.vy = -this.vy;
       }
-      ctx.beginPath()
-      ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI)
-      ctx.fillStyle = theme === 'dark' ? '#fff' : '#000'
-      ctx.fill()
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+      ctx.fillStyle = theme === 'dark' ? '#fff' : '#000';
+      ctx.fill();
     }
+
   }
   const points = [];
   for (let i = 0; i < numberOfPoints; i++) {
@@ -99,6 +97,13 @@ onMounted(() => {
     requestAnimationFrame(draw);
   }
   requestAnimationFrame(draw);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(id_rAF);
+    } else {
+      requestAnimationFrame(draw);
+    }
+  })
 })
 
 </script>
@@ -106,13 +111,17 @@ onMounted(() => {
 <template>
   <div id="main">
     <canvas id="canvas" ref="canvas"></canvas>
-    <div id="head">
-      <h1>云翰社</h1>
-      <h2>Yun-Han Opera Troupe | <ruby>雲翰社<rt>うんかんしゃ</rt></ruby></h2>
-      <p>{{ subtitle }}</p>
-    </div>
     <div>
-      <p>「云婵娟来花婵娟，风流尽在山水间。」</p>
+      <div id="content">
+        <div id="title">
+          <h1>云翰社</h1>
+          <h2>Yun-Han Opera Troupe | <ruby>雲翰社<rt>うんかんしゃ</rt></ruby></h2>
+        </div>
+        <div>
+          <p>「 云婵娟来花婵娟，风流尽在山水间。 」</p>
+          <p>云翰社是一个在 <var-link href="https://github.com/SharpDotNUT/yunhan-toolbox">GitHub</var-link> 开源的米哈游游戏工具箱。</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -136,23 +145,24 @@ onMounted(() => {
   width: 100vw;
   height: calc(100vh - var(--app-bar-height));
   background-color: var(--color-body);
-  filter: blur(0.5px)
+  filter: blur(1.5px);
 }
 
-#head {
-  position: fixed;
-  top: 50vh;
-  left: 50vw;
-  transform: translate(-50%, -50%);
+#title {
 
-  h1 {
-    background: linear-gradient(to bottom,
-        #3d3a5b,
-        #3d3a5b 20%,
-        #72c8d6);
+  h1,
+  h2 {
+    background: linear-gradient(-30deg,
+        #f19ebe 0%,
+        #f19ebe 30%,
+        #72c8d6 70%,
+        #72c8d6 100%);
     background-clip: text;
     color: transparent;
-    font-size: 5vh;
+  }
+
+  h1 {
+    font-size: 8vh;
   }
 
   h2 {
@@ -160,9 +170,12 @@ onMounted(() => {
     margin-bottom: 10px;
   }
 
-  p {
-    font-size: 3vh;
-    font-weight: bold;
-  }
+  margin-bottom: 10vh;
+}
+
+#content {
+  position: relative;
+  margin: 30vh auto 0 auto;
+  max-width: 600px;
 }
 </style>

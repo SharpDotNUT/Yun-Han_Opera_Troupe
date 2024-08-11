@@ -11,7 +11,7 @@ import ChangeLog from '../../CHANGELOGS.md?raw';
 import Markdown from '@/components/markdown.vue';
 
 const title = ref("");
-const theme = ref("light");
+const theme = ref('system');
 const display_changeLog = ref(false);
 const display_menu = ref(false);
 
@@ -33,13 +33,19 @@ function openGithub() {
 watch(theme,()=>{
   mainStore.setTheme(theme.value);
 })
-function changeTheme(theme){
-  if(theme === 'light'){
-    mainStore.setTheme('light');
-  }else{
-    mainStore.setTheme('dark');
-  }
-}
+
+fetch('https://yunhan-api.sharpdotnut.top/notice').then(res => res.json()).then(data => {
+  if(data.show == "true")
+  Dialog({
+    title: '提示',
+    message: data.text
+  })
+}).catch(err => {
+  Dialog({
+    title: '提示',
+    message: '连接后端服务器失败'
+  })
+})
 
 </script>
 
@@ -57,10 +63,10 @@ function changeTheme(theme){
       <template #left></template>
     </var-app-bar>
   </div>
-  <var-popup position="right" style="width:min(70vw,600px);padding:10vh 20px;" v-model:show="display_menu"
+  <var-popup position="right" style="width:min(70vw,600px);padding:10vh 20px;top:var(--app-bar-height)" v-model:show="display_menu"
     :cancel-button="false">
     <div style="display:flex;flex-direction:column;gap:10px">
-      <h1>菜单<var-badge :value="'v ' + PackageJSON.version"></var-badge></h1>
+      <h1>云翰社<var-badge :value="'v ' + PackageJSON.version"></var-badge></h1>
       <p>「红毹婵娟，庄谐并举」</p>
       <p>作者 :
         <var-link href="https://github.com/SharpDotNUT">#.NUT Studio - OpenSource 团队</var-link>
@@ -69,11 +75,6 @@ function changeTheme(theme){
       </p>
       <p>Copyright © 2024 SharpDotNUT. All rights reserved.</p>
       <hr />
-      <RouterLink to="/">
-        <var-button block>首页</var-button>
-      </RouterLink>
-      <var-button block @click="openGithub()">Github 仓库</var-button>
-      <var-button block @click="$emit('changeIsFullWidth')">界面全宽优化（测试中功能）</var-button>
       <var-select variant="outlined" v-model="theme" placeholder="选择主题">
         <template #prepend-icon>
           <var-icon name="palette" /></template>
@@ -83,7 +84,7 @@ function changeTheme(theme){
       </var-select>
       <hr />
       <RouterLink v-for="route in routes" :to="route.path">
-        <var-button block>{{ route.name }}</var-button>
+        <var-button block @click="display_menu = false">{{ route.name }}</var-button>
       </RouterLink>
       <hr />
       <var-collapse v-model="display_changeLog">

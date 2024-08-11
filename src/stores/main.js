@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 import { Themes, StyleProvider } from "@varlet/ui";
 
 export const useMainStore = defineStore("main", () => {
-  const host_name = "http://localhost:62801";
+  const host_name = "https://yunhan-api.sharpdotnut.top/";
 
   const title_text = ref("云翰社");
   const title = ref("");
@@ -16,19 +16,25 @@ export const useMainStore = defineStore("main", () => {
   }
 
   const theme = ref(document.documentElement.dataset.theme);
+  const themeMode = ref(document.documentElement.dataset.theme);
   function setTheme(themeToSet) {
-    console.log("setTheme", themeToSet)
-    if (!themeToSet || themeToSet == "system") {
-      themeToSet = window.matchMedia("(prefers-color-scheme: dark)").matches
+    console.log("setTheme", themeToSet);
+    themeMode.value = themeToSet;
+    if (!themeMode.value || themeMode.value == "system") {
+      theme.value = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
         ? "dark"
         : "light";
     }
-    if ((themeToSet == "dark")) {
+    else{
+      theme.value = themeMode.value;
+    }
+    if (theme.value == "dark") {
       StyleProvider(Themes.md3Dark);
       theme.value = "dark";
       document.documentElement.dataset.theme = "dark";
     }
-    if ((themeToSet == "light")) {
+    if (theme.value == "light") {
       StyleProvider(Themes.md3Light);
       theme.value = "light";
       document.documentElement.dataset.theme = "light";
