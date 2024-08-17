@@ -38,6 +38,44 @@
           }
         }
       }, 10);
+
+function getBrowserInfo() {
+    const ua = navigator.userAgent;
+    let tem, 
+        matchTest = ua.match(/(opera|chrome|safari|firefox|edge)\/?\s*(\.?\d+(\.\d+)*)/i) || [];
+    if (/edge/i.test(matchTest[1])) {
+        tem = ua.match(/\bEdg\/(\d+)/);
+        return { name: "Edge", version: tem ? tem[1] : "0" };
+    }
+    matchTest = matchTest[2] ? [matchTest[1], matchTest[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+        matchTest.splice(1, 1, tem[1]);
+    }
+    return {
+        name: matchTest[0],
+        version: matchTest[1]
+    };
+}
+
+function isBrowserSupported() {
+    const browser = getBrowserInfo();
+    const version = parseInt(browser.version);
+    
+    switch (browser.name.toLowerCase()) {
+        case 'chrome':
+            return version >= 87;
+        case 'firefox':
+            return version >= 78;
+        case 'safari':
+            return version >= 14;
+        default:
+            return false;
+    }
+}
+
+if (!isBrowserSupported()) {
+    alert('您的浏览器版本过低，可能无法正常使用本站点。');
+}
     </script>
   </div>
   <script type="module" src="/src/main.js"></script>
