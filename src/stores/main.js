@@ -5,6 +5,7 @@ import { Themes, StyleProvider } from "@varlet/ui";
 
 export const useMainStore = defineStore("main", () => {
   const host_name = "https://yunhan-api.sharpdotnut.top/";
+  // const host_name = "http://localhost:52100/";
 
   const title_text = ref("云翰社");
   const title = ref("");

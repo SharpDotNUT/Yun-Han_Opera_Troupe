@@ -9,11 +9,20 @@ import { routes } from "@/router";
 import PackageJSON from "@/../package.json";
 import ChangeLog from '../../CHANGELOGS.md?raw';
 import Markdown from '@/components/markdown.vue';
+import { Dialog } from "@varlet/ui";
 
 const title = ref("");
 const theme = ref('system');
 const display_changeLog = ref(false);
 const display_menu = ref(false);
+const display_account = ref(true);
+
+const account_info = ref({
+  username: "sharpdotnut",
+  "display_name": "#.NUT Studio",
+  email: "offical@sharpdotnut.top",
+  password: "TT",
+})
 
 const router = useRouter();
 console.log(router)
@@ -30,22 +39,40 @@ function openGithub() {
   window.open("https://github.com/SharpDotNUT/yunhan-toolbox/");
 }
 
-watch(theme,()=>{
+watch(theme, () => {
   mainStore.setTheme(theme.value);
 })
 
 fetch('https://yunhan-api.sharpdotnut.top/notice').then(res => res.json()).then(data => {
-  if(data.show == "true")
-  Dialog({
-    title: '提示',
-    message: data.text
-  })
+  if (data.show == "true")
+    Dialog({
+      title: '提示',
+      message: data.text
+    })
 }).catch(err => {
   Dialog({
     title: '提示',
     message: '连接后端服务器失败'
   })
 })
+
+const host_name = useMainStore().host_name;
+function account() {
+  fetch(`${host_name}api/account/register`, {
+    method: 'POST',
+    body: JSON.stringify(account_info.value),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      Dialog({
+        title: '提示',
+        message: '账号注册成功\n'+JSON.stringify(data.data),
+      })
+    })
+}
 
 </script>
 
@@ -57,14 +84,17 @@ fetch('https://yunhan-api.sharpdotnut.top/notice').then(res => res.json()).then(
           <var-icon name="github" :size="24" />
         </var-button>
         <var-button round text color="transparent">
+          <var-icon name="account-circle" @click="display_account = true" :size="24" />
+        </var-button>
+        <var-button round text color="transparent">
           <var-icon name="menu" @click="display_menu = true" :size="24" />
         </var-button>
       </template>
       <template #left></template>
     </var-app-bar>
   </div>
-  <var-popup position="right" style="width:min(70vw,600px);padding:10vh 20px;top:var(--app-bar-height)" v-model:show="display_menu"
-    :cancel-button="false">
+  <var-popup position="right" style="width:min(70vw,600px);padding:10vh 20px;top:var(--app-bar-height)"
+    v-model:show="display_menu" :cancel-button="false">
     <div style="display:flex;flex-direction:column;gap:10px">
       <h1>云翰社<var-badge :value="'v ' + PackageJSON.version"></var-badge></h1>
       <p>「红毹婵娟，庄谐并举」</p>
@@ -94,5 +124,15 @@ fetch('https://yunhan-api.sharpdotnut.top/notice').then(res => res.json()).then(
       </var-collapse>
     </div>
   </var-popup>
-
+  <var-dialog v-model:show="display_account">
+    <template #title>
+      <h1 @click="account()">账户(临时)</h1>
+      <p>目前账号系统正处于测试阶段，当前注册的账号可能会被随时删除</p>
+      <var-input v-model="account_info.username" placeholder="用户名" variant="outlined" clearable>账号名</var-input>
+      <var-input v-model="account_info.display_name" placeholder="昵称" variant="outlined" clearable>显示名</var-input>
+      <var-input v-model="account_info.password" placeholder="密码" variant="outlined" type="password" clearable>密码</var-input>
+      <var-input v-model="account_info.email" placeholder="电子邮件" variant="outlined" clearable>邮箱</var-input>
+      <var-button type="submit" @click="account()">注册</var-button>
+    </template>
+  </var-dialog>
 </template>
