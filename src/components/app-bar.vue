@@ -9,20 +9,17 @@ import { routes } from "@/router";
 import PackageJSON from "@/../package.json";
 import ChangeLog from '../../CHANGELOGS.md?raw';
 import Markdown from '@/components/markdown.vue';
-import { Dialog } from "@varlet/ui";
+
+import Account from './account.vue'
 
 const title = ref("");
 const theme = ref('system');
 const display_changeLog = ref(false);
 const display_menu = ref(false);
 const display_account = ref(true);
+const ref_account = ref(null);
 
-const account_info = ref({
-  username: "sharpdotnut",
-  "display_name": "#.NUT Studio",
-  email: "offical@sharpdotnut.top",
-  password: "TT",
-})
+const host_name = useMainStore().host_name;
 
 const router = useRouter();
 console.log(router)
@@ -43,7 +40,7 @@ watch(theme, () => {
   mainStore.setTheme(theme.value);
 })
 
-fetch('https://yunhan-api.sharpdotnut.top/notice').then(res => res.json()).then(data => {
+fetch(`${host_name}/api/notice`).then(res => res.json()).then(data => {
   if (data.show == "true")
     Dialog({
       title: '提示',
@@ -56,24 +53,6 @@ fetch('https://yunhan-api.sharpdotnut.top/notice').then(res => res.json()).then(
   })
 })
 
-const host_name = useMainStore().host_name;
-function account() {
-  fetch(`${host_name}api/account/register`, {
-    method: 'POST',
-    body: JSON.stringify(account_info.value),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(res => res.json())
-    .then(data => {
-      Dialog({
-        title: '提示',
-        message: '账号注册成功\n'+JSON.stringify(data.data),
-      })
-    })
-}
-
 </script>
 
 <template>
@@ -84,7 +63,7 @@ function account() {
           <var-icon name="github" :size="24" />
         </var-button>
         <var-button round text color="transparent">
-          <var-icon name="account-circle" @click="display_account = true" :size="24" />
+          <var-icon name="account-circle" @click="ref_account.open()" :size="24" />
         </var-button>
         <var-button round text color="transparent">
           <var-icon name="menu" @click="display_menu = true" :size="24" />
@@ -98,12 +77,6 @@ function account() {
     <div style="display:flex;flex-direction:column;gap:10px">
       <h1>云翰社<var-badge :value="'v ' + PackageJSON.version"></var-badge></h1>
       <p>「红毹婵娟，庄谐并举」</p>
-      <p>作者 :
-        <var-link href="https://github.com/SharpDotNUT">#.NUT Studio - OpenSource 团队</var-link>
-        |
-        <var-link href="https://github.com/CNChestnut">Chestnut</var-link>
-      </p>
-      <p>Copyright © 2024 SharpDotNUT. All rights reserved.</p>
       <hr />
       <var-select variant="outlined" v-model="theme" placeholder="选择主题">
         <template #prepend-icon>
@@ -122,17 +95,11 @@ function account() {
           <Markdown :content="ChangeLog" />
         </var-collapse-item>
       </var-collapse>
+      <p>作者 :
+        <var-link href="https://github.com/SharpDotNUT">#.NUT Studio</var-link> | <var-link href="https://github.com/CNChestnut">Chestnut</var-link>
+      </p>
+      <p>Copyright © 2024 SharpDotNUT. All rights reserved.</p>
     </div>
   </var-popup>
-  <var-dialog v-model:show="display_account">
-    <template #title>
-      <h1 @click="account()">账户(临时)</h1>
-      <p>目前账号系统正处于测试阶段，当前注册的账号可能会被随时删除</p>
-      <var-input v-model="account_info.username" placeholder="用户名" variant="outlined" clearable>账号名</var-input>
-      <var-input v-model="account_info.display_name" placeholder="昵称" variant="outlined" clearable>显示名</var-input>
-      <var-input v-model="account_info.password" placeholder="密码" variant="outlined" type="password" clearable>密码</var-input>
-      <var-input v-model="account_info.email" placeholder="电子邮件" variant="outlined" clearable>邮箱</var-input>
-      <var-button type="submit" @click="account()">注册</var-button>
-    </template>
-  </var-dialog>
+  <Account ref="ref_account" :show="display_account" @update:display_account="display_account = false" />
 </template>

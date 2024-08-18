@@ -1,11 +1,13 @@
 <script setup>
 import { ref } from "vue";
 import { RouterView, useRouter } from "vue-router";
-
+import { useMainStore } from "./stores/main";
 import AppBar from '@/components/app-bar.vue'
 
 const isFullWidth = ref(false)
 
+const mainStore = useMainStore()
+mainStore.initUserInfo()
 const router = useRouter()
 const loading = ref(false)
 router.beforeEach((to, from) => {
@@ -57,6 +59,7 @@ router.afterEach(() => {
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.8);
 }
+
 html[data-theme="dark"] #router-loading {
   background-color: rgba(0, 0, 0, 0.8);
 }
