@@ -47,10 +47,10 @@ fetch(`${host_name}/api/notice`).then(res => res.json()).then(data => {
       message: data.text
     })
 }).catch(err => {
-  Dialog({
-    title: '提示',
-    message: '连接后端服务器失败'
-  })
+  // Dialog({
+  //   title: '提示',
+  //   message: '连接后端服务器失败'
+  // })
 })
 
 </script>
@@ -78,6 +78,7 @@ fetch(`${host_name}/api/notice`).then(res => res.json()).then(data => {
       <h1>云翰社<var-badge :value="'v ' + PackageJSON.version"></var-badge></h1>
       <p>「红毹婵娟，庄谐并举」</p>
       <hr />
+      <a href="/cors.user.js">Test</a>
       <var-select variant="outlined" v-model="theme" placeholder="选择主题">
         <template #prepend-icon>
           <var-icon name="palette" /></template>

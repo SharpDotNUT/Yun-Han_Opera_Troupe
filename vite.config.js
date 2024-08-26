@@ -2,12 +2,12 @@ import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { visualizer } from "rollup-plugin-visualizer";
 import inspect from "vite-plugin-inspect";
-
 import components from "unplugin-vue-components/vite";
 import autoImport from "unplugin-auto-import/vite";
 import { VarletImportResolver } from "@varlet/import-resolver";
+
+import {VitePWA} from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 // var- is not custom element
@@ -24,16 +24,21 @@ export default defineConfig({
     autoImport({
       resolvers: [VarletImportResolver({ autoImport: true })],
     }),
-    visualizer({
-      filename: "./dist/visualizer/stats.html",
-      open: true,
-    }),
     inspect(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      manifest: {
+        name: "My App",
+        short_name: "My App",
+        description: "My App",
+        theme_color: "#ffffff",
+      },
+    })
   ],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
-      $: fileURLToPath(new URL("./public", import.meta.url)),
+      "$": fileURLToPath(new URL("./public", import.meta.url)),
     },
   },
   server: {

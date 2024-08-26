@@ -30,6 +30,10 @@ export const routes = [
     name:"卡池(测试)",
     path:"/gacha/view",
     component: () => import('../views/gacha/view/index.vue')
+  },{
+    name:"米游社",
+    path:"/miyoushe",
+    component: () => import('../views/miyoushe/index.vue')
   }
 ]
 
