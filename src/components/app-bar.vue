@@ -7,8 +7,6 @@ import { RouterLink } from "vue-router";
 import { routes } from "@/router";
 
 import PackageJSON from "@/../package.json";
-import ChangeLog from '../../CHANGELOGS.md?raw';
-import Markdown from '@/components/markdown.vue';
 
 import Account from './account.vue'
 
@@ -53,6 +51,8 @@ fetch(`${host_name}/api/notice`).then(res => res.json()).then(data => {
   // })
 })
 
+const emits = defineEmits(['changeIsFullWidth']);
+
 </script>
 
 <template>
@@ -75,7 +75,7 @@ fetch(`${host_name}/api/notice`).then(res => res.json()).then(data => {
   <var-popup position="right" style="width:min(70vw,600px);padding:10vh 20px;top:var(--app-bar-height)"
     v-model:show="display_menu" :cancel-button="false">
     <div style="display:flex;flex-direction:column;gap:10px">
-      <h1>云翰社<var-badge :value="'v ' + PackageJSON.version"></var-badge></h1>
+      <h1>云翰社<var-badge v-if="false" :value="'v ' + PackageJSON.version"></var-badge></h1>
       <p>「红毹婵娟，庄谐并举」</p>
       <hr />
       <a href="/cors.user.js">Test</a>
@@ -91,11 +91,6 @@ fetch(`${host_name}/api/notice`).then(res => res.json()).then(data => {
         <var-button block @click="display_menu = false">{{ route.name }}</var-button>
       </RouterLink>
       <hr />
-      <var-collapse v-model="display_changeLog">
-        <var-collapse-item title="更新日志">
-          <Markdown :content="ChangeLog" />
-        </var-collapse-item>
-      </var-collapse>
       <p>作者 :
         <var-link href="https://github.com/SharpDotNUT">#.NUT Studio</var-link> | <var-link href="https://github.com/CNChestnut">Chestnut</var-link>
       </p>

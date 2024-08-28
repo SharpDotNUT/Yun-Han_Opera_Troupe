@@ -34,6 +34,10 @@ export const routes = [
     name:"米游社",
     path:"/miyoushe",
     component: () => import('../views/miyoushe/index.vue')
+  },{
+    name:"",
+    path:"/test",
+    component: () => import('../views/test.vue')
   }
 ]
 

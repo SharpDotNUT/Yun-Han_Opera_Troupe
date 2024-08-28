@@ -1,4 +1,430 @@
-[
+{
+  "update": 1724743616298,
+  "data": [
+    {
+      "name": "绝区零-红透晚烟青",
+      "id": 245264946,
+      "songs": [
+        {
+          "name": "红透晚烟青",
+          "id": 2618046004
+        },
+        {
+          "name": "红透晚烟青 (伴奏)",
+          "id": 2618046661
+        }
+      ]
+    },
+    {
+      "name": "未定事件簿OST7：愿如初",
+      "id": 243150814,
+      "songs": [
+        {
+          "name": "爱如初见",
+          "id": 2611278678
+        },
+        {
+          "name": "爱如初见·幻梦",
+          "id": 2611278679
+        },
+        {
+          "name": "爱如初见·欢悦",
+          "id": 2611281379
+        },
+        {
+          "name": "爱如初见·眷念",
+          "id": 2611278680
+        },
+        {
+          "name": "往岁情衷",
+          "id": 2611278681
+        },
+        {
+          "name": "厝火沉疴",
+          "id": 2611281380
+        },
+        {
+          "name": "坍缩",
+          "id": 2611281381
+        },
+        {
+          "name": "天定·宁谧",
+          "id": 2611278682
+        },
+        {
+          "name": "竞逐·悦鼓",
+          "id": 2611281382
+        },
+        {
+          "name": "竞逐·驰心",
+          "id": 2611281383
+        },
+        {
+          "name": "竞逐·霓杯",
+          "id": 2611281384
+        },
+        {
+          "name": "竞逐·梦笔",
+          "id": 2611278683
+        },
+        {
+          "name": "觅趣成影",
+          "id": 2611278684
+        },
+        {
+          "name": "巧心梦与掌中诗",
+          "id": 2611278685
+        },
+        {
+          "name": "少年如你",
+          "id": 2611278686
+        },
+        {
+          "name": "少年如你·青葱",
+          "id": 2611278687
+        },
+        {
+          "name": "少年如你·韶光",
+          "id": 2611281385
+        },
+        {
+          "name": "趣意甘味",
+          "id": 2611281386
+        },
+        {
+          "name": "相阅未名",
+          "id": 2611281387
+        },
+        {
+          "name": "专属甜心",
+          "id": 2611278688
+        }
+      ]
+    },
+    {
+      "name": "原神-珍珠之歌4 The Shimmering Voyage Vol. 4",
+      "id": 243828206,
+      "songs": [
+        {
+          "name": "风轻云暖 Snuggy Breeze",
+          "id": 2613484725
+        },
+        {
+          "name": "巧遇的漫想 Romantic Encounter",
+          "id": 2613484726
+        },
+        {
+          "name": "夜色温柔 Tender Is the Night",
+          "id": 2613484727
+        },
+        {
+          "name": "醺时轻斟 Tipsy Sips",
+          "id": 2613482855
+        },
+        {
+          "name": "炜煌的星阙 Glorious Metropole",
+          "id": 2613482856
+        },
+        {
+          "name": "荣映的瑰景 Honorable Landscape",
+          "id": 2613482857
+        },
+        {
+          "name": "遐愿之地 The Land of Heart's Desire",
+          "id": 2613482858
+        },
+        {
+          "name": "行于繁花侧畔 Down by the Forgotten Gardens",
+          "id": 2613482859
+        },
+        {
+          "name": "夕暮漫远 Twilight Wanderings",
+          "id": 2613482860
+        },
+        {
+          "name": "画景的游憩 Leisure in Painting",
+          "id": 2613482861
+        },
+        {
+          "name": "林中晨歌 Morning Song in the Forest",
+          "id": 2613484728
+        },
+        {
+          "name": "飞鼠进行曲 The Parade of Flying Squirrels",
+          "id": 2613484729
+        },
+        {
+          "name": "鹪鹩之歌 The Songs of the Wrens",
+          "id": 2613482862
+        },
+        {
+          "name": "松风拂煦 Gentle Breeze Through the Pines",
+          "id": 2613482863
+        },
+        {
+          "name": "山间悠谈 Tales From the Hills",
+          "id": 2613482864
+        },
+        {
+          "name": "日影斑驳 Patches of Sunlight",
+          "id": 2613484730
+        },
+        {
+          "name": "晨晓的萦忆 The Hour Before the Dawn",
+          "id": 2613482865
+        },
+        {
+          "name": "眠于柔静之月 Per Amica Silentia Lunae",
+          "id": 2613484731
+        },
+        {
+          "name": "幽域的先导 Pathfinder of Darkness",
+          "id": 2613484732
+        },
+        {
+          "name": "祝颂如梦 Benediction of Dreams",
+          "id": 2613484733
+        },
+        {
+          "name": "颂梦的祝祷 Benedictio Somnii",
+          "id": 2613482866
+        },
+        {
+          "name": "踏浪逐波 Tread the Tide",
+          "id": 2613484734
+        },
+        {
+          "name": "欢夏的存念 Summer Souvenir",
+          "id": 2613484735
+        },
+        {
+          "name": "魔女的茶话会 Teegesellschaft of the Hexenzirkel",
+          "id": 2613484736
+        },
+        {
+          "name": "终久的夙诺 Everlasting Promise",
+          "id": 2613484737
+        },
+        {
+          "name": "相遇，相别 Meeting and Passing",
+          "id": 2613484738
+        },
+        {
+          "name": "夜中幻剧 La nuit fantastique",
+          "id": 2613482867
+        },
+        {
+          "name": "不虞之险 Unforeseen Peril",
+          "id": 2613484739
+        },
+        {
+          "name": "蔷薇与烛影之舞 Pas de deux di Rosula e Candela",
+          "id": 2613482868
+        },
+        {
+          "name": "诉辩未决 Pendente Lite",
+          "id": 2613484740
+        },
+        {
+          "name": "梦兆的鲸歌 Whale Dream",
+          "id": 2613482869
+        },
+        {
+          "name": "汹溃之刻 Surging Calamity",
+          "id": 2613482870
+        },
+        {
+          "name": "深水的晓谕 Oracle of Deep Waters",
+          "id": 2613482871
+        },
+        {
+          "name": "失坠的征咎 La tristezza della Rosula",
+          "id": 2613482872
+        },
+        {
+          "name": "未竟的告白 La confession interrompue",
+          "id": 2613482873
+        },
+        {
+          "name": "幽厄的不谐音 Lightless Dissonance",
+          "id": 2613484741
+        },
+        {
+          "name": "欢呼吧，终幕已至 La comedie ni humaine ni divine",
+          "id": 2613482874
+        },
+        {
+          "name": "曲终奏雅 Tout est bien qui finit bien",
+          "id": 2613484742
+        },
+        {
+          "name": "裂隙的丝茧 Sheaths of Void",
+          "id": 2613484743
+        },
+        {
+          "name": "她曾梦见的晴空 Le ciel clair qu'elle avait songe",
+          "id": 2613484744
+        },
+        {
+          "name": "清泉之诗 Callirhoe's Prayer",
+          "id": 2613482875
+        },
+        {
+          "name": "咎证终显 Revealed Retribution",
+          "id": 2613482876
+        },
+        {
+          "name": "转生成为鬼兜虫然后撞翻世界（纯享版） I Got Reincarnated as an Onikabuto... And Flipped the World Upside Down (Instrumental)",
+          "id": 2613482877
+        },
+        {
+          "name": "旧宴新歌 Twice-Told Tales",
+          "id": 2613482878
+        },
+        {
+          "name": "定极的轨途 Constant Trajectory",
+          "id": 2613482879
+        },
+        {
+          "name": "折轴之刻 When the Axles Break",
+          "id": 2613484745
+        },
+        {
+          "name": "枕上朝露 Makurakotoba of Dew",
+          "id": 2613482880
+        },
+        {
+          "name": "秘逸之荣 Shrouded Honor",
+          "id": 2613484746
+        },
+        {
+          "name": "砭骨之诫 Glacial Castigation",
+          "id": 2613482881
+        },
+        {
+          "name": "一雨洗尘痕 All Passed With the Rain",
+          "id": 2613484747
+        },
+        {
+          "name": "刺玫的律度 La condotta della Rosula",
+          "id": 2613484748
+        },
+        {
+          "name": "染羽裁锦 Weaving Nishiki",
+          "id": 2613482882
+        },
+        {
+          "name": "厄月的殛罚 Balemoon's Chastisement",
+          "id": 2613482883
+        },
+        {
+          "name": "最初的告别 The Last Promise",
+          "id": 2613484749
+        },
+        {
+          "name": "炽砂的密谕 Secret Orders of the Sands",
+          "id": 2613484750
+        },
+        {
+          "name": "烛影之狩 Madrigale della Candela",
+          "id": 2613484751
+        },
+        {
+          "name": "温恂的思愿 Beautiful, Delightful Vision",
+          "id": 2613482884
+        },
+        {
+          "name": "宿昔的暖意 Timeless Warmth",
+          "id": 2613484752
+        },
+        {
+          "name": "唯存香迹 Hidden Sillage",
+          "id": 2613482885
+        },
+        {
+          "name": "众水的追忆 A la recherche des grandes eaux",
+          "id": 2613484753
+        },
+        {
+          "name": "烬中歌 The Song Burning in the Embers",
+          "id": 2613482886
+        },
+        {
+          "name": "寻星的游踪 Starlight Voyage",
+          "id": 2613484754
+        },
+        {
+          "name": "古国的残梦 Dreams of the Ancient Realm",
+          "id": 2613482887
+        },
+        {
+          "name": "遗城的萦思 Memories of a Lost Castle",
+          "id": 2613484755
+        },
+        {
+          "name": "星界的眷盼 Astral Yearning",
+          "id": 2613484756
+        },
+        {
+          "name": "龙与勇者的决意 Dragon and Determination",
+          "id": 2613484757
+        },
+        {
+          "name": "灼夜归火 Night of the Sacred Flame",
+          "id": 2613482888
+        }
+      ]
+    },
+    {
+      "name": "绝区零-一颗方糖悬滞的时间",
+      "id": 243582089,
+      "songs": [
+        {
+          "name": "一颗方糖悬滞的时间",
+          "id": 2612750275
+        },
+        {
+          "name": "一颗方糖悬滞的时间 (伴奏)",
+          "id": 2612750276
+        }
+      ]
+    },
+    {
+      "name": "绝区零-Loading...",
+      "id": 242630151,
+      "songs": [
+        {
+          "name": "19%",
+          "id": 2609525139
+        },
+        {
+          "name": "39%",
+          "id": 2609526562
+        },
+        {
+          "name": "79%",
+          "id": 2609526563
+        },
+        {
+          "name": "99%",
+          "id": 2609526564
+        }
+      ]
+    },
+    {
+      "name": "绝区零-BITE! 咬合力",
+      "id": 241634181,
+      "songs": [
+        {
+          "name": "BITE! 咬合力",
+          "id": 2606329521
+        },
+        {
+          "name": "BITE! 咬合力（伴奏）",
+          "id": 2606327853
+        }
+      ]
+    },
     {
       "name": "崩坏星穹铁道-飞来波的圣状（下篇）The Flapper Sinthome Disc2",
       "id": 240417932,
@@ -1717,11 +2143,7 @@
       "songs": [
         {
           "name": "轻涟 La vaguelette",
-          "id": 2100380793
-        },
-        {
-          "name": "轻涟 La vaguelette (男版伴奏)",
-          "id": 2100378195
+          "id": 2100360081
         }
       ]
     },
@@ -1731,11 +2153,7 @@
       "songs": [
         {
           "name": "轻涟 La vaguelette",
-          "id": 2100380793
-        },
-        {
-          "name": "轻涟 La vaguelette (男版伴奏)",
-          "id": 2100378195
+          "id": 2100360081
         }
       ]
     },
@@ -1745,11 +2163,7 @@
       "songs": [
         {
           "name": "轻涟 La vaguelette",
-          "id": 2100380793
-        },
-        {
-          "name": "轻涟 La vaguelette (男版伴奏)",
-          "id": 2100378195
+          "id": 2100360081
         }
       ]
     },
@@ -1759,11 +2173,7 @@
       "songs": [
         {
           "name": "轻涟 La vaguelette",
-          "id": 2100380793
-        },
-        {
-          "name": "轻涟 La vaguelette (男版伴奏)",
-          "id": 2100378195
+          "id": 2100360081
         }
       ]
     },
@@ -3588,6 +3998,10 @@
         {
           "name": "踏上旅途 Take the Journey",
           "id": 2043177987
+        },
+        {
+          "name": "踏上旅途 Take the Journey (伴奏)",
+          "id": 2616990822
         }
       ]
     },
@@ -4548,6 +4962,14 @@
         {
           "name": "纺坠终久之梦 An Everlasting Dream Intertwined",
           "id": 2160839608
+        },
+        {
+          "name": "欢夏！邪龙？童话国！Summertide Scales and Tales",
+          "id": 2604634945
+        },
+        {
+          "name": "荣花与炎日之途 Flowers Resplendent on the Sun-Scorched Sojourn",
+          "id": 2619160085
         }
       ]
     },
@@ -8506,3 +8928,4 @@
       ]
     }
   ]
+}
