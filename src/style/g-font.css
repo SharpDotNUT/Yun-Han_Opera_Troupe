@@ -1,3 +1,9 @@
+
+@font-face {
+    font-family: 'Genshin';
+    src: url('/font/HYWenHei-85W-1.ttf');
+}
+
 @font-face {
     font-family: 'DIN';
     src: url("/font/DIN-Regular-2.otf");
@@ -10,7 +16,11 @@
 
 
 :root {
-    --font-family: 'DIN', 'Source Han Sans', 'Microsoft YaHei UI', "HarmonyOS Sans";
+    --font-family: 'Genshin','DIN', 'Source Han Sans', 'Microsoft YaHei UI', "HarmonyOS Sans";
+}
+
+.g-font{
+    font-family: var(--font-family) !important;
 }
 
 body {

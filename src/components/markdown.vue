@@ -48,5 +48,5 @@ watch(() => mainStore.theme, updateCss)
 
 <template>
     <link :href="CssHref" rel="stylesheet">
-    <div class="markdown-body" v-html="renderedMarkdown" :style="style"></div>
+    <div class="base-width markdown-body g-font" style="margin:0 auto;" v-html="renderedMarkdown" :style="style"></div>
 </template>

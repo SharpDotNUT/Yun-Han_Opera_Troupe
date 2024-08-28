@@ -8,14 +8,17 @@ import { Snackbar } from "@varlet/ui";
 import Data from "./d.json";
 import intro from "./intro.md?raw";
 
+import { open, fetchData as _fetchData, isNeedToTip } from "./index";
+
 const route = useRoute();
 const router = useRouter();
-
 const _log = console.log;
 
 import { useMainStore } from "@/stores/main";
 useMainStore().setTitle("音乐播放器");
 
+const display_tip = ref(isNeedToTip());
+const display_moreActions = ref(false);
 const songMetaData = Data.data;
 const selectedAlbum = ref(songMetaData.length - 74); // 空气蛹
 const selectedSong = ref(0);
@@ -33,7 +36,11 @@ function copyLink() {
   url.searchParams.set("song", selectedSong.value);
   copyToClipboard(url, () => Snackbar.success("复制成功"));
 }
-
+watch(selectedSong, () => {
+  if (selectedSong.value >= songMetaData[selectedAlbum.value].songs.length) {
+    selectedSong.value = 0;
+  }
+});
 if (route.query.album) {
   selectedAlbum.value = songMetaData.length - parseInt(route.query.album);
   _log("selectedAlbum: ", route.query.album);
@@ -46,7 +53,7 @@ router.push({ query: { album: undefined } });
 router.push({ query: { song: undefined } });
 
 const data = ref();
-const songURL = ref("");
+const songURL = ref(undefined);
 
 const lyricsView = ref(null);
 const audio = ref();
@@ -121,37 +128,25 @@ function download() {
 }
 
 function fetchData() {
-  _log("f:fetchData - ", selectedAlbum.value, selectedSong.value);
-  _log(
-    songMetaData[selectedAlbum.value].name,
-    songMetaData[selectedAlbum.value].songs[selectedSong.value].name
-  );
-  _log(
-    "https://api.injahow.cn/meting/?type=song&&id=" +
-      songMetaData[selectedAlbum.value].songs[selectedSong.value].id
-  );
-  fetch(
-    "https://api.injahow.cn/meting/?type=song&&id=" +
-      songMetaData[selectedAlbum.value].songs[selectedSong.value].id
-  )
-    .then((response) => response.json())
-    .then((_data) => {
-      data.value = _data;
-      _log(_data);
-      songURL.value = _data[0].url;
-    })
-    .catch((error) => console.error(error));
+  _fetchData(songMetaData, data, songURL, selectedAlbum, selectedSong);
 }
+fetchData();
 </script>
 
 <template>
-  <Markdown :content="intro"></Markdown>
+  <var-popup
+    position="bottom"
+    style="height: 70vh; padding: 20px"
+    v-model:show="display_tip"
+  >
+    <Markdown :content="intro"></Markdown
+  ></var-popup>
   <br />
   <p>数据更新时间 : {{ new Date(Data.update).toLocaleString() }}</p>
   <br />
   <var-select
     v-model="selectedAlbum"
-    :placeholder="`请选择专辑，HoYo-Mix 一共发行了${
+    :placeholder="`请选择专辑，HOYO-MiX 一共发行了${
       songMetaData.length
     }张专辑 专辑ID:${songMetaData.length - selectedAlbum}`"
   >
@@ -176,9 +171,29 @@ function fetchData() {
   <br />
   <div style="display: flex">
     <var-button @click="fetchData()" block>选定</var-button>
-    <var-button @click="copyLink()" block>获取分享链接</var-button>
-    <var-button @click="randomASong()" block>随机选一首</var-button>
-    <var-button @click="download()" block>下载当前歌曲</var-button>
+    <var-button @click="selectedSong++;fetchData()" block>下一首</var-button>
+    <var-button @click="display_moreActions = true" block>更多选项</var-button>
+    <var-dialog v-model:show="display_moreActions" :cancel-button="false">
+      <template #title>更多选项</template>
+      <div style="display: flex;flex-direction: column;gap: 10px">
+        <var-button @click="display_tip = true" block>提示</var-button>
+        <var-button @click="copyLink()" block>获取分享链接</var-button>
+        <var-button @click="randomASong()" block>随机选一首</var-button>
+        <var-button @click="download()" block> 下载当前歌曲 </var-button>
+        <var-button @click="copyToClipboard(songURL)" block>复制歌曲文件链接</var-button>
+        <var-button
+          @click="
+            open(
+              'https://music.163.com/#/song?id=' +
+                songMetaData[selectedAlbum].songs[selectedSong].id
+            )
+          "
+          block
+        >
+          在网易云音乐打开
+        </var-button>
+      </div>
+    </var-dialog>
   </div>
   <br />
   <var-slider
@@ -203,12 +218,15 @@ function fetchData() {
   <br />
   <audio :src="songURL" ref="audio"></audio>
   <div v-if="data">
-    <h3>作者：{{ data[0].artist }}</h3>
     <LyricsView
       :lyrics_url="data[0].lrc"
       ref="lyricsView"
-      @play="audio.currentTime = $event / 1000;audio.play();pause = false"
-      >
+      @play="
+        audio.currentTime = $event / 1000;
+        audio.play();
+        pause = false;
+      "
+    >
     </LyricsView>
   </div>
 </template>

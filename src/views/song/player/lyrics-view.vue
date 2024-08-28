@@ -132,7 +132,6 @@ defineExpose({
 </script>
 
 <template>
-  <audio :src="songURL" ref="audio"></audio>
   <div>
     <!-- <h3>作者：{{ data[0].artist }}</h3> -->
     <div>
@@ -153,9 +152,9 @@ defineExpose({
         >
           {{ lyric.text }}
           <br v-if="lyric.translation" />
-          <span v-if="isValidLyrics" style="font-size: 80%">{{
-            lyric.translation
-          }}</span>
+          <span v-if="isValidLyrics" style="font-size: 80%">
+            {{lyric.translation}}
+          </span>
         </p>
       </div>
     </div>
@@ -163,18 +162,21 @@ defineExpose({
 </template>
 
 <style scoped>
+
 #lyrics-container {
   overflow-y: auto;
   padding: 20px;
   border-radius: 20px;
   background-color: var(--color-body);
+  display:flex;
+  flex-direction: column;
+  gap:10px;
 }
 
 .lyrics {
   transition: color 0.5s, font-size 0.5s;
   text-align: center;
-  margin: 10px auto;
-  padding: 5px 0;
+  padding: 10px 0;
   font-size: 130%;
   border-radius: 10px;
   cursor: pointer;
@@ -188,4 +190,9 @@ defineExpose({
   color: var(--color-primary);
   font-size: 170%;
 }
+
+.lyrics:hover .lyrics-jump-to-tip {
+  display: block;
+}
+
 </style>

@@ -10,3 +10,7 @@ p,
 span {
     color: var(--color-text)
 }
+
+.base-width{
+    width:min(100%, 1000px)
+}
