@@ -174,7 +174,7 @@ defineExpose({
 }
 
 .lyrics {
-  transition: color 0.5s, font-size 0.5s;
+  transition: color 1s, font-size 1s;
   text-align: center;
   padding: 10px 0;
   font-size: 130%;
@@ -188,7 +188,7 @@ defineExpose({
 
 .now-playing {
   color: var(--color-primary);
-  font-size: 170%;
+  font-size: 180%;
 }
 
 .lyrics:hover .lyrics-jump-to-tip {

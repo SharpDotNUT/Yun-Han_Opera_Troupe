@@ -57,7 +57,7 @@ const songURL = ref(undefined);
 
 const lyricsView = ref(null);
 const audio = ref();
-
+const isMuted = ref(false);
 const process = ref(0);
 const processMax = ref(0);
 const onChangeProcess = ref(false);
@@ -139,8 +139,12 @@ fetchData();
     style="height: 70vh; padding: 20px"
     v-model:show="display_tip"
   >
-    <Markdown :content="intro"></Markdown
-  ></var-popup>
+    <Markdown :content="intro">
+      <template v-slot:footer>
+        <var-button @click="display_tip = false" block>好的</var-button>
+      </template>
+    </Markdown>
+  </var-popup>
   <br />
   <p>数据更新时间 : {{ new Date(Data.update).toLocaleString() }}</p>
   <br />
@@ -176,11 +180,12 @@ fetchData();
     <var-dialog v-model:show="display_moreActions" :cancel-button="false">
       <template #title>更多选项</template>
       <div style="display: flex;flex-direction: column;gap: 10px">
-        <var-button @click="display_tip = true" block>提示</var-button>
-        <var-button @click="copyLink()" block>获取分享链接</var-button>
-        <var-button @click="randomASong()" block>随机选一首</var-button>
+        <var-button @click="isMuted = !isMuted" block>切换播放{{ isMuted ? "正常" : "静音" }}</var-button>
+        <var-button @click="display_tip = true" block>查看使用说明</var-button>
+        <var-button @click="copyLink()" block>复制分享链接</var-button>
+        <var-button @click="randomASong()" block>随机选择一首</var-button>
         <var-button @click="download()" block> 下载当前歌曲 </var-button>
-        <var-button @click="copyToClipboard(songURL)" block>复制歌曲文件链接</var-button>
+        <var-button @click="copyToClipboard(songURL)" block>歌曲文件链接</var-button>
         <var-button
           @click="
             open(
@@ -216,7 +221,7 @@ fetchData();
     {{ timeFormat(processMax) }}</var-button
   >
   <br />
-  <audio :src="songURL" ref="audio"></audio>
+  <audio :src="songURL" :muted="isMuted" ref="audio"></audio>
   <div v-if="data">
     <LyricsView
       :lyrics_url="data[0].lrc"

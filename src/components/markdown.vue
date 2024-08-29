@@ -25,7 +25,8 @@ const renderedMarkdown = computed(() => {
 const style = ref({
     backgroundColor: 'transparent',
     maxHeight: props.height,
-    overflowY: 'auto'
+    overflowY: 'auto',
+    marginBottom: '20px'
 })
 
 import GithubMarkdownCSSLight from 'github-markdown-css/github-markdown-light.css?url'
@@ -48,5 +49,8 @@ watch(() => mainStore.theme, updateCss)
 
 <template>
     <link :href="CssHref" rel="stylesheet">
-    <div class="base-width markdown-body g-font" style="margin:0 auto;" v-html="renderedMarkdown" :style="style"></div>
+    <div class="base-width" style="margin:0 auto;">
+        <div class="markdown-body g-font" :style="style" v-html="renderedMarkdown"></div>
+        <slot name="footer"></slot>
+    </div> 
 </template>
