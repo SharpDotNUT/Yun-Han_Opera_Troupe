@@ -195,7 +195,7 @@ fetchData();
           "
           block
         >
-          在网易云音乐打开
+          在网易云打开
         </var-button>
       </div>
     </var-dialog>

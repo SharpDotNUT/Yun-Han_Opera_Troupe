@@ -8,6 +8,7 @@ const props = defineProps({
     default: "50vh",
   },
 });
+defineEmits(["play"])
 
 const lyrics = ref();
 let isValidLyrics = true;
@@ -82,6 +83,25 @@ function pause() {
   isPlaying = 0;
 }
 
+const sp_isUserScroll = ref(false)
+const sp_lastScrollTime = ref(0)
+const handleScroll = ()=>{
+  if(new Date().getTime() - sp_lastScrollTime.value < 100){
+    sp_isUserScroll.value = true
+  }
+  sp_lastScrollTime.value = new Date().getTime()
+} 
+const lyricsContainer = ref(null);
+function scrollToCurrentLyric() {
+  if (lyricsContainer.value && nowPlayingLyrics.value !== undefined) {
+    const currentLyricElement =
+      lyricsContainer.value.children[nowPlayingLyrics.value];
+    if (currentLyricElement) {
+      lyricsContainer.value.scrollTop = currentLyricElement.offsetTop - lyricsContainer.value.offsetTop -  100;
+    }
+  }
+}
+
 function play(timestamp = 0) {
   pause();
   if (isPlaying) {
@@ -111,12 +131,11 @@ function play(timestamp = 0) {
       clearInterval(isPlaying);
       return;
     }
-    // 当前歌词播放完毕时，切换到下一句
     if (lyrics.value[i].timestamp <= getPlayedTime()) {
       nowPlayingLyrics.value = i;
       i++;
+      scrollToCurrentLyric(); // 调用滚动函数
     }
-    // 如果歌词还没播放完，则继续播放
     if (isPlaying) {
       lastRAF = requestAnimationFrame(playNext);
       frame++;
@@ -132,49 +151,52 @@ defineExpose({
 </script>
 
 <template>
+  <var-button v-if="sp_isUserScroll" @click="sp_isUserScroll = false;scrollToCurrentLyric();" block>
+    返回当前歌词
+  </var-button>
   <div>
-    <!-- <h3>作者：{{ data[0].artist }}</h3> -->
-    <div>
-      <!-- {{ frame }} | {{ isPlaying }} | {{ nowPlayingLyrics }} | {{ nowPlayedTime }} -->
-      <div id="lyrics-container" :style="{ height: props.height }">
-        <p
-          v-for="(lyric, index) in lyrics"
-          :key="index"
-          :class="
-            nowPlayingLyrics === index && isValidLyrics
-              ? 'now-playing lyrics'
-              : 'lyrics'
-          "
-          @click="
-            play(lyric.timestamp)
-            $emit('play', lyric.timestamp);
-          "
-        >
-          {{ lyric.text }}
-          <br v-if="lyric.translation" />
-          <span v-if="isValidLyrics" style="font-size: 80%">
-            {{lyric.translation}}
-          </span>
-        </p>
-      </div>
+    <div
+      id="lyrics-container"
+      :style="{ height: props.height }"
+      ref="lyricsContainer"；
+      @scroll="handleScroll"
+    >
+      <p
+        v-for="(lyric, index) in lyrics"
+        :key="index"
+        :class="
+          nowPlayingLyrics === index && isValidLyrics
+            ? 'now-playing lyrics'
+            : 'lyrics'
+        "
+        @click="
+          play(lyric.timestamp);
+          $emit('play', lyric.timestamp);
+        "
+      >
+        <span>{{ lyric.text }}</span>
+        <br v-if="lyric.translation" />
+        <span v-if="isValidLyrics" style="font-size: 80%">
+          {{ lyric.translation }}
+        </span>
+      </p>
     </div>
   </div>
 </template>
 
 <style scoped>
-
 #lyrics-container {
   overflow-y: auto;
   padding: 20px;
   border-radius: 20px;
   background-color: var(--color-body);
-  display:flex;
+  display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 10px;
 }
 
 .lyrics {
-  transition: color 1s, font-size 1s;
+  transition: color 2s;
   text-align: center;
   padding: 10px 0;
   font-size: 130%;
@@ -187,12 +209,12 @@ defineExpose({
 }
 
 .now-playing {
-  color: var(--color-primary);
-  font-size: 180%;
+  span {
+    color: var(--color-primary);
+  }
 }
 
 .lyrics:hover .lyrics-jump-to-tip {
   display: block;
 }
-
 </style>

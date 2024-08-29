@@ -5,109 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
-  <title>Vite App</title>
+  <title>Yunhan Toolbox | 云翰工具箱</title>
 </head>
 
 <body>
   <div id="app">
-    <div id="loading">
-      <h1>Loading... | 正在加载...</h1>
-      <p>The Vue app is loading... | 正在加载 Vue 应用...</p>
-      <p>Please wait a few seconds and refresh the page if the app doesn't load. | 请稍等片刻，如果应用没有加载成功，请刷新页面。</p>
-      <hr />
-      <p style="text-align: center;">- Yunhan Toolbox | 云翰工具箱 -</p>
-      <p style="text-align: center;">#.NUT Studio © 2024 All Rights Reserved.</p>
-      <div id="progress-bar"></div>
-    </div>
-    <script>
-      const loading = document.getElementById('loading');
-      const progressBar = document.getElementById('progress-bar');
-      let progress = 0;
-      let forward = true;
-      let intervalId = setInterval(() => {
-        progressBar.style.left = `${progress}%`;
-        if (forward) {
-          progress += 1;
-          if (progress >= 90) {
-            forward = false;
-          }
-        } else {
-          progress -= 1;
-          if (progress <= 0) {
-            forward = true;
-          }
-        }
-      }, 10);
-
-function getBrowserInfo() {
-    const ua = navigator.userAgent;
-    let tem, 
-        matchTest = ua.match(/(opera|chrome|safari|firefox|edge)\/?\s*(\.?\d+(\.\d+)*)/i) || [];
-    if (/edge/i.test(matchTest[1])) {
-        tem = ua.match(/\bEdg\/(\d+)/);
-        return { name: "Edge", version: tem ? tem[1] : "0" };
-    }
-    matchTest = matchTest[2] ? [matchTest[1], matchTest[2]] : [navigator.appName, navigator.appVersion, '-?'];
-    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
-        matchTest.splice(1, 1, tem[1]);
-    }
-    return {
-        name: matchTest[0],
-        version: matchTest[1]
-    };
-}
-
-function isBrowserSupported() {
-    const browser = getBrowserInfo();
-    const version = parseInt(browser.version);
-    
-    switch (browser.name.toLowerCase()) {
-        case 'chrome':
-            return version >= 87;
-        case 'firefox':
-            return version >= 78;
-        case 'safari':
-            return version >= 14;
-        default:
-            return false;
-    }
-}
-
-if (!isBrowserSupported()) {
-    alert('您的浏览器版本过低，可能无法正常使用本站点。');
-}
-    </script>
+  <script src="/src/pre-index.js"></script>
+  <link href="/src/pre.index.css" rel="stylesheet">
   </div>
   <script type="module" src="/src/main.js"></script>
-    <style>
-
-      html[data-theme="dark"]{
-        background-color: #000;
-      }
-      :root{
-        background-color : #fff;
-      }
-
-      #loading {
-
-        padding: 20px;
-        border-radius: 20px;
-        background-color: white;
-
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      #progress-bar {
-        height: 20px;
-        background-color: #777;
-        border-radius: 10px;
-        width: 10%;
-        position: absolute;
-      }
-    </style>
 </body>
-
 </html>
