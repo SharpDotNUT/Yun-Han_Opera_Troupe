@@ -34,8 +34,13 @@ export const routes = [
       {
         name: "历史卡池浏览",
         path: "/gacha/view",
-        component: () => import("../views/gacha/banners-view.vue"),
+        component: () => import("../views/gacha/view/index.vue"),
       },
+      {
+        name:"模拟器",
+        path: "/gacha/simulator",
+        component: () => import("../views/gacha/simulator/index.vue"),
+      }
     ],
   },
   {

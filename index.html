@@ -10,9 +10,16 @@
 
 <body>
   <div id="app">
-  <script src="/src/pre-index.js"></script>
-  <link href="/src/pre.index.css" rel="stylesheet">
+    <script src="/src/pre-index.js"></script>
+    <link href="/src/pre.index.css" rel="stylesheet">
   </div>
   <script type="module" src="/src/main.js"></script>
+  <style>
+    html[data-theme="dark"] #app {
+      background: linear-gradient(135deg,  #462e37, #29494e);
+      color: #fff;
+    }
+  </style>
 </body>
+
 </html>

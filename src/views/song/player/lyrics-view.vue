@@ -158,7 +158,7 @@ defineExpose({
     <div
       id="lyrics-container"
       :style="{ height: props.height }"
-      ref="lyricsContainer"；
+      ref="lyricsContainer"
       @scroll="handleScroll"
     >
       <p

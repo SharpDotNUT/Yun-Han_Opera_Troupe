@@ -1,5 +1,9 @@
 <script setup>
+
 import IdToName from "@/data/id_to_name.CHS.json";
+
+defineEmits(["select"]);
+
 const props = defineProps({
   banner: Object,
   isNeedSelect: {
@@ -7,6 +11,7 @@ const props = defineProps({
     default: false,
   },
 });
+
 </script>
 
 <template>
@@ -20,10 +25,14 @@ const props = defineProps({
       v-if="
         new Date(banner.from) < new Date() && new Date(banner.to) > new Date()
       "
-      style="display: flex; align-items: center"
     >
-      <p style="width: 30%">（进行中）</p>
-      <p style="width: 70%">
+      <p>
+        进行中 - 还有
+        {{ Math.floor((new Date(banner.to) - new Date()) / 86400000) }} 天
+        {{ Math.floor((new Date(banner.to) - new Date()) % 86400000/ 3600000) }} 小时
+        {{ Math.floor((new Date(banner.to) - new Date()) % 3600000 / 60000) }} 分钟
+      </p>
+      <p>
         <var-progress
           :value="
             ((new Date() - new Date(banner.from)) /
@@ -42,7 +51,7 @@ const props = defineProps({
         {{ IdToName[star4] }}
       </var-chip>
     </p>
-    <var-button v-if="props.isNeedSelect" @click="" block>
+    <var-button v-if="props.isNeedSelect" @click="$emit('select', banner)" block>
       选择该卡池
     </var-button>
     <hr />
