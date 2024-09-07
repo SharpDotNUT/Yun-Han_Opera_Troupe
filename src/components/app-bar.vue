@@ -10,6 +10,8 @@ import PackageJSON from "@/../package.json";
 
 import Account from "./account.vue";
 
+import {setLanguage} from '@/locales/i18n.js'
+
 const s_showRouterJump = ref(false);
 const title = ref("");
 const theme = ref("system");
@@ -55,6 +57,11 @@ fetch(`${host_name}/api/notice`)
     // })
   });
 
+  
+import { loadAndSetLanguage } from '@/locales/i18n';
+loadAndSetLanguage('zh-CN', 'app-bar')
+loadAndSetLanguage('en', 'app-bar')
+
 const emits = defineEmits(["changeIsFullWidth"]);
 </script>
 
@@ -90,19 +97,22 @@ const emits = defineEmits(["changeIsFullWidth"]);
   >
     <div style="display: flex; flex-direction: column; gap: 10px">
       <h1>
-        云翰社<var-badge
+        {{ $t("name") }}
+        <var-badge
           v-if="false"
           :value="'v ' + PackageJSON.version"
         ></var-badge>
       </h1>
-      <p>「红毹婵娟，庄谐并举」</p>
+      <p>{{$t('app-bar.subtitle')}}</p>
       <hr />
-      <var-select variant="outlined" v-model="theme" placeholder="选择主题">
+      <var-select variant="outlined" v-model="theme" :placeholder="$t('app-bar.theme-selector.title')">
         <template #prepend-icon> <var-icon name="palette" /></template>
-        <var-option label="浅色模式" value="light"></var-option>
-        <var-option label="深色模式" value="dark"></var-option>
-        <var-option label="跟随系统" value="system"></var-option>
+        <var-option :label="$t('app-bar.theme-selector.light')" value="light"></var-option>
+        <var-option :label="$t('app-bar.theme-selector.dark')" value="dark"></var-option>
+        <var-option :label="$t('app-bar.theme-selector.system')" value="system"></var-option>
       </var-select>
+      <var-button @click="setLanguage('en')">En</var-button>
+      <var-button @click="setLanguage('zh-CN')">ZH</var-button>
       <hr />
       <var-collapse v-model="s_showRouterJump">
         <var-collapse-item title="路由跳转（临时）" name="1">

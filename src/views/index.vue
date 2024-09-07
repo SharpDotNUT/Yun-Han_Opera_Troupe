@@ -1,10 +1,12 @@
 <script setup>
+import { useMainStore } from "@/stores/main.js";
+useMainStore().setTitle("首页");
 
-import { useMainStore } from '@/stores/main.js';
-useMainStore().setTitle('首页')
+import RouterJump from "@/components/router-jump.vue";
 
-import RouterJump from '@/components/router-jump.vue'
-
+import { loadAndSetLanguage } from "@/locales/i18n";
+loadAndSetLanguage("zh-CN", "index");
+loadAndSetLanguage("en", "index");
 </script>
 
 <template>
@@ -12,18 +14,19 @@ import RouterJump from '@/components/router-jump.vue'
     <div>
       <div id="content">
         <div id="title">
-          <h1>{{ $t('name') }}</h1>
-          <h2>Yun-Han Opera Troupe | <ruby>雲翰社<rt>うんかんしゃ</rt></ruby></h2>
+          <h1>{{ $t("name") }}</h1>
+          <h3>
+          <i18n-t keypath="index.description">
+            <var-link type="primary" href="https://github.com/SharpDotNUT/yunhan-toolbox">{{ $t('index.GitHub') }}</var-link>
+          </i18n-t></h3>
         </div>
         <div>
-          <p>「 云婵娟来花婵娟，风流尽在山水间。 」</p>
-          <p>云翰社是一个在 <var-link href="https://github.com/SharpDotNUT/yunhan-toolbox">GitHub</var-link> 开源的米哈游游戏工具箱。</p>
+          <p>{{ $t("index.s0") }}</p>
           <p>首页未完工，使用请点击右上角菜单</p>
         </div>
       </div>
     </div>
-    <div style="height:30vh">
-    </div>
+    <div style="height: 30vh"></div>
     临时路由
     <RouterJump />
   </div>
@@ -38,14 +41,15 @@ import RouterJump from '@/components/router-jump.vue'
 }
 
 #title {
-
   h1,
-  h2 {
-    background: linear-gradient(-30deg,
-        #f19ebe 0%,
-        #f19ebe 30%,
-        #72c8d6 70%,
-        #72c8d6 100%);
+  h3 {
+    background: linear-gradient(
+      -30deg,
+      #f19ebe 0%,
+      #f19ebe 30%,
+      #72c8d6 70%,
+      #72c8d6 100%
+    );
     background-clip: text;
     color: transparent;
   }

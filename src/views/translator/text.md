@@ -29,6 +29,8 @@
 
 ## 介绍视频
 
+<!-- <detail>
 <iframe src="//player.bilibili.com/player.html?bvid=BV1SE421P7qS&autoplay=0"
 scrolling="no" border="0" frameborder="no" framespacing="0"
 allowfullscreen="true" width="100%" height="400px"></iframe>
+</detail> -->

@@ -167,6 +167,10 @@ watch(
   }
 );
 
+import { loadAndSetLanguage } from "@/locales/i18n";
+loadAndSetLanguage("zh-CN", "translator");
+loadAndSetLanguage("en", "translator");
+
 </script>
 
 <template>
@@ -183,8 +187,7 @@ watch(
         :class="font_info.raw_class"></var-input>
       <br />
       <var-chip type="warning" block v-if="isASCII">
-        请注意：中文或者其他非 ASCII 字符并不能直接翻译。
-      </var-chip>
+        {{ $t('translator.non-ascii-warn') }} </var-chip>
       <br />
     </var-tab-item>
 
@@ -215,7 +218,7 @@ watch(
   <FontSelector :fontList="font_data" :fontInfo="font_info"></FontSelector>
   <br />
   <br />
-  <span>字体大小：</span><var-counter v-model="font_info.size" />
+  <span>{{ $t('translator.font-size') }}</span><var-counter v-model="font_info.size" />
   <span>自动换行：</span><var-switch v-model="font_info.auto_wrap" />
   <var-button @click="copy_to_clipboard()" v-if="translate_order">复制结果</var-button>
   <div id="result" v-if="display.result">

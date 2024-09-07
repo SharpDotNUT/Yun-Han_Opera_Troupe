@@ -1,0 +1,12 @@
+{
+  "song-player": {
+    "intro": {
+      "ok": "好的"
+    },
+    "actions": {
+      "share": "复制分享链接",
+      "open-in-wyy": "在网易云打开",
+      "download":"下载当前歌曲"
+    }
+  }
+}

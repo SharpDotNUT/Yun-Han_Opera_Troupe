@@ -1,0 +1,11 @@
+{
+  "app-bar": {
+    "subtitle": "\" Elegance on the stage, in decorous harmony. \"",
+    "theme-selector": {
+      "title": "Select theme",
+      "dark": "Dark mode",
+      "light": "Light mode",
+      "system": "Follow the system"
+    }
+  }
+}

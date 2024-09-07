@@ -1,0 +1,12 @@
+{
+  "song-player": {
+    "intro": {
+      "ok": "OK"
+    },
+    "actions": {
+      "download": "Download current song",
+      "open-in-wyy": "Open on NetEase Cloud Music",
+      "share": "Copy share link"
+    }
+  }
+}

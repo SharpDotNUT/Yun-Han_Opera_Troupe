@@ -131,6 +131,12 @@ function fetchData() {
   _fetchData(songMetaData, data, songURL, selectedAlbum, selectedSong);
 }
 fetchData();
+
+
+import { loadAndSetLanguage } from "@/locales/i18n";
+loadAndSetLanguage("zh-CN", "song-player");
+loadAndSetLanguage("en", "song-player");
+
 </script>
 
 <template>
@@ -141,7 +147,7 @@ fetchData();
   >
     <Markdown :content="intro">
       <template v-slot:footer>
-        <var-button @click="display_tip = false" block>好的</var-button>
+        <var-button @click="display_tip = false" block>{{ $t('song-player.intro.ok') }}</var-button>
       </template>
     </Markdown>
   </var-popup>
@@ -182,9 +188,9 @@ fetchData();
       <div style="display: flex;flex-direction: column;gap: 10px">
         <var-button @click="isMuted = !isMuted" block>切换播放{{ isMuted ? "正常" : "静音" }}</var-button>
         <var-button @click="display_tip = true" block>查看使用说明</var-button>
-        <var-button @click="copyLink()" block>复制分享链接</var-button>
+        <var-button @click="copyLink()" block>{{ $t('song-player.actions.share') }}</var-button>
         <var-button @click="randomASong()" block>随机选择一首</var-button>
-        <var-button @click="download()" block> 下载当前歌曲 </var-button>
+        <var-button @click="download()" block> {{ $t('song-player.actions.download') }} </var-button>
         <var-button @click="copyToClipboard(songURL)" block>歌曲文件链接</var-button>
         <var-button
           @click="
@@ -195,8 +201,7 @@ fetchData();
           "
           block
         >
-          在网易云打开
-        </var-button>
+          {{ $t('song-player.actions.open-in-wyy') }} </var-button>
       </div>
     </var-dialog>
   </div>
