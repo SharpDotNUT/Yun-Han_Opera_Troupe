@@ -54,6 +54,7 @@ router.push({ query: { song: undefined } });
 
 const data = ref();
 const songURL = ref(undefined);
+const coverURL = ref(undefined);
 
 const lyricsView = ref(null);
 const audio = ref();
@@ -128,14 +129,9 @@ function download() {
 }
 
 function fetchData() {
-  _fetchData(songMetaData, data, songURL, selectedAlbum, selectedSong);
+  _fetchData(songMetaData, data, songURL, selectedAlbum, selectedSong,coverURL);
 }
 fetchData();
-
-
-import { loadAndSetLanguage } from "@/locales/i18n";
-loadAndSetLanguage("zh-CN", "song-player");
-loadAndSetLanguage("en", "song-player");
 
 </script>
 
@@ -221,6 +217,8 @@ loadAndSetLanguage("en", "song-player");
     label-visible="never"
   />
   <p></p>
+  <!-- <img :src="coverURL" height="100px">
+  <img :src="coverURL+'?param=100y100'" height="100px"> -->
   <var-button @click="pause = !pause" :disabled="!data" block
     >{{ pause ? "播放" : "暂停" }} - {{ timeFormat(process) }} /
     {{ timeFormat(processMax) }}</var-button

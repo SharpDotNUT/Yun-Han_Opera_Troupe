@@ -12,6 +12,8 @@
     "test": "pkg -i meta.mjs -t node20-win-x64 -c --out-path dist"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.4.47",
     "@varlet/touch-emulator": "^3.2.13",
     "@varlet/ui": "^3.2.13",
     "cors": "^2.8.5",
@@ -25,8 +27,7 @@
     "vite-plugin-pwa": "^0.20.1",
     "vue": "^3.4.27",
     "vue-i18n": "^9.13.1",
-    "vue-router": "^4.3.2",
-    "vuetify": "^3.6.8"
+    "vue-router": "^4.3.2"
   },
   "devDependencies": {
     "@varlet/import-resolver": "^3.3.6",

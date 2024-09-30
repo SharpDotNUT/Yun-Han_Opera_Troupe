@@ -1,0 +1,49 @@
+{
+  "app-bar": {
+    "subtitle": "「紅絨毯に舞う、荘諧併持の麗姿。」"
+  },
+  "apps-name": {
+    "XP": "XP分析ツール",
+    "achievement": "実績ツール",
+    "gacha-simulator": "祈り・シミュレーター",
+    "gacha-view": "祈り・歴史カードプールの閲覧",
+    "home": "フロントページ",
+    "miyoushe": "ミヨウシェ",
+    "setting": "設定",
+    "song-player": "音楽プレーヤー",
+    "test": "テスト",
+    "translator": "翻訳者"
+  },
+  "index": {
+    "GitHub": "GitHub",
+    "description": "{0} のオープンソース miHoYo ゲーム ツールボックス",
+    "s0": "「（訳）美しき雲に愛しき花、風流は山水にありて。」"
+  },
+  "name": "雲翰社",
+  "setting": {
+    "language-selector": {
+      "title": "言語を選択してください"
+    },
+    "theme-selector": {
+      "dark": "ダークモード",
+      "light": "ライトモード",
+      "system": "システムに従ってください",
+      "title": "テーマの選択"
+    }
+  },
+  "song-player": {
+    "actions": {
+      "download": "現在の曲をダウンロード",
+      "open-in-wyy": "NetEase クラウドで開く",
+      "share": "共有リンクをコピーする"
+    },
+    "intro": {
+      "ok": "わかりました"
+    }
+  },
+  "translator": {
+    "font-size": "フォントサイズ",
+    "name": "翻訳者",
+    "non-ascii-warn": "注: 中国語またはその他の非 ASCII 文字は直接翻訳できません。"
+  }
+}

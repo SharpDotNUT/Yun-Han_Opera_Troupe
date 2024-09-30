@@ -83,24 +83,6 @@ function pause() {
   isPlaying = 0;
 }
 
-const sp_isUserScroll = ref(false)
-const sp_lastScrollTime = ref(0)
-const handleScroll = ()=>{
-  if(new Date().getTime() - sp_lastScrollTime.value < 100){
-    sp_isUserScroll.value = true
-  }
-  sp_lastScrollTime.value = new Date().getTime()
-} 
-const lyricsContainer = ref(null);
-function scrollToCurrentLyric() {
-  if (lyricsContainer.value && nowPlayingLyrics.value !== undefined) {
-    const currentLyricElement =
-      lyricsContainer.value.children[nowPlayingLyrics.value];
-    if (currentLyricElement) {
-      lyricsContainer.value.scrollTop = currentLyricElement.offsetTop - lyricsContainer.value.offsetTop -  100;
-    }
-  }
-}
 
 function play(timestamp = 0) {
   pause();
@@ -134,7 +116,6 @@ function play(timestamp = 0) {
     if (lyrics.value[i].timestamp <= getPlayedTime()) {
       nowPlayingLyrics.value = i;
       i++;
-      scrollToCurrentLyric(); // 调用滚动函数
     }
     if (isPlaying) {
       lastRAF = requestAnimationFrame(playNext);
@@ -151,9 +132,6 @@ defineExpose({
 </script>
 
 <template>
-  <var-button v-if="sp_isUserScroll" @click="sp_isUserScroll = false;scrollToCurrentLyric();" block>
-    返回当前歌词
-  </var-button>
   <div>
     <div
       id="lyrics-container"

@@ -1,34 +1,47 @@
 <script setup>
 import { routes } from "@/router";
+import { _t } from "@/locales/i18n";
+
+import SvgIcon from "@jamescoyle/vue-icon";
 </script>
 
 <template>
   <div id="container">
-    <div class="card" v-for="route in routes">
-      <RouterLink :to="route.path">
-        <var-button block @click="display_menu = false">
-          {{ route.name }}
-        </var-button>
-      </RouterLink>
-      <div class="card" v-if="route.children">
-        <RouterLink v-for="child in route.children" :to="child.path">
-          <var-button block>{{ child.name }}</var-button>
-        </RouterLink>
-      </div>
-    </div>
+    <RouterLink class="app" v-for="route in routes" :to="route.path">
+      <var-button class="app-button" block>
+        <div>
+          <SvgIcon v-if="route.icon" type="mdi" :path="route.icon" />
+          <br />
+          <span class="app-name">{{_t("apps-name."+route.name)}}</span>
+        </div>
+      </var-button>
+    </RouterLink>
   </div>
 </template>
 
 <style scoped>
 #container {
   display: flex;
-  flex-direction: column;
-  background-color: var(--color-body);
+  padding: 10px;
+  max-width: min(90vh, 340px);
+  gap: 10px;
+  flex-wrap: wrap;
+
 }
-.card {
-  margin: 5px 0;
-  padding: 5px 5px;
-  border-radius: 10px;
-  border: 1px solid var(--color-primary);
+
+.app {
+  width: 100px;
+  height: 100px;
+}
+
+.app-button {
+  width: 100%;
+  height: 100%;
+  border-radius: 20%;
+}
+
+.app-name {
+  display: block;
+  text-wrap: wrap;
 }
 </style>

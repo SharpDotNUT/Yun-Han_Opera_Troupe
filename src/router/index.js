@@ -1,55 +1,67 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import {
+  mdiHome,
+  mdiTranslate,
+  mdiMusic,
+  mdiTrophy,
+  mdiHistory,
+  mdiCog,
+} from "@mdi/js";
 export const routes = [
   {
     path: "/",
-    name: "主页",
+    name: "home",
+    icon: mdiHome,
     component: () => import("../views/index.vue"),
   },
   {
-    name: "翻译器",
+    path: "/setting",
+    name: "setting",
+    icon: mdiCog,
+    component: () => import("../views/setting/index.vue"),
+  },
+  {
+    name: "translator",
     path: "/translator",
+    icon: mdiTranslate,
     component: () => import("../views/translator/index.vue"),
   },
   {
-    name: "音乐播放器",
+    name: "song-player",
     path: "/song/player",
+    icon: mdiMusic,
     component: () => import("../views/song/player/index.vue"),
   },
   {
-    name: "成就工具",
+    name: "achievement",
     path: "/achievement",
+    icon: mdiTrophy,
     component: () => import("../views/achievement/index.vue"),
   },
   {
-    name: "XP 分析工具",
+    name: "XP",
     path: "/xp",
     component: () => import("../views/xp/index.vue"),
   },
   {
-    name: "卡池",
-    path: "/gacha",
-    component: () => import("../views/gacha/index.vue"),
-    children: [
-      {
-        name: "历史卡池浏览",
-        path: "/gacha/view",
-        component: () => import("../views/gacha/view/index.vue"),
-      },
-      {
-        name:"模拟器",
-        path: "/gacha/simulator",
-        component: () => import("../views/gacha/simulator/index.vue"),
-      }
-    ],
+    name: "gacha-view",
+    path: "/gacha/view",
+    icon: mdiHistory,
+    component: () => import("../views/gacha/view/index.vue"),
   },
   {
-    name: "米游社",
+    name: "gacha-simulator",
+    path: "/gacha/simulator",
+    component: () => import("../views/gacha/simulator/index.vue"),
+  },
+  {
+    name: "miyoushe",
     path: "/miyoushe",
     component: () => import("../views/miyoushe/index.vue"),
   },
   {
-    name: "测试用",
+    name: "test",
     path: "/test",
     component: () => import("../views/test.vue"),
   },

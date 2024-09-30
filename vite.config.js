@@ -16,7 +16,7 @@ export default defineConfig({
     vue({
       template: {
         compilerOptions: {},
-      },
+      }
     }),
     components({
       resolvers: [VarletImportResolver()],

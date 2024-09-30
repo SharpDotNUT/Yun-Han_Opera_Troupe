@@ -2,11 +2,6 @@
 import { useMainStore } from "@/stores/main.js";
 useMainStore().setTitle("首页");
 
-import RouterJump from "@/components/router-jump.vue";
-
-import { loadAndSetLanguage } from "@/locales/i18n";
-loadAndSetLanguage("zh-CN", "index");
-loadAndSetLanguage("en", "index");
 </script>
 
 <template>
@@ -22,13 +17,9 @@ loadAndSetLanguage("en", "index");
         </div>
         <div>
           <p>{{ $t("index.s0") }}</p>
-          <p>首页未完工，使用请点击右上角菜单</p>
         </div>
       </div>
     </div>
-    <div style="height: 30vh"></div>
-    临时路由
-    <RouterJump />
   </div>
 </template>
 

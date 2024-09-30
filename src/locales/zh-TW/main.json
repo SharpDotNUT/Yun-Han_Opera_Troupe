@@ -1,0 +1,49 @@
+{
+  "app-bar": {
+    "subtitle": "「紅毹嬋娟，莊諧並舉」"
+  },
+  "apps-name": {
+    "XP": "XP 分析工具",
+    "achievement": "成就工具",
+    "gacha-simulator": "祈願·模擬器",
+    "gacha-view": "祈願·歷史卡池瀏覽",
+    "home": "首頁",
+    "miyoushe": "米遊社",
+    "setting": "設定",
+    "song-player": "音樂播放器",
+    "test": "測試",
+    "translator": "翻譯器"
+  },
+  "index": {
+    "GitHub": "GitHub",
+    "description": "一個在 {0} 開源的米哈遊遊戲工具箱",
+    "s0": "「 雲嬵娟來花嬋娟，風流盡在山水間。 」"
+  },
+  "name": "雲翰社",
+  "setting": {
+    "language-selector": {
+      "title": "選擇語言"
+    },
+    "theme-selector": {
+      "dark": "深色模式",
+      "light": "淺色模式",
+      "system": "跟隨系統",
+      "title": "選擇主題"
+    }
+  },
+  "song-player": {
+    "actions": {
+      "download": "下載目前歌曲",
+      "open-in-wyy": "在網易雲打開",
+      "share": "複製分享連結"
+    },
+    "intro": {
+      "ok": "好的"
+    }
+  },
+  "translator": {
+    "font-size": "字體大小",
+    "name": "翻譯器",
+    "non-ascii-warn": "請注意：中文或其他非 ASCII 字元並不能直接翻譯。"
+  }
+}

@@ -22,7 +22,8 @@ export function fetchData(
   data,
   songURL,
   selectedAlbum,
-  selectedSong
+  selectedSong,
+  coverURL
 ) {
   Snackbar.loading("正在获取歌曲信息");
   fetch(
@@ -34,6 +35,13 @@ export function fetchData(
       data.value = _data;
       songURL.value = _data[0].url;
       Snackbar.success("歌曲信息获取成功");
+      console.log(_data);
+      fetch(_data[0].pic, {
+      }).then((response) => {
+        const url = new URL(response.url);
+        url.searchParams.set("param", "");
+        coverURL.value = url;
+      });
     })
     .catch((error) => {
       console.error(error);

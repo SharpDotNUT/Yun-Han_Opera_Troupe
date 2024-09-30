@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         跨域示例
+// @name         云翰跨域工具
 // @namespace    http://sharpdotnut.top/
 // @version      0.0
 // @description  跨域
@@ -18,11 +18,9 @@ function fFetch(url, method = 'GET') {
             method: method,
             url: url,
             onload: function(response) {
-                console.log(response.response);
                 resolve(response);
             },
             onerror: function(error) {
-                console.error('Error:', error);
                 reject(error);
             }
         });

@@ -1,12 +1,12 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-
+import { _t } from "@/locales/i18n";
 import { Themes, StyleProvider } from "@varlet/ui";
 
 export const useMainStore = defineStore("main", () => {
   const host_name = import.meta.env.VITE_API_HOST;
 
-  const title_text = ref("云翰社");
+  const title_text = ref(_t("name"));
   const title = ref("");
   function setTitle(text) {
     title_text.value = text;

@@ -1,3 +1,49 @@
 {
-    "name":"云翰社"
+  "name": "云翰社",
+  "apps-name": {
+    "home": "首页",
+    "setting": "设置",
+    "translator": "翻译器",
+    "song-player": "音乐播放器",
+    "achievement": "成就工具",
+    "XP": "XP 分析工具",
+    "gacha-view": "祈愿·历史卡池浏览",
+    "gacha-simulator": "祈愿·模拟器",
+    "miyoushe": "米游社",
+    "test": "测试"
+  },
+  "app-bar": {
+    "subtitle": "「红毹婵娟，庄谐并举」"
+  },
+  "setting": {
+    "language-selector": {
+      "title": "选择语言"
+    },
+    "theme-selector": {
+      "title": "选择主题",
+      "light": "浅色模式",
+      "dark": "深色模式",
+      "system": "跟随系统"
+    }
+  },
+  "index": {
+    "s0": "「 云婵娟来花婵娟，风流尽在山水间。 」",
+    "description": "一个在 {0} 开源的米哈游游戏工具箱",
+    "GitHub": "GitHub"
+  },
+  "song-player": {
+    "intro": {
+      "ok": "好的"
+    },
+    "actions": {
+      "share": "复制分享链接",
+      "open-in-wyy": "在网易云打开",
+      "download": "下载当前歌曲"
+    }
+  },
+  "translator": {
+    "font-size": "字体大小",
+    "non-ascii-warn": "请注意：中文或者其他非 ASCII 字符并不能直接翻译。",
+    "name": "翻译器"
+  }
 }

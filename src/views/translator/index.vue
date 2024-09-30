@@ -167,9 +167,6 @@ watch(
   }
 );
 
-import { loadAndSetLanguage } from "@/locales/i18n";
-loadAndSetLanguage("zh-CN", "translator");
-loadAndSetLanguage("en", "translator");
 
 </script>
 
