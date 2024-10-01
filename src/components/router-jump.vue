@@ -19,8 +19,8 @@ import SvgIcon from "@jamescoyle/vue-icon";
     </RouterLink></div>
     <div>
       <var-tooltip style="max-width:600px">
-          <a style="width:100%" href="https://github.com/SharpDotNUT/yunhan-toolbox/">
-              <img src="https://ghc.clait.sh/repo/SharpDotNUT/yunhan-toolbox/?bg_color=ffffff&title_color=0366d6&text_color=333333&icon_color=333333&show_user=true"
+          <a style="width:100%" href="https://github.com/SharpDotNUT/Yun-Han_Opera_Troupe/">
+              <img src="https://ghc.clait.sh/repo/SharpDotNUT/Yun-Han_Opera_Troupe/?bg_color=ffffff&title_color=0366d6&text_color=333333&icon_color=333333&show_user=true"
               style="width:100%" target="_blank" alt="GitHub Repo Card">
           </a>
           <template #content>

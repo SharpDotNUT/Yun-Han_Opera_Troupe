@@ -15,7 +15,7 @@ const mainStore = useMainStore();
 const host_name = mainStore.host_name;
 
 function openGithub() {
-  window.open("https://github.com/SharpDotNUT/yunhan-toolbox/");
+  window.open("https://github.com/SharpDotNUT/Yun-Han_Opera_Troupe");
 }
 
 fetch(`${host_name}/api/notice`)

@@ -9,7 +9,7 @@ import { useMainStore } from "@/stores/main.js";
       <p id="title-name">{{ $t("name") }}</p>
       <p id="title-description">
         <i18n-t keypath="index.description">
-          <a href="https://github.com/SharpDotNUT/yunhan-toolbox">
+          <a href="https://github.com/SharpDotNUT/Yun-Han_Opera_Troupe">
             {{ $t('index.GitHub') }}
           </a>
         </i18n-t>
@@ -58,12 +58,5 @@ import { useMainStore } from "@/stores/main.js";
   }
 }
 
-a {
-  text-decoration: white;
-  --c: linear-gradient(-30deg,
-      #f19ebe 0%,
-      #f19ebe 30%,
-      #72c8d6 70%,
-      #72c8d6 100%);
-}
+
 </style>
