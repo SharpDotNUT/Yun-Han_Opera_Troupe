@@ -1,0 +1,62 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+    padding: 10px;
+    max-height: 70vh;
+    overflow-y: scroll;
+    max-width: min(90vh, 345px);
+}
+
+#apps {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.app {
+    width: 100px;
+    height: 100px;
+    text-decoration: none;
+}
+
+.app-button {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.app-name {
+    display: block;
+    text-wrap: wrap;
+}
+
+#yunjin {
+    background-image: url("../views/background-small.png");
+    width: 100%;
+    position: relative;
+    border-radius: 20px;
+    background-size: cover;
+    padding-top: 56.25%;
+    cursor: pointer;
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+
+        p {
+            color: white;
+        }
+    }
+}
+
+#github {img{
+    border-radius: 20px;}
+}

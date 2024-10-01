@@ -4,6 +4,13 @@ import zhCNMain from "./zh-CN/main.json";
 import zhTWMain from "./zh-TW/main.json";
 import jaMain from "./ja/main.json";
 
+const language_font_class = {
+  "zh-CN": "lang-zh",
+  "zh-TW": "lang-zht",
+  "en": "lang-en",
+  "ja": "lang-jp",
+}
+
 const i18n = createI18n({
   locale: "zh-CN", // 默认语言
   fallbackLocale: "zh-CN", // 备用语言
@@ -45,6 +52,11 @@ async function loadLanguage(locale, namespace) {
 
 function setLanguage(locale) {
   i18n.global.locale = locale;
+  document.documentElement.classList = [language_font_class[i18n.global.locale]];
+}
+
+window.onload = () => {
+  document.documentElement.classList = [language_font_class[i18n.global.locale]];
 }
 
 const t = i18n.global.t;

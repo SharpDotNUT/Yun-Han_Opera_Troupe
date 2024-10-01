@@ -59,7 +59,7 @@ watch(
             <RouterJump/>
           </template>
         </var-menu>
-        <var-button round text color="transparent" @click="display_setting = !display_setting">
+        <var-button v-if="$route.name != 'setting'" round text color="transparent" @click="display_setting = !display_setting">
           <svg-icon type="mdi" :path="mdiCog"></svg-icon>
         </var-button>
         <var-popup v-model:show="display_setting"

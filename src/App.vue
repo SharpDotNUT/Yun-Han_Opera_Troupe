@@ -29,17 +29,11 @@ onMounted(() => {
     setLanguage(lang)
   }
 })
-const language_font_class = ref({
-  "zh-CN": "lang-zh",
-  "zh-TW": "lang-zht",
-  "en": "lang-en",
-  "ja": "lang-jp",
-});
 
 </script>
 
 <template>
-  <div :class="language_font_class[i18n.global.locale]">
+  <div id="app">
   <div id="app-bar">
     <AppBar @changeIsFullWidth="isFullWidth = !isFullWidth" />
   </div>

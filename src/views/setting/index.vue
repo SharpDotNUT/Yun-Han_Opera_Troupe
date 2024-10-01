@@ -43,7 +43,8 @@ onMounted(() => {
 
 <template>
     <div id="container" style="display: flex;">
-        <var-tabs id="tabs" v-model:active="tab" scrollable="always" item-direction="vertical">
+        <var-tabs id="tabs" v-model:active="tab" scrollable="always" item-direction="vertical"
+            style="height:calc(var(--tabs-item-vertical-height) + 20px)">
             <var-tab name="theme">
                 <SvgIcon type="mdi" :path="mdiBrightness6" />
                 {{ $t("setting.theme.title") }}
@@ -92,7 +93,7 @@ onMounted(() => {
                     <var-tooltip style="max-width:600px">
                         <a style="width:100%" href="https://github.com/SharpDotNUT/Yun-Han_Opera_Troupe/">
                             <img src="https://ghc.clait.sh/repo/SharpDotNUT/Yun-Han_Opera_Troupe/?bg_color=ffffff&title_color=0366d6&text_color=333333&icon_color=333333&show_user=true"
-                            style="width:100%" target="_blank" alt="GitHub Repo Card">
+                                style="width:100%" target="_blank" alt="GitHub Repo Card">
                         </a>
                         <template #content>
                             {{ $t("setting.about.open-in-github") }}

@@ -1,6 +1,3 @@
-
-
-
 @import url("./g-font.css");
 
 h1,
@@ -8,22 +5,45 @@ h2,
 h3,
 p,
 span {
-    color: var(--color-text)
+  color: var(--color-text)
 }
 
-.base-width{
-    width:min(100%, 1000px)
+.base-width {
+  width: min(100%, 1000px)
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+html {
+  height: -webkit-fill-available;
 }
 
 a {
-    text-decoration: none;
-  }
-  a:visited {
-    color: inherit;
-  }
-  a:hover {
-    color: inherit;
-  }
-  a:active {
-    color: inherit;
-  }
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+a:active {
+  color: inherit;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(var(--color-background), 1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+}

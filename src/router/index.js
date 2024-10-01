@@ -30,6 +30,11 @@ export const routes = [
     component: () => import("../views/setting/index.vue"),
   },
   {
+    path: "/yunjin",
+    name: "yunjin",
+    component: () => import("../views/yunjin/index.vue"),
+  },
+  {
     name: "translator",
     path: "/translator",
     icon: mdiTranslate,

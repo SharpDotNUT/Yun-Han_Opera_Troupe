@@ -3,16 +3,16 @@
 
 import { ref } from 'vue'
 
-const n = ref('hello')
-const fun = (ref) => {
-    ref.value = 'changed'
-}
-fun(n)
+const locales = import.meta.glob('../locales/**/*.json')
+console.log(locales)
+Promise.all(Object.values(locales).map((loader) => loader())).then((modules) => {
+    console.log(modules);
+});
 
 </script>
 
 <template>
 
-    {{ n }}
+    
 
 </template>
