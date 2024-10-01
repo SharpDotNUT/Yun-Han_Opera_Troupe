@@ -22,11 +22,6 @@ function timeToMilliseconds(timeStr) {
   return minutesInMs + secondsInMs + millisecondsPart;
 }
 
-// 示例使用
-const timeStr = "00:01.000";
-const milliseconds = timeToMilliseconds(timeStr);
-console.log(milliseconds); // 输出 1000
-
 const timeFormat = (time) => {
   return `${Math.floor(time / 60)}:${Math.floor(time % 60)
     .toString()
@@ -39,7 +34,6 @@ async function fetchLyrics() {
   let data = await response.text();
   data = data.split("\n");
   data = data.filter((line) => line !== "");
-  console.log(data);
   lyrics.value = [];
   data.forEach((line, index) => {
     let timestamp_p = line.indexOf("]");
@@ -63,7 +57,6 @@ async function fetchLyrics() {
       translation,
     });
   });
-  console.log(lyrics.value);
 }
 fetchLyrics();
 watch(
@@ -75,6 +68,7 @@ watch(
 
 const nowPlayingLyrics = ref();
 const nowPlayedTime = ref();
+const ref_lyrics = ref([]);
 let lastRAF;
 let isPlaying = 0;
 let frame = 0;
@@ -115,6 +109,7 @@ function play(timestamp = 0) {
     }
     if (lyrics.value[i].timestamp <= getPlayedTime()) {
       nowPlayingLyrics.value = i;
+      ref_lyrics.value[i]?.scrollIntoView({ behavior: "smooth", block: "center" });
       i++;
     }
     if (isPlaying) {
@@ -133,25 +128,14 @@ defineExpose({
 
 <template>
   <div>
-    <div
-      id="lyrics-container"
-      :style="{ height: props.height }"
-      ref="lyricsContainer"
-      @scroll="handleScroll"
-    >
-      <p
-        v-for="(lyric, index) in lyrics"
-        :key="index"
-        :class="
-          nowPlayingLyrics === index && isValidLyrics
-            ? 'now-playing lyrics'
-            : 'lyrics'
-        "
-        @click="
+    <div id="lyrics-container" :style="{ height: props.height }" ref="lyricsContainer">
+      <p v-for="(lyric, index) in lyrics" :ref="el => ref_lyrics[index] = el" :key="index" :class="nowPlayingLyrics === index && isValidLyrics
+          ? 'now-playing lyrics'
+          : 'lyrics'
+        " @click="
           play(lyric.timestamp);
-          $emit('play', lyric.timestamp);
-        "
-      >
+        $emit('play', lyric.timestamp);
+        ">
         <span>{{ lyric.text }}</span>
         <br v-if="lyric.translation" />
         <span v-if="isValidLyrics" style="font-size: 80%">

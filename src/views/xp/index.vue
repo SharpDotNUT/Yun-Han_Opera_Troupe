@@ -8,11 +8,9 @@ import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { copyToClipboard } from '@/script/tools';
 import { Dialog, Snackbar } from '@varlet/ui';
-import { useMainStore } from '@/stores/main';
 
 const _log = console.log
 
-useMainStore().setTitle('XP 分析工具')
 const data = ref({})
 const route = useRoute()
 const router = useRouter()

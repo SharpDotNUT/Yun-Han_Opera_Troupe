@@ -1,38 +1,52 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import { _t } from "@/locales/i18n";
+import { t } from "@/locales/i18n";
 import { Themes, StyleProvider } from "@varlet/ui";
 
 export const useMainStore = defineStore("main", () => {
   const host_name = import.meta.env.VITE_API_HOST;
 
-  const title_text = ref(_t("name"));
   const title = ref("");
-  function setTitle(text) {
-    title_text.value = text;
-    title.value = "云翰社";
-    title.value += title_text.value ? ` - ${title_text.value}` : "";
-    document.title = title.value;
+  function setTitle(i18n_id) {
+    title.value = "apps-name." + i18n_id;
+    console.log(title.value);
+    document.title = t("name") + " - " + t(title.value);
   }
   const theme = ref(document.documentElement.dataset.theme);
   const themeMode = ref(document.documentElement.dataset.theme);
   function setTheme(themeToSet) {
-    console.log("setTheme", themeToSet);
     themeMode.value = themeToSet;
-    if (!themeMode.value || themeMode.value == "system") {
+    const is_md2 = themeToSet.endsWith("md2");
+    if (
+      !themeMode.value ||
+      themeMode.value == "system" ||
+      themeMode.value == "system-md2"
+    ) {
       theme.value = window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
+      if (is_md2) {
+        theme.value = theme.value + "-md2";
+      }
+      console.log(theme.value);
     } else {
       theme.value = themeMode.value;
     }
-    if (theme.value == "dark") {
-      StyleProvider(Themes.md3Dark);
+    if (theme.value.startsWith("dark")) {
+      if (is_md2) {
+        StyleProvider(Themes.dark);
+      } else {
+        StyleProvider(Themes.md3Dark);
+      }
       theme.value = "dark";
       document.documentElement.dataset.theme = "dark";
     }
-    if (theme.value == "light") {
-      StyleProvider(Themes.md3Light);
+    if (theme.value.startsWith("light")) {
+      if (is_md2) {
+        StyleProvider(Themes.light);
+      } else {
+        StyleProvider(Themes.md3Light);
+      }
       theme.value = "light";
       document.documentElement.dataset.theme = "light";
     }
@@ -53,10 +67,10 @@ export const useMainStore = defineStore("main", () => {
       }
     } catch (e) {
       console.log(e);
-        Dialog({
-          title: "提示",
-          message: "登录信息有误，请重新登录。",
-        })
+      Dialog({
+        title: "提示",
+        message: "登录信息有误，请重新登录。",
+      });
     }
   }
 

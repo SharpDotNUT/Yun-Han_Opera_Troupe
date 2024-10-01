@@ -9,8 +9,6 @@ import { VarletImportResolver } from "@varlet/import-resolver";
 
 import {VitePWA} from 'vite-plugin-pwa'
 
-// https://vitejs.dev/config/
-// var- is not custom element
 export default defineConfig({
   plugins: [
     vue({
@@ -49,4 +47,7 @@ export default defineConfig({
     sourcemap: "hidden",
     outDir: "./dist", // 确保这是相对路径
   },
+  define:{
+    BUILD_TIME: new Date().getTime()
+  }
 });

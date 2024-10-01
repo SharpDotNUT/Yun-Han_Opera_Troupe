@@ -1,6 +1,6 @@
 <script setup>
 import { routes } from "@/router";
-import { _t } from "@/locales/i18n";
+import { t } from "@/locales/i18n";
 
 import SvgIcon from "@jamescoyle/vue-icon";
 </script>
@@ -12,7 +12,7 @@ import SvgIcon from "@jamescoyle/vue-icon";
         <div>
           <SvgIcon v-if="route.icon" type="mdi" :path="route.icon" />
           <br />
-          <span class="app-name">{{_t("apps-name."+route.name)}}</span>
+          <span class="app-name">{{t("apps-name."+route.name)}}</span>
         </div>
       </var-button>
     </RouterLink>
@@ -32,6 +32,7 @@ import SvgIcon from "@jamescoyle/vue-icon";
 .app {
   width: 100px;
   height: 100px;
+  text-decoration: none;
 }
 
 .app-button {

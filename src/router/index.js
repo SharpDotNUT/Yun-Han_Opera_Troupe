@@ -8,6 +8,7 @@ import {
   mdiHistory,
   mdiCog,
 } from "@mdi/js";
+
 export const routes = [
   {
     path: "/",

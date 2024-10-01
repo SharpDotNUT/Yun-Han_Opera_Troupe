@@ -16,14 +16,27 @@
     "subtitle": "\" Elegance on the stage, in decorous harmony. {'|'} 「红毹婵娟，庄谐并举」\""
   },
   "setting": {
-    "language-selector": {
-      "title": "选择语言"
+    "theme": {
+      "selector": {
+        "title": "Select Theme",
+        "dark": "Dark mode",
+        "light": "Light mode",
+        "system": "Follow the system",
+        "dark-m2": "Dark Mode - Material Design 2",
+        "light-m2": "Light Mode – Material Design 2",
+        "system-md2": "Follow the System - Material Design 2"
+      },
+      "title": "Theme"
     },
-    "theme-selector": {
-      "title": "Select Theme",
-      "dark": "Dark mode",
-      "light": "Light mode",
-      "system": "Follow the system"
+    "language": {
+      "selector": {
+        "title": "Select Language"
+      },
+      "title": "Language"
+    },
+    "about": {
+      "title": "About",
+      "build-time": "Build Time: {0}"
     }
   },
   "index": {

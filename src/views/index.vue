@@ -1,6 +1,5 @@
 <script setup>
 import { useMainStore } from "@/stores/main.js";
-useMainStore().setTitle("首页");
 
 </script>
 

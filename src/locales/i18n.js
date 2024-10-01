@@ -47,5 +47,5 @@ function setLanguage(locale) {
   i18n.global.locale = locale;
 }
 
-const _t = i18n.global.t;
-export { i18n, _t, loadLanguage as loadAndSetLanguage, setLanguage };
+const t = i18n.global.t;
+export { i18n, t, loadLanguage as loadAndSetLanguage, setLanguage };

@@ -1,13 +1,16 @@
 <script setup>
-import { ref } from "vue";
-import { RouterView, useRouter } from "vue-router";
+import { ref, onMounted } from "vue";
+import { RouterView, useRoute, useRouter } from "vue-router";
+import { i18n } from "./locales/i18n";
 import { useMainStore } from "./stores/main";
+import { setLanguage } from "./locales/i18n";
 import AppBar from '@/components/app-bar.vue'
 
 const isFullWidth = ref(false)
 
 const mainStore = useMainStore()
 mainStore.initUserInfo()
+const route = useRoute()
 const router = useRouter()
 const loading = ref(false)
 router.beforeEach((to, from) => {
@@ -16,11 +19,27 @@ router.beforeEach((to, from) => {
 })
 router.afterEach(() => {
   loading.value = false
+  console.log(route.name)
+  mainStore.setTitle(route.name)
 })
+
+onMounted(() => {
+  const lang = route.query.lang || 'request'
+  if (lang !== 'request') {
+    setLanguage(lang)
+  }
+})
+const language_font_class = ref({
+  "zh-CN": "lang-zh",
+  "zh-TW": "lang-zht",
+  "en": "lang-en",
+  "ja": "lang-jp",
+});
 
 </script>
 
 <template>
+  <div :class="language_font_class[i18n.global.locale]">
   <div id="app-bar">
     <AppBar @changeIsFullWidth="isFullWidth = !isFullWidth" />
   </div>
@@ -32,7 +51,7 @@ router.afterEach(() => {
         <p>加载中...</p>
       </div>
     </div>
-  </div>
+  </div></div>
 </template>
 
 <style>

@@ -16,14 +16,27 @@
     "subtitle": "「红毹婵娟，庄谐并举」"
   },
   "setting": {
-    "language-selector": {
-      "title": "选择语言"
+    "theme": {
+      "selector": {
+        "title": "选择主题",
+        "light": "浅色模式",
+        "dark": "深色模式",
+        "system": "跟随系统",
+        "light-m2": "浅色模式 - Material Design 2",
+        "dark-m2": "深色模式 - Material Design 2",
+        "system-md2": "跟随系统 - Material Design 2"
+      },
+      "title": "主题"
     },
-    "theme-selector": {
-      "title": "选择主题",
-      "light": "浅色模式",
-      "dark": "深色模式",
-      "system": "跟随系统"
+    "language": {
+      "selector": {
+        "title": "选择语言"
+      },
+      "title": "语言"
+    },
+    "about": {
+      "title": "关于",
+      "build-time": "构建时间 : {0}"
     }
   },
   "index": {

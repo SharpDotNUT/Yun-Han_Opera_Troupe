@@ -46,8 +46,8 @@ if (exist_fFetch.value) {
   for (let i in games) {
     fFetch(
       "https://bbs-api.miyoushe.com/post/wapi/getNewsList?gids=" +
-        i +
-        "&type=1&page_size=50"
+      i +
+      "&type=1&page_size=50"
     ).then((res) => {
       d.value[i] = JSON.parse(res.response);
     });
@@ -57,30 +57,37 @@ if (exist_fFetch.value) {
 function openInMYS(postID) {
   open("https://www.miyoushe.com/ys/article/" + postID);
 }
+
+const preview = (images) => {
+  ImagePreview.setDefaultOptions({
+    closeable: true,
+    closeIcon: "close",
+    closeIconPosition: "top-right",
+  })
+  ImagePreview(images[0]);
+}
+
 </script>
 
 <template>
   <div style="display: flex; flex-direction: row; gap: 10px">
-    <div
-      v-for="game in [d?.[2], d?.[6], d?.[8]]"
-      style="flex: 1; display: flex; flex-direction: column; gap: 10px"
-    >
-      <var-card
-      v-if="game"
-        v-for="post in game.data.list"
-        :title="post.post.subject"
-        :subtitle="new Date(post.post.created_at * 1000).toLocaleString()"
-        :src="post.post.images[0]"
-        fit="cover"
-        image-height="100%"
-      >
+    <div v-for="game in [d?.[2], d?.[6], d?.[8]]" style="flex: 1; display: flex; flex-direction: column; gap: 10px">
+      <var-card v-if="game" v-for="post in game.data.list" :title="post.post.subject"
+        :subtitle="new Date(post.post.created_at * 1000).toLocaleString()" fit="cover" image-height="100%">
+        <template #image>
+          <var-tooltip>
+          <img style="width: 100%;cursor: pointer;" :src="post.post.images[0]"
+            @click="preview(post.post.images)"></img>
+            <template #content>点击预览图片</template>
+          </var-tooltip>
+          </template>
         <template #extra>
           <var-tooltip>
             <var-button @click="openInMYS(post.post.post_id)">
               浏览
             </var-button>
-            <template #content>在米游社打开</template></var-tooltip
-          >
+            <template #content>在米游社打开</template>
+          </var-tooltip>
         </template>
       </var-card>
     </div>

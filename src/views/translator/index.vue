@@ -11,9 +11,6 @@ import domtoimage from "dom-to-image";
 import Text from "./text.md?raw";
 import FontData from "./map.json";
 
-import { useMainStore } from "@/stores/main.js";
-useMainStore().setTitle("翻译器");
-
 let font_data = [];
 let i = 0;
 FontData.map((item) => {

@@ -16,19 +16,32 @@
   },
   "index": {
     "GitHub": "GitHub",
-    "description": "{0} のオープンソース miHoYo ゲーム ツールボックス",
+    "description": "HoYoVerse ゲームツールキットを {0} でオープンソース化。",
     "s0": "「（訳）美しき雲に愛しき花、風流は山水にありて。」"
   },
   "name": "雲翰社",
   "setting": {
-    "language-selector": {
-      "title": "言語を選択してください"
+    "theme": {
+      "selector": {
+        "dark": "ダークモード",
+        "light": "ライトモード",
+        "system": "システムに従ってください",
+        "title": "テーマの選択",
+        "dark-m2": "ダークモード – Material Design 2",
+        "light-m2": "ライトモード - Material Design 2",
+        "system-md2": "システムに従ってください - Material Design 2"
+      },
+      "title": "テーマ"
     },
-    "theme-selector": {
-      "dark": "ダークモード",
-      "light": "ライトモード",
-      "system": "システムに従ってください",
-      "title": "テーマの選択"
+    "language": {
+      "selector": {
+        "title": "言語を選択してください"
+      },
+      "title": "言語"
+    },
+    "about": {
+      "title": "について",
+      "build-time": "ビルド時間: {0}"
     }
   },
   "song-player": {
@@ -44,6 +57,6 @@
   "translator": {
     "font-size": "フォントサイズ",
     "name": "翻訳者",
-    "non-ascii-warn": "注: 中国語またはその他の非 ASCII 文字は直接翻訳できません。"
+    "non-ascii-warn": "注意：中国語やその他の非ASCII文字は直接翻訳できません。"
   }
 }

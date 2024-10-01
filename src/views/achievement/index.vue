@@ -5,7 +5,6 @@ import IntroText from "./intro.md?raw";
 import Intro from "@/components/intro.vue";
 import TextFileInput from "@/components/text-file-input/index.vue";
 import { useMainStore } from "@/stores/main";
-useMainStore().setTitle("成就工具");
 
 import AchievementData from "./achievement.json";
 console.log(AchievementData);
@@ -128,7 +127,7 @@ console.log(userUIAF.value);
                 更新版本 {{ achievement.version }} | 奖励
                 {{ achievement.rewards }}
                 <img
-                  src="https://homdgcat.wiki/homdgcat-res/Csxylic/Primo.png"
+                  src="./img/Primo.webp"
                   style="height: 16px"
                 />
               </p>
