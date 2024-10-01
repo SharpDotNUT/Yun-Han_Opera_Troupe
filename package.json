@@ -23,6 +23,8 @@
     "highlight.js": "^11.10.0",
     "jsonschema": "^1.4.1",
     "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-toc-done-right": "^4.2.0",
     "pinia": "^2.1.7",
     "vite-plugin-pwa": "^0.20.1",
     "vue": "^3.4.27",

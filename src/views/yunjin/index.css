@@ -1,10 +1,104 @@
-
-#container{
+#container {
     position: fixed;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
-    background-color: aqua;
+    width: 100vw;
+    height: calc(100vh + 18px);
+    overflow: scroll;
+    background-image: url("../background-small.png");
+    background-size: cover;
+    background-position: 75%;
     z-index: 521000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fff;
+}
+
+#content {
+    display: flex;
+    flex-direction: row;
+    margin: 10vmin;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    div {
+        padding: 20px;
+    }
+}
+
+#character {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 25%;
+    h1,
+    h3 {
+        text-align: center;
+    }
+    img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px #00000070;
+        transition: all 0.5s ease-in-out;
+    }
+}
+
+#main {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 75%;
+}
+
+.special-title {
+    --theme: linear-gradient(-30deg,
+            #e7a9c1 0%,
+            #e7a9c1 30%,
+            #75bdc9 70%,
+            #75bdc9 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    span {
+        display: inline-block;
+    }
+
+    .special-title-side {
+        font-size: 30px;
+    }
+
+    .special-title-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: black;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #character {
+        img {
+            width: 100%;
+        }
+    }
+}@media screen and (max-width: 999px) {
+    #content {
+        flex-direction: column;
+
+        div {
+            width: 100%;
+        }
+    }
+
+    #character {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img {
+            height: 50vh;
+        }
+    }
 }

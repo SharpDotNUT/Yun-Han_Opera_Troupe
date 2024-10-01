@@ -25,7 +25,7 @@ const routes = _routes.filter(route => route.name != 'yunjin');
       </div>
     </div>
     <div id="yunjin">
-      <RouterLink to="/云堇">
+      <RouterLink to="/yunjin">
         <div>
           <p>前往云堇</p>
         </div>
