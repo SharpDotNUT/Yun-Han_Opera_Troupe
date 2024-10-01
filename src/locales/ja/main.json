@@ -12,7 +12,8 @@
     "setting": "設定",
     "song-player": "音楽プレーヤー",
     "test": "テスト",
-    "translator": "翻訳者"
+    "translator": "翻訳者",
+    "about": "について"
   },
   "index": {
     "GitHub": "GitHub",
@@ -41,7 +42,8 @@
     },
     "about": {
       "title": "について",
-      "build-time": "ビルド時間: {0}"
+      "build-time": "ビルド時間: {0}",
+      "open-in-github": "クリックして GitHub で開きます"
     }
   },
   "song-player": {

@@ -12,7 +12,8 @@
     "setting": "設定",
     "song-player": "音樂播放器",
     "test": "測試",
-    "translator": "翻譯器"
+    "translator": "翻譯器",
+    "about": "關於"
   },
   "index": {
     "GitHub": "GitHub",
@@ -41,7 +42,8 @@
     },
     "about": {
       "title": "關於",
-      "build-time": "建置時間 : {0}"
+      "build-time": "建置時間 : {0}",
+      "open-in-github": "點擊在 GitHub 打開"
     }
   },
   "song-player": {

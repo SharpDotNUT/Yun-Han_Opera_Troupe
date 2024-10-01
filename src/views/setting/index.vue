@@ -1,9 +1,9 @@
 <script setup>
 
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { i18n } from "@/locales/i18n.js";
 import { useMainStore } from "@/stores/main";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import PackageJSON from "@/../package.json";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiBrightness6, mdiTranslate, mdiInformation } from "@mdi/js";
@@ -25,11 +25,19 @@ watch(theme, () => {
 });
 
 const BuildTime = BUILD_TIME
+const route = useRoute()
 const router = useRouter();
 const setLanguage = (locale) => {
     _setLanguage(locale);
     router.push({ query: { lang: locale } });
 }
+onMounted(() => {
+    console.log(route.name)
+    if (route.name == 'about') {
+        tab.value = 'about'
+        router.push('/setting')
+    }
+})
 
 </script>
 
@@ -72,16 +80,25 @@ const setLanguage = (locale) => {
             </div>
             <div v-if="tab === 'about'">
                 <div style="display: flex; flex-direction: column; gap: 10px">
-                        <p style="font-size:32px;text-align: center">
-                            {{ $t("name") }}
-                            <var-badge :value="'v ' + PackageJSON.version"></var-badge>
-                        </p>
-                        <p style="text-align: center">
-                            <var-link href="https://github.com/SharpDotNUT">#.NUT Studio</var-link>
-                            | <var-link href="https://github.com/CNChestnut">Chestnut</var-link>
-                        </p>
+                    <p style="font-size:32px;text-align: center">
+                        {{ $t("name") }}
+                        <var-badge :value="'v ' + PackageJSON.version"></var-badge>
+                    </p>
+                    <p style="text-align: center">
+                        <var-link href="https://github.com/SharpDotNUT">#.NUT Studio</var-link>
+                        | <var-link href="https://github.com/CNChestnut">Chestnut</var-link>
+                    </p>
                     <hr />
-                    <p>{{$t('setting.about.build-time',[new Date(BuildTime).toLocaleString()])}}</p>
+                    <var-tooltip style="max-width:600px">
+                        <a style="width:100%" href="https://github.com/SharpDotNUT/yunhan-toolbox/">
+                            <img src="https://ghc.clait.sh/repo/SharpDotNUT/yunhan-toolbox/?bg_color=ffffff&title_color=0366d6&text_color=333333&icon_color=333333&show_user=true"
+                            style="width:100%" target="_blank" alt="GitHub Repo Card">
+                        </a>
+                        <template #content>
+                            {{ $t("setting.about.open-in-github") }}
+                        </template>
+                    </var-tooltip>
+                    <p>{{ $t('setting.about.build-time', [new Date(BuildTime).toLocaleString()]) }}</p>
                     <p>Copyright © 2024 SharpDotNUT. All rights reserved.</p>
                 </div>
             </div>

@@ -10,7 +10,8 @@
     "gacha-view": "Gacha - History Banners View",
     "gacha-simulator": "Gacha - Simulator",
     "miyoushe": "Miyoushe",
-    "test": "Test"
+    "test": "Test",
+    "about": "About"
   },
   "app-bar": {
     "subtitle": "\" Elegance on the stage, in decorous harmony. {'|'} 「红毹婵娟，庄谐并举」\""
@@ -36,7 +37,8 @@
     },
     "about": {
       "title": "About",
-      "build-time": "Build Time: {0}"
+      "build-time": "Build Time: {0}",
+      "open-in-github": "Click to open on GitHub"
     }
   },
   "index": {

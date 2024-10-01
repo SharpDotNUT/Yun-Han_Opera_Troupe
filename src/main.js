@@ -16,4 +16,4 @@ app.mount("#app");
 import "@varlet/touch-emulator";
 
 import { useMainStore } from "./stores/main";
-useMainStore().setTheme();
+useMainStore().setTheme('system');

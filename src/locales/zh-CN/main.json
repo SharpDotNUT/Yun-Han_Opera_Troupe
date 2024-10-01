@@ -10,7 +10,8 @@
     "gacha-view": "祈愿·历史卡池浏览",
     "gacha-simulator": "祈愿·模拟器",
     "miyoushe": "米游社",
-    "test": "测试"
+    "test": "测试",
+    "about": "关于"
   },
   "app-bar": {
     "subtitle": "「红毹婵娟，庄谐并举」"
@@ -36,7 +37,8 @@
     },
     "about": {
       "title": "关于",
-      "build-time": "构建时间 : {0}"
+      "build-time": "构建时间 : {0}",
+      "open-in-github": "点击在 GitHub 打开"
     }
   },
   "index": {

@@ -15,8 +15,9 @@ export const useMainStore = defineStore("main", () => {
   const theme = ref(document.documentElement.dataset.theme);
   const themeMode = ref(document.documentElement.dataset.theme);
   function setTheme(themeToSet) {
+    console.log(themeToSet);
     themeMode.value = themeToSet;
-    const is_md2 = themeToSet.endsWith("md2");
+    const is_md2 = themeMode.value.endsWith("md2");
     if (
       !themeMode.value ||
       themeMode.value == "system" ||

@@ -14,3 +14,16 @@ span {
 .base-width{
     width:min(100%, 1000px)
 }
+
+a {
+    text-decoration: none;
+  }
+  a:visited {
+    color: inherit;
+  }
+  a:hover {
+    color: inherit;
+  }
+  a:active {
+    color: inherit;
+  }

@@ -2,11 +2,12 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import {
   mdiHome,
+  mdiTrophy,
+  mdiInformation,
   mdiTranslate,
   mdiMusic,
-  mdiTrophy,
   mdiHistory,
-  mdiCog,
+  mdiCog
 } from "@mdi/js";
 
 export const routes = [
@@ -20,6 +21,12 @@ export const routes = [
     path: "/setting",
     name: "setting",
     icon: mdiCog,
+    component: () => import("../views/setting/index.vue"),
+  },
+  {
+    path: "/setting/about",
+    name: "about",
+    icon: mdiInformation,
     component: () => import("../views/setting/index.vue"),
   },
   {
