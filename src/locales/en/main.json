@@ -44,8 +44,7 @@
   },
   "index": {
     "s0": "(Translated) \" How gently do the clouds and flowers sway, as dancing winds meander through the vales. {'|'} 「云婵娟来花婵娟，风流尽在山水间。」\"",
-    "GitHub": "GitHub",
-    "description": "A HoYo game toolbox that open source on {0} ."
+    "description": "A partly open source HoYo game toolkit."
   },
   "song-player": {
     "intro": {
@@ -60,6 +59,12 @@
   "translator": {
     "font-size": "Font Size",
     "name": "Translator",
-    "non-ascii-warn": "Warning : Chinese or other non-ASCII characters cannot be translated directly."
+    "non-ascii-warn": "Warning : Chinese or other non-ASCII characters cannot be translated directly.",
+    "raw-text": "Raw Text",
+    "copy-result": "Copy Result",
+    "save-img-tip": "Right click or long press to save the picture, click this button to close",
+    "enter-raw-text": "Please enter the content you want to translate",
+    "reverse-translation": "Reverse Translation",
+    "forward-translation": "Forward Translation"
   }
 }

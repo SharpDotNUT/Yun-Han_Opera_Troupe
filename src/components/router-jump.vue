@@ -25,8 +25,9 @@ const routes = _routes.filter(route => route.name != 'yunjin');
       </div>
     </div>
     <div id="yunjin">
+        <img id="yunjin-img" src="../views/background-small.png"/>
       <RouterLink to="/yunjin">
-        <div>
+        <div id="yunjin-text">
           <p>前往云堇</p>
         </div>
       </RouterLink>

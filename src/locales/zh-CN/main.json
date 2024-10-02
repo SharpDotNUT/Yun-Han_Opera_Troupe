@@ -44,8 +44,7 @@
   },
   "index": {
     "s0": "「 云婵娟来花婵娟，风流尽在山水间。 」",
-    "description": "一个在 {0} 开源的米哈游游戏工具箱",
-    "GitHub": "GitHub"
+    "description": "一个在 GitHub 部分开源的米哈游游戏工具箱。"
   },
   "song-player": {
     "intro": {
@@ -60,6 +59,12 @@
   "translator": {
     "font-size": "字体大小",
     "non-ascii-warn": "请注意：中文或者其他非 ASCII 字符并不能直接翻译。",
-    "name": "翻译器"
+    "name": "翻译器",
+    "raw-text": "原文",
+    "copy-result": "复制结果",
+    "save-img-tip": "右键或长按保存图片，点击此按钮关闭",
+    "enter-raw-text": "请输入要翻译的内容",
+    "forward-translation": "正向翻译",
+    "reverse-translation": "反向翻译"
   }
 }

@@ -3,6 +3,10 @@ import { watch, computed, ref } from "vue";
 
 const props = defineProps({
   lyrics_url: String,
+  autoScroll: {
+    type: Boolean,
+    default: true
+  },
   height: {
     type: String,
     default: "50vh",
@@ -109,7 +113,7 @@ function play(timestamp = 0) {
     }
     if (lyrics.value[i].timestamp <= getPlayedTime()) {
       nowPlayingLyrics.value = i;
-      ref_lyrics.value[i]?.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (props.autoScroll) { ref_lyrics.value[i]?.scrollIntoView({ behavior: "smooth", block: "center" }); }
       i++;
     }
     if (isPlaying) {
@@ -127,43 +131,54 @@ defineExpose({
 </script>
 
 <template>
-  <div>
-    <div id="lyrics-container" :style="{ height: props.height }" ref="lyricsContainer">
-      <p v-for="(lyric, index) in lyrics" :ref="el => ref_lyrics[index] = el" :key="index" :class="nowPlayingLyrics === index && isValidLyrics
-          ? 'now-playing lyrics'
-          : 'lyrics'
+  <div id="lyrics-container">
+    <div id="lyrics" :style="{ height: props.height }" ref="lyricsContainer">
+      <div v-for="(lyric, index) in lyrics" :ref="el => ref_lyrics[index] = el" :key="index" :class="nowPlayingLyrics === index && isValidLyrics
+        ? 'now-playing lyrics'
+        : 'lyrics'
         " @click="
           play(lyric.timestamp);
         $emit('play', lyric.timestamp);
         ">
-        <span>{{ lyric.text }}</span>
-        <br v-if="lyric.translation" />
-        <span v-if="isValidLyrics" style="font-size: 80%">
+        <p class="lyrics-text">{{ lyric.text }}</p>
+        <p class="lyrics-translation" v-if="isValidLyrics">
           {{ lyric.translation }}
-        </span>
-      </p>
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 #lyrics-container {
-  overflow-y: auto;
   padding: 20px;
   border-radius: 20px;
-  background-color: var(--color-body);
+  background-color: var(--paper-background);
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
+#lyrics {
+  overflow-y: auto;
+  padding: 5px;
+}
+
 .lyrics {
+  position: relative;
   transition: color 2s;
   text-align: center;
   padding: 10px 0;
-  font-size: 130%;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.lyrics-text {
+  font-size: 2.5vh;
+}
+
+.lyrics-translation {
+  font-size: 2vh;
 }
 
 .lyrics:hover {
@@ -171,7 +186,7 @@ defineExpose({
 }
 
 .now-playing {
-  span {
+  p {
     color: var(--color-primary);
   }
 }

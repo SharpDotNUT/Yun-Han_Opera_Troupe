@@ -17,8 +17,7 @@
     "yunjin": "雲菫"
   },
   "index": {
-    "GitHub": "GitHub",
-    "description": "HoYoVerse ゲームツールキットを {0} でオープンソース化。",
+    "description": "GitHub で部分的にオープンソース化された miHoYo ゲーム ツールボックス。",
     "s0": "「（訳）美しき雲に愛しき花、風流は山水にありて。」"
   },
   "name": "雲翰社",
@@ -60,6 +59,12 @@
   "translator": {
     "font-size": "フォントサイズ",
     "name": "翻訳者",
-    "non-ascii-warn": "注意：中国語やその他の非ASCII文字は直接翻訳できません。"
+    "non-ascii-warn": "注意：中国語やその他の非ASCII文字は直接翻訳できません。",
+    "raw-text": "オリジナル",
+    "copy-result": "結果をコピーする",
+    "save-img-tip": "右クリックまたは長押しして画像を保存し、このボタンをクリックして閉じます",
+    "enter-raw-text": "翻訳したい内容を入力してください",
+    "reverse-translation": "逆翻訳",
+    "forward-translation": "前方翻訳"
   }
 }

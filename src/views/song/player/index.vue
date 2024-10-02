@@ -2,7 +2,7 @@
 import { ref, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import SvgIcon from "@jamescoyle/vue-icon";
-import Markdown from "@/components/markdown.vue";
+import Intro from "@/components/intro.vue";
 import LyricsView from "./lyrics-view.vue";
 import { copyToClipboard } from "@/script/tools";
 import { Snackbar } from "@varlet/ui";
@@ -20,8 +20,11 @@ import { mdiMusic } from "@mdi/js";
 import { mdiShareVariant } from "@mdi/js";
 import { mdiDownload } from "@mdi/js";
 import { mdiLink } from "@mdi/js";
+import { mdiSkipNext } from "@mdi/js";
+import { mdiSkipPrevious } from "@mdi/js";
+import { mdiPlay } from "@mdi/js";
+import { mdiPause } from "@mdi/js";
 
-const display_tip = ref(isNeedToTip());
 const display_moreActions = ref(false);
 const songMetaData = Data.data;
 const selectedAlbum = ref(songMetaData.length - 74); // 空气蛹
@@ -43,6 +46,8 @@ function copyLink() {
 watch(selectedSong, () => {
   if (selectedSong.value >= songMetaData[selectedAlbum.value].songs.length) {
     selectedSong.value = 0;
+  }else if (selectedSong.value < 0) {
+    selectedSong.value = songMetaData[selectedAlbum.value].songs.length - 1
   }
 });
 if (route.query.album) {
@@ -63,6 +68,7 @@ const coverURL = ref(undefined);
 const lyricsView = ref(null);
 const audio = ref();
 const isMuted = ref(false);
+const isAutoScroll = ref(true);
 const process = ref(0);
 const processMax = ref(0);
 const onChangeProcess = ref(false);
@@ -139,14 +145,7 @@ fetchData();
 </script>
 
 <template>
-  <var-popup position="bottom" style="max-height:calc(100vh - var(--app-bar-height));padding:20px;" :overlay="true"
-    v-model:show="display_tip">
-    <Markdown :content="intro">
-      <template v-slot:footer>
-        <var-button @click="display_tip = false" block>{{ $t('song-player.intro.ok') }}</var-button>
-      </template>
-    </Markdown>
-  </var-popup>
+  <Intro :content="intro" />
   <br />
   <p>数据更新时间 : {{ new Date(Data.update).toLocaleString() }}</p>
   <br />
@@ -160,19 +159,12 @@ fetchData();
       :label="item.name"></var-option>
   </var-select>
   <br />
-  <div style="display: flex">
+  <var-button-group style="width: 100%">
     <var-button @click="fetchData()" block>选定</var-button>
-    <var-button @click="selectedSong++; fetchData()" block>下一首</var-button>
     <var-button @click="display_moreActions = true" block>更多选项</var-button>
     <var-dialog v-model:show="display_moreActions" :cancel-button="false">
       <template #title>更多选项</template>
       <div style="display: flex;flex-direction: column;gap: 10px">
-        <var-button @click="isMuted = !isMuted" block>
-          <SvgIcon v-if="isMuted" type="mdi" :path="mdiMusicOff" />
-          <SvgIcon v-else type="mdi" :path="mdiMusic" />
-          切换播放{{ isMuted ? "正常" : "静音" }}
-        </var-button>
-        <var-button @click="display_tip = true" block>查看使用说明</var-button>
         <var-button @click="copyLink()" block>
           <SvgIcon type="mdi" :path="mdiShareVariant" />{{ $t('song-player.actions.share') }}
         </var-button>
@@ -194,7 +186,7 @@ fetchData();
           {{ $t('song-player.actions.open-in-wyy') }} </var-button>
       </div>
     </var-dialog>
-  </div>
+  </var-button-group>
   <br />
   <var-slider v-model="process" @start="onChangeProcess = true" @end="
     audio.currentTime = process;
@@ -204,18 +196,44 @@ fetchData();
   <p></p>
   <!-- <img :src="coverURL" height="100px">
   <img :src="coverURL+'?param=100y100'" height="100px"> -->
-  <var-button @click="pause = !pause" :disabled="!data" block>{{ pause ? "播放" : "暂停" }} - {{ timeFormat(process) }} /
-    {{ timeFormat(processMax) }}</var-button>
+  <var-button-group style="width: 100%">
+    <var-button @click="selectedSong--; fetchData()" block>
+      <SvgIcon type="mdi" :path="mdiSkipPrevious" />
+    </var-button>
+
+    <var-button @click="pause = !pause" :disabled="!data" block>
+      <SvgIcon v-if="pause" type="mdi" :path="mdiPlay" />
+      <SvgIcon v-else type="mdi" :path="mdiPause" />
+       {{ timeFormat(process) }} /
+      {{ timeFormat(processMax) }}</var-button>
+    <var-button @click="selectedSong++; fetchData()" block>
+      <SvgIcon type="mdi" :path="mdiSkipNext" />
+    </var-button>
+  </var-button-group>
   <br />
-  <audio :src="songURL" :muted="isMuted" ref="audio"></audio>
+  <br />
+  <var-button-group style="width: 100%">
+    <var-button @click="isMuted = !isMuted" block>
+      <SvgIcon v-if="isMuted" type="mdi" :path="mdiMusicOff" />
+      <SvgIcon v-else type="mdi" :path="mdiMusic" />
+    </var-button>
+    <var-button @click="isAutoScroll = !isAutoScroll" block>
+      <span style="color:var(--button-default-text-color)" v-if="isAutoScroll">停止</span>
+      <span style="color:var(--button-default-text-color)" v-else>开启</span>
+      自动滚动歌词
+    </var-button>
+  </var-button-group>
+  <br />
+  <br />
   <div v-if="data">
-    <LyricsView :lyrics_url="data[0].lrc" ref="lyricsView" @play="
+    <LyricsView :lyrics_url="data[0].lrc" :autoScroll="isAutoScroll" ref="lyricsView" @play="
       audio.currentTime = $event / 1000;
     audio.play();
     pause = false;
     ">
     </LyricsView>
   </div>
+  <audio :src="songURL" :muted="isMuted" ref="audio"></audio>
 </template>
 
 <style scoped></style>

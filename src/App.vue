@@ -58,7 +58,7 @@ onMounted(() => {
 
 <style scoped>
 #content {
-  background-color: var(--color-body);
+  box-shadow: 0 0 10px var(--color-body);
   padding: 20px;
   min-height: calc(100vh - var(--app-bar-height));
   margin: 0 auto;

@@ -17,8 +17,7 @@
     "yunjin": "雲堇"
   },
   "index": {
-    "GitHub": "GitHub",
-    "description": "一個在 {0} 開源的米哈遊遊戲工具箱",
+    "description": "一個在 GitHub 部分開源的米哈遊遊戲工具箱。",
     "s0": "「 雲嬵娟來花嬋娟，風流盡在山水間。 」"
   },
   "name": "雲翰社",
@@ -60,6 +59,12 @@
   "translator": {
     "font-size": "字體大小",
     "name": "翻譯器",
-    "non-ascii-warn": "請注意：中文或其他非 ASCII 字元並不能直接翻譯。"
+    "non-ascii-warn": "請注意：中文或其他非 ASCII 字元並不能直接翻譯。",
+    "raw-text": "原文",
+    "copy-result": "複製結果",
+    "save-img-tip": "右鍵或長按儲存圖片，點選此按鈕關閉",
+    "enter-raw-text": "請輸入要翻譯的內容",
+    "reverse-translation": "反向翻譯",
+    "forward-translation": "正向翻譯"
   }
 }

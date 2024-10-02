@@ -171,13 +171,17 @@ watch(
   <Intro :content="Text" height="50vh"></Intro>
   <br />
   <var-tabs v-model:active="translate_order">
-    <var-tab>正向翻译</var-tab>
-    <var-tab>反向翻译</var-tab>
+    <var-tab>
+      {{ $t('translator.forward-translation') }}
+    </var-tab>
+    <var-tab>
+      {{ $t('translator.reverse-translation') }}
+    </var-tab>
   </var-tabs>
   <var-tabs-items v-model:active="translate_order">
     <var-tab-item>
       <br />
-      <var-input v-model="raw_text" textarea placeholder="请输入要翻译的内容" variant="outlined"
+      <var-input v-model="raw_text" textarea :placeholder="$t('translator.enter-raw-text')" variant="outlined"
         :class="font_info.raw_class"></var-input>
       <br />
       <var-chip type="warning" block v-if="isASCII">
@@ -188,7 +192,7 @@ watch(
     <var-tab-item>
       <br />
       <div>
-        <h3>原文</h3>
+        <h3>{{ $t("translator.raw-text") }}</h3>
         <textarea disable id="raw-text" v-model="raw_text" @click="handle_textarea_click" :class="font_info.raw_class"
           style="width: 100%; height: 200px;padding: 12px;
         font-size: 24px;background-color: transparent;color:var(--color-text);"></textarea>
@@ -214,7 +218,9 @@ watch(
   <br />
   <span>{{ $t('translator.font-size') }}</span><var-counter v-model="font_info.size" />
   <span>自动换行：</span><var-switch v-model="font_info.auto_wrap" />
-  <var-button @click="copy_to_clipboard()" v-if="translate_order">复制结果</var-button>
+  <var-button @click="copy_to_clipboard()" v-if="translate_order">
+    {{ $t("translator.copy-result") }}
+  </var-button>
   <div id="result" v-if="display.result">
     <br />
     <hr />
@@ -238,7 +244,7 @@ watch(
       <div id="result-img-dialog">
         <img id="result-img" :src="result_img_url" />
         <var-button id="result-img-close" block @click="display.result_img = false">
-          右键或长按保存图片，点击此按钮关闭
+          {{ $t("translator.save-img-tip") }}
         </var-button>
       </div>
     </var-dialog>

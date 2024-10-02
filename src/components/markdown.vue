@@ -40,8 +40,7 @@ const renderedMarkdown = computed(() => {
 const style = ref({
     backgroundColor: 'transparent',
     maxHeight: props.height,
-    overflowY: 'auto',
-    marginBottom: '20px'
+    overflowY: 'auto'
 })
 
 import GithubMarkdownCSSLight from 'github-markdown-css/github-markdown-light.css?url'

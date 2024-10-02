@@ -8,11 +8,7 @@ import { useMainStore } from "@/stores/main.js";
     <div id="main">
       <p id="title-name">{{ $t("name") }}</p>
       <p id="title-description">
-        <i18n-t keypath="index.description">
-          <a href="https://github.com/SharpDotNUT/Yun-Han_Opera_Troupe">
-            {{ $t('index.GitHub') }}
-          </a>
-        </i18n-t>
+        {{ $t('index.description') }}
       </p>
       <p>{{ $t("index.s0") }}</p>
     </div>
@@ -57,6 +53,4 @@ import { useMainStore } from "@/stores/main.js";
     margin-bottom: 10vh;
   }
 }
-
-
 </style>

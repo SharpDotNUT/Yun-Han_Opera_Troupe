@@ -7,7 +7,8 @@ import {
   mdiTranslate,
   mdiMusic,
   mdiHistory,
-  mdiCog
+  mdiCog,
+  mdiCloseOctagon 
 } from "@mdi/js";
 
 export const routes = [
@@ -55,6 +56,7 @@ export const routes = [
   {
     name: "XP",
     path: "/xp",
+    icon: mdiCloseOctagon,
     component: () => import("../views/xp/index.vue"),
   },
   {
@@ -66,16 +68,19 @@ export const routes = [
   {
     name: "gacha-simulator",
     path: "/gacha/simulator",
+    icon: mdiCloseOctagon,
     component: () => import("../views/gacha/simulator/index.vue"),
   },
   {
     name: "miyoushe",
     path: "/miyoushe",
+    icon: mdiCloseOctagon,
     component: () => import("../views/miyoushe/index.vue"),
   },
   {
     name: "test",
     path: "/test",
+    icon: mdiCloseOctagon,
     component: () => import("../views/test.vue"),
   },
 ];

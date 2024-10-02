@@ -51,22 +51,22 @@ watch(
         <var-button round text color="transparent" @click="display_account = !display_account">
           <svg-icon type="mdi" :path="mdiAccount"></svg-icon>
         </var-button>
+        <var-button v-if="$route.name != 'setting'" round text color="transparent"
+          @click="display_setting = !display_setting">
+          <svg-icon type="mdi" :path="mdiCog"></svg-icon>
+          <var-popup v-model:show="display_setting"
+            style="position: fixed; top: var(--app-bar-height); right: 0;bottom:0;left:0;padding:5%" :overlay="false">
+            <Setting />
+          </var-popup>
+        </var-button>
         <var-menu placement="bottom-end">
           <var-button round text @click="display_setting = false">
             <svg-icon type="mdi" :path="mdiApps"></svg-icon>
           </var-button>
           <template #menu>
-            <RouterJump/>
+            <RouterJump />
           </template>
         </var-menu>
-        <var-button v-if="$route.name != 'setting'" round text color="transparent" @click="display_setting = !display_setting">
-          <svg-icon type="mdi" :path="mdiCog"></svg-icon>
-        </var-button>
-        <var-popup v-model:show="display_setting"
-          style="position: fixed; top: var(--app-bar-height); right: 0;bottom:0;left:0;padding:5%"
-          :overlay="false">
-          <Setting />
-        </var-popup>
       </template>
       <template #left></template>
     </var-app-bar>
