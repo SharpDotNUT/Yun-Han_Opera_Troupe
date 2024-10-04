@@ -1,4 +1,4 @@
-<p align="center">
+<div align="center">
 <center>
 
 <img src="/public/favicon.ico" style="width: 15%;"></img>
@@ -39,7 +39,7 @@
 云翰社是一个前端开源，后端部分开源的米哈游游戏工具箱。
 
 </center>
-</p>
+</div>
 
 ---
 
