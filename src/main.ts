@@ -1,7 +1,7 @@
 
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import {i18n} from "./locales/i18n";
+import {i18n} from "./locales/i18n.ts";
 import App from "./App.vue";
 import router from "./router/index";
 
@@ -15,5 +15,5 @@ app.mount("#app");
 
 import "@varlet/touch-emulator";
 
-import { useMainStore } from "./stores/main";
+import { useMainStore } from "./stores/main.ts";
 useMainStore().setTheme('system');

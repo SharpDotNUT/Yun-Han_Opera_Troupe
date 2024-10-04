@@ -35,7 +35,7 @@ if (typeof fFetch != "undefined") {
       router.push("/");
     },
     onConfirm: () => {
-      open("/cors.user.js")
+      open("/cors.userts")
       Snackbar.loading("请安装用户脚本，然后刷新此页面。")
     }
   });
@@ -51,6 +51,15 @@ if (exist_fFetch.value) {
     ).then((res) => {
       d.value[i] = JSON.parse(res.response);
     });
+    // fetch(
+    //   "http://127.0.0.1:52102/https://bbs-api.miyoushe.com/post/wapi/getNewsList?gids=" +
+    //   i +
+    //   "&type=1&page_size=50"
+    // ).then((res) => {
+    //   res.json().then((json) => {
+    //     d.value[i] = json;
+    //   })
+    // })
   }
 }
 

@@ -36,6 +36,11 @@ export const routes = [
     component: () => import("../views/yunjin/index.vue"),
   },
   {
+    path: "/notice",
+    name: "notice",
+    component: () => import("../views/notice/index.vue"),
+  },
+  {
     name: "translator",
     path: "/translator",
     icon: mdiTranslate,

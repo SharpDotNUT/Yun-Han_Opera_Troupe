@@ -1,5 +1,5 @@
 <script setup>
-import { useMainStore } from "@/stores/main.js";
+import { useMainStore } from "@/stores/main.ts";
 
 </script>
 
@@ -43,12 +43,12 @@ import { useMainStore } from "@/stores/main.js";
   }
 
   #title-name {
-    font-size: 8vh;
+    font-size: 64px;
     font-weight: bold;
   }
 
   #title-description {
-    font-size: 2vh;
+    font-size: 32px;
     font-weight: bold;
     margin-bottom: 10vh;
   }

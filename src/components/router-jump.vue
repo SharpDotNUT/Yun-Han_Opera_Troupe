@@ -1,6 +1,6 @@
 <script setup>
 import { routes as _routes } from "@/router";
-import { t } from "@/locales/i18n";
+import { t } from "@/locales/i18n.ts";
 import SvgIcon from "@jamescoyle/vue-icon";
 
 console.log(_routes);
@@ -31,18 +31,6 @@ const routes = _routes.filter(route => route.name != 'yunjin');
           <p>前往云堇</p>
         </div>
       </RouterLink>
-    </div>
-    <div id="github">
-      <var-tooltip style="max-width:600px">
-        <a style="width:100%" href="https://github.com/SharpDotNUT/Yun-Han_Opera_Troupe/">
-          <img
-            src="https://ghc.clait.sh/repo/SharpDotNUT/Yun-Han_Opera_Troupe/?bg_color=ffffff&title_color=0366d6&text_color=333333&icon_color=333333&show_user=true"
-            style="width:100%" target="_blank" alt="GitHub Repo Card">
-        </a>
-        <template #content>
-          {{ $t("setting.about.open-in-github") }}
-        </template>
-      </var-tooltip>
     </div>
   </div>
 </template>

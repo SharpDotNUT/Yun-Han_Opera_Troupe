@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { RouterView, useRoute, useRouter } from "vue-router";
-import { i18n } from "./locales/i18n";
+import { i18n } from "./locales/i18n.ts";
 import { useMainStore } from "./stores/main";
 import { setLanguage } from "./locales/i18n";
 import AppBar from '@/components/app-bar.vue'

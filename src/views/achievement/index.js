@@ -1,4 +1,4 @@
-// achievementUtils.js
+// achievementUtilsts
 
 export function filterAchievements(
   achievementData,

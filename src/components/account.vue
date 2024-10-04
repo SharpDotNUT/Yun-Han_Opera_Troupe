@@ -1,7 +1,7 @@
 <script setup>
 
 import { ref, watch } from 'vue'
-import { useMainStore } from '@/stores/main.js'
+import { useMainStore } from '@/stores/main.ts'
 
 const host_name = useMainStore().host_name
 const display_account = ref(false)

@@ -37,7 +37,7 @@ function _filterAchievements() {
     selectedGoal.value,
     finished.value,
     searchString.value
-  );
+  ).slice(0,10);
 }
 _filterAchievements();
 watch(searchString, _filterAchievements);

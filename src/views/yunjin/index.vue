@@ -50,10 +50,14 @@ const sel_story = ref('none')
                         <option v-for="(video, index) in Meta.videos" :value="index">{{ video.title }}</option>
                     </select>
                     <div id="video" v-if="sel_video != -1">
+                        <div>
+                            <p>哔哩哔哩外链播放器加载中...</p>
+                        </div>
                         <iframe
                             :src="`//player.bilibili.com/player.html?bvid=${Meta.videos[sel_video].bvid}&autoplay=false`"
                             scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"
-                            width="100%" height="100%"></iframe>
+                            width="100%" height="100%">
+                        </iframe>
                     </div>
                 </div>
                 <hr />

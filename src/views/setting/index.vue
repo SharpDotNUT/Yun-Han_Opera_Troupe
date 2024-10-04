@@ -1,13 +1,13 @@
 <script setup>
 
 import { ref, watch, onMounted } from "vue";
-import { i18n } from "@/locales/i18n.js";
+import { i18n } from "@/locales/i18n.ts";
 import { useMainStore } from "@/stores/main";
 import { useRoute, useRouter } from "vue-router";
 import PackageJSON from "@/../package.json";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiBrightness6, mdiTranslate, mdiInformation } from "@mdi/js";
-import { setLanguage as _setLanguage } from "@/locales/i18n.js";
+import { setLanguage as _setLanguage } from "@/locales/i18n.ts";
 const language = ref(i18n.global.locale);
 const tab = ref("language");
 const theme = ref("system");

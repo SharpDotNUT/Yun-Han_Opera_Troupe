@@ -1,26 +1,40 @@
 
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap'); */
 @import url('https://fonts.font.im/css2?family=Noto+Sans+SC:wght@100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap'); */
 @import url('https://fonts.font.im/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap'); */
 @import url('https://fonts.font.im/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
-@import url('https://fonts.font.im/css2?family=Noto+Sans:wght@100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap'); */
+@import url('https://fonts.font.im/css2?family=Outfit:wght@100..900&display=swap');
 
-.lang-zh{
+@font-face {
+    font-family: DIN;
+    src: url('../../public/font/');
+
+}
+
+.lang-zh {
     font-family: Noto Sans SC
 }
-.lang-zht{
+
+.lang-zht {
     font-family: Noto Sans TC
 }
-.lang-jp{
+
+.lang-jp {
     font-family: Noto Sans JP
 }
-.lang-en{
-    font-family: Noto Sans
+
+.lang-en {
+    font-family: Outfit
 }
 
-.g-font{
+.g-font {
     font-family: var(--font-family) !important;
 }
 
 body {
-    font-family: var(--font-family);
+    --font-family: Outfit, 'Noto Sans SC', sans-serif;
+    font-family: Outfit, var(--font-family);
 }
