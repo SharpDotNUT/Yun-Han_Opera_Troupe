@@ -4,7 +4,9 @@ h1,
 h2,
 h3,
 p,
-span {
+span,
+th,
+td {
   color: var(--color-text)
 }
 

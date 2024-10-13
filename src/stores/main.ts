@@ -1,10 +1,15 @@
+//@ts-ignore
 import { ref } from "vue";
+//@ts-ignore
 import { defineStore } from "pinia";
-import { t } from "@/locales/i18n";
+// @ts-ignore
+import { t } from "@/locales/i18n.ts";
+//@ts-ignore
 import { Themes, StyleProvider } from "@varlet/ui";
 
 export const useMainStore = defineStore("main", () => {
-  const host_name = import.meta.env.VITE_API_HOST;
+  // @ts-ignore
+  const host_name = import.meta.env.VITE_API_HOST as string;
 
   const title = ref("");
   function setTitle(i18n_id) {
@@ -44,7 +49,7 @@ export const useMainStore = defineStore("main", () => {
     }
     if (theme.value.startsWith("light")) {
       if (is_md2) {
-        StyleProvider(Themes.light);
+        StyleProvider(undefined);
       } else {
         StyleProvider(Themes.md3Light);
       }

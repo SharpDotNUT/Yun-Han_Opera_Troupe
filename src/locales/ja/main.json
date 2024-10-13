@@ -14,7 +14,9 @@
     "test": "テスト",
     "translator": "翻訳者",
     "about": "について",
-    "yunjin": "雲菫"
+    "yunjin": "雲菫",
+    "dictionary": "辞書",
+    "notice": "発表"
   },
   "index": {
     "description": "GitHub で部分的にオープンソース化された miHoYo ゲーム ツールボックス。",
@@ -66,5 +68,8 @@
     "enter-raw-text": "翻訳したい内容を入力してください",
     "reverse-translation": "逆翻訳",
     "forward-translation": "前方翻訳"
+  },
+  "dictionary": {
+    "search": "検索"
   }
 }

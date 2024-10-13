@@ -14,7 +14,9 @@
     "test": "測試",
     "translator": "翻譯器",
     "about": "關於",
-    "yunjin": "雲堇"
+    "yunjin": "雲堇",
+    "dictionary": "辭典",
+    "notice": "公告"
   },
   "index": {
     "description": "一個在 GitHub 部分開源的米哈遊遊戲工具箱。",
@@ -66,5 +68,8 @@
     "enter-raw-text": "請輸入要翻譯的內容",
     "reverse-translation": "反向翻譯",
     "forward-translation": "正向翻譯"
+  },
+  "dictionary": {
+    "search": "搜尋"
   }
 }

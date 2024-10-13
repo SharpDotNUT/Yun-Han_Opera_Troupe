@@ -1,15 +1,20 @@
+//@ts-ignore
 import { createI18n } from "vue-i18n";
+//@ts-ignore
 import enMain from "./en/main.json";
+//@ts-ignore
 import zhCNMain from "./zh-CN/main.json";
+//@ts-ignore
 import zhTWMain from "./zh-TW/main.json";
+//@ts-ignore
 import jaMain from "./ja/main.json";
 
 const language_font_class = {
   "zh-CN": "lang-zh",
   "zh-TW": "lang-zht",
-  "en": "lang-en",
-  "ja": "lang-jp",
-}
+  en: "lang-en",
+  ja: "lang-jp",
+};
 
 const i18n = createI18n({
   locale: "zh-CN", // 默认语言
@@ -52,11 +57,16 @@ async function loadLanguage(locale, namespace) {
 
 function setLanguage(locale) {
   i18n.global.locale = locale;
-  document.documentElement.classList = [language_font_class[i18n.global.locale]];
-}
-
-window.onload = () => {
-  document.documentElement.classList = [language_font_class[i18n.global.locale]];
+  document.documentElement.classList.remove(
+    ...Object.values(language_font_class)
+  );
+  document.documentElement.classList.add(language_font_class[locale]);
+  window.onload = () => {
+    document.documentElement.classList.remove(
+      ...Object.values(language_font_class)
+    );
+    document.documentElement.classList.add(language_font_class[locale]);
+  };
 }
 
 const t = i18n.global.t;

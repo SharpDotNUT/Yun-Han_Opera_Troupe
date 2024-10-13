@@ -12,7 +12,9 @@
     "miyoushe": "米游社",
     "test": "测试",
     "about": "关于",
-    "yunjin": "云堇"
+    "yunjin": "云堇",
+    "notice": "公告",
+    "dictionary": "辞典"
   },
   "app-bar": {
     "subtitle": "「红毹婵娟，庄谐并举」"
@@ -66,5 +68,8 @@
     "enter-raw-text": "请输入要翻译的内容",
     "forward-translation": "正向翻译",
     "reverse-translation": "反向翻译"
+  },
+  "dictionary": {
+    "search": "搜索"
   }
 }

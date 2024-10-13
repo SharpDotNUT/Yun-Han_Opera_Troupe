@@ -1,10 +1,28 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "es6",
-    "strict": true,
+    "module": "ESNext",
+    "strict": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "noImplicitAny": false,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+    },
+    "outDir": "dist"
+  },
+  "include": [
+    "**/*"
+  ],
+  "exclude": [],
 }

@@ -8,7 +8,9 @@ import {
   mdiMusic,
   mdiHistory,
   mdiCog,
-  mdiCloseOctagon 
+  mdiCloseOctagon,
+  mdiBookAlphabet,
+  mdiBulletinBoard
 } from "@mdi/js";
 
 export const routes = [
@@ -38,6 +40,7 @@ export const routes = [
   {
     path: "/notice",
     name: "notice",
+    icon: mdiBulletinBoard ,
     component: () => import("../views/notice/index.vue"),
   },
   {
@@ -81,6 +84,12 @@ export const routes = [
     path: "/miyoushe",
     icon: mdiCloseOctagon,
     component: () => import("../views/miyoushe/index.vue"),
+  },,
+  {
+    name: "dictionary",
+    path: "/dictionary",
+    icon: mdiBookAlphabet,
+    component: () => import("../views/dictionary/index.vue"),
   },
   {
     name: "test",
