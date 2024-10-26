@@ -39,6 +39,8 @@ onMounted(() => {
     }
 })
 
+console.log(import.meta.env)
+
 </script>
 
 <template>

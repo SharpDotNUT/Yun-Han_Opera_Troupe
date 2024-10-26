@@ -1,17 +1,24 @@
-<script setup>
+<script lang="ts" setup>
 
-let d
+import PATH from './dictionary/words.json?url'
+import { fetchWithProgress } from '@/script/resource';
+import { ref } from 'vue';
 
-fFetch('https://bbs-api.miyoushe.com/post/wapi/userPost?uid=306863519').then((res) => {
-    d = JSON.parse(res.response);
-    console.log(d)
-});
+const r = ref()
 
+function g() {
+    fetchWithProgress(PATH, {}, (a) => {
+        console.log(a)
+        r.value = a
+    })
+}
 
 </script>
 
 <template>
 
-
+    <button @click="r = 0">reset</button>
+    <button @click="g()">set</button>
+    <p>{{ r }}</p>
 
 </template>

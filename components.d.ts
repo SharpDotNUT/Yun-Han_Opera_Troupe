@@ -11,6 +11,7 @@ declare module 'vue' {
     AppBar: typeof import('./src/components/app-bar.vue')['default']
     Footer: typeof import('./src/components/footer.vue')['default']
     Intro: typeof import('./src/components/intro.vue')['default']
+    LoadFileProgress: typeof import('./src/components/load-file-progress.vue')['default']
     Markdown: typeof import('./src/components/markdown.vue')['default']
     RouterJump: typeof import('./src/components/router-jump.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

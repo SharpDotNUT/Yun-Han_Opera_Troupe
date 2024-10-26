@@ -8,11 +8,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap'); */
 @import url('https://fonts.font.im/css2?family=Outfit:wght@100..900&display=swap');
 
-@font-face {
-    font-family: DIN;
-    src: url('../../public/font/');
-
-}
 
 .lang-zh {
     font-family: Noto Sans SC
@@ -32,9 +27,11 @@
 
 .g-font {
     font-family: var(--font-family) !important;
+    font-weight: 500;
 }
 
 body {
     --font-family: Outfit, 'Noto Sans SC', sans-serif;
     font-family: Outfit, var(--font-family);
+    font-weight: 500;
 }

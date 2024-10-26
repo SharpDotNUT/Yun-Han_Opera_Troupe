@@ -7,8 +7,6 @@ import components from "unplugin-vue-components/vite";
 import autoImport from "unplugin-auto-import/vite";
 import { VarletImportResolver } from "@varlet/import-resolver";
 
-import {VitePWA} from 'vite-plugin-pwa'
-
 export default defineConfig({
   plugins: [
     vue({
@@ -22,16 +20,7 @@ export default defineConfig({
     autoImport({
       resolvers: [VarletImportResolver({ autoImport: true })],
     }),
-    inspect(),
-    VitePWA({
-      registerType: 'autoUpdate',
-      manifest: {
-        name: "My App",
-        short_name: "My App",
-        description: "My App",
-        theme_color: "#ffffff",
-      },
-    })
+    inspect()
   ],
   resolve: {
     alias: {
@@ -45,7 +34,7 @@ export default defineConfig({
   },
   build: {
     sourcemap: "hidden",
-    outDir: "./dist", // 确保这是相对路径
+    outDir: "./dist",
   },
   define:{
     BUILD_TIME: new Date().getTime()

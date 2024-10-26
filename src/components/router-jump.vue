@@ -24,7 +24,7 @@ const routes = _routes.filter(route => route.name != 'yunjin');
         </RouterLink>
       </div>
     </div>
-    <div id="yunjin">
+    <div v-if="false" id="yunjin">
         <img id="yunjin-img" src="../views/background-small.png"/>
       <RouterLink to="/yunjin">
         <div id="yunjin-text">
