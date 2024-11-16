@@ -6,11 +6,7 @@ const props = defineProps({
   autoScroll: {
     type: Boolean,
     default: true
-  },
-  height: {
-    type: String,
-    default: "50vh",
-  },
+  }
 });
 defineEmits(["play"])
 
@@ -132,7 +128,8 @@ defineExpose({
 
 <template>
   <div id="lyrics-container">
-    <div id="lyrics" :style="{ height: props.height }" ref="lyricsContainer">
+    <div id="lyrics" ref="lyricsContainer">
+      <div style="height: 50vh;"></div>
       <div v-for="(lyric, index) in lyrics" :ref="el => ref_lyrics[index] = el" :key="index" :class="nowPlayingLyrics === index && isValidLyrics
         ? 'now-playing lyrics'
         : 'lyrics'
@@ -145,15 +142,13 @@ defineExpose({
           {{ lyric.translation }}
         </p>
       </div>
+      <div style="height: 50vh;"></div>
     </div>
   </div>
 </template>
 
 <style scoped>
 #lyrics-container {
-  padding: 20px;
-  border-radius: 20px;
-  background-color: var(--paper-background);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -188,6 +183,8 @@ defineExpose({
 .now-playing {
   p {
     color: var(--color-primary);
+    transform: scale(1.1);
+    transition: transform 0.5s;
   }
 }
 

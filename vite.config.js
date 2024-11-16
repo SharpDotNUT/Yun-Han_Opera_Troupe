@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from "node:url";
-
+import fs from "node:fs";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import inspect from "vite-plugin-inspect";
@@ -12,7 +12,7 @@ export default defineConfig({
     vue({
       template: {
         compilerOptions: {},
-      }
+      },
     }),
     components({
       resolvers: [VarletImportResolver()],
@@ -25,18 +25,22 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
-      "$": fileURLToPath(new URL("./public", import.meta.url)),
+      $: fileURLToPath(new URL("./public", import.meta.url)),
     },
   },
   server: {
     host: "0.0.0.0",
     port: "10001",
+    https:{
+      key: fs.readFileSync('./localhost+2-key.pem'),
+      cert: fs.readFileSync('./localhost+2.pem')
+    }
   },
   build: {
     sourcemap: "hidden",
     outDir: "./dist",
   },
-  define:{
-    BUILD_TIME: new Date().getTime()
-  }
+  define: {
+    BUILD_TIME: new Date().getTime(),
+  },
 });

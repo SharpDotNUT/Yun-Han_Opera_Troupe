@@ -22,8 +22,7 @@ export function fetchData(
   data,
   songURL,
   selectedAlbum,
-  selectedSong,
-  coverURL
+  selectedSong
 ) {
   Snackbar.loading("正在获取歌曲信息");
   fetch(
@@ -40,11 +39,31 @@ export function fetchData(
       }).then((response) => {
         const url = new URL(response.url);
         url.searchParams.set("param", "");
-        coverURL.value = url;
       });
     })
     .catch((error) => {
       console.error(error);
       Snackbar.error("歌曲信息获取失败");
+    });
+}
+
+export function download(songURL) {
+  fetch(songURL.value)
+    .then((response) => response.blob())
+    .then((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.style.display = "none"; // 隐藏 <a> 标签
+      document.body.appendChild(a); // 将 <a> 标签添加到 body 中
+      a.href = url;
+      a.download = `${songMetaData[selectedAlbum.value].name} - ${songMetaData[selectedAlbum.value].songs[selectedSong.value].name
+        }.mp3`;
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      Snackbar.success("下载成功");
+    })
+    .catch((error) => {
+      Snackbar.error("下载失败：" + error.message);
     });
 }

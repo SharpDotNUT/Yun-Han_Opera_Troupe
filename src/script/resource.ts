@@ -1,3 +1,4 @@
+
 async function fetchWithProgress(
   url: RequestInfo | URL,
   options?: object,

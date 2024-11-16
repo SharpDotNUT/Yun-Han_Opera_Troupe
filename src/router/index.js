@@ -54,6 +54,12 @@ export const routes = [
     path: "/song/player",
     icon: mdiMusic,
     component: () => import("../views/song/player/index.vue"),
+  },,
+  {
+    name: "song-player-old",
+    path: "/song/player/old",
+    icon: mdiMusic,
+    component: () => import("../views/song/player/old_index.vue"),
   },
   {
     name: "achievement",
@@ -90,6 +96,10 @@ export const routes = [
     path: "/dictionary",
     icon: mdiBookAlphabet,
     component: () => import("../views/dictionary/index.vue"),
+  },{
+    name:"文本查询",
+    path:"/dictionary/text",
+    component:()=>import("../views/dictionary/text/index.vue")
   },
   {
     name: "test",

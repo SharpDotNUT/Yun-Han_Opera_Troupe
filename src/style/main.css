@@ -18,6 +18,11 @@ td,
   width: min(100%, 1000px)
 }
 
+.option-style{
+  --option-height:auto;
+  --option-padding:6px 12px;
+}
+
 body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
