@@ -5,6 +5,7 @@
     "setting": "设置",
     "translator": "翻译器",
     "song-player": "音乐播放器",
+    "song-player-old": "音乐播放器（旧版）",
     "achievement": "成就工具",
     "XP": "XP 分析工具",
     "gacha-view": "祈愿·历史卡池浏览",
@@ -70,6 +71,12 @@
     "reverse-translation": "反向翻译"
   },
   "dictionary": {
-    "search": "搜索"
+    "search": "搜索",
+    "zh-cn": "简体中文",
+    "en": "英文",
+    "ja": "日文",
+    "search-text": "要搜索的文本",
+    "view-more-info": "查看详情信息",
+    "more-info": "详情信息"
   }
 }

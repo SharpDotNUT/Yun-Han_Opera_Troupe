@@ -96,10 +96,6 @@ export const routes = [
     path: "/dictionary",
     icon: mdiBookAlphabet,
     component: () => import("../views/dictionary/index.vue"),
-  },{
-    name:"文本查询",
-    path:"/dictionary/text",
-    component:()=>import("../views/dictionary/text/index.vue")
   },
   {
     name: "test",

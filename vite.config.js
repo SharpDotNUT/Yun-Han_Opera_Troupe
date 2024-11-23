@@ -1,11 +1,11 @@
 import { fileURLToPath, URL } from "node:url";
-import fs from "node:fs";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import inspect from "vite-plugin-inspect";
 import components from "unplugin-vue-components/vite";
 import autoImport from "unplugin-auto-import/vite";
 import { VarletImportResolver } from "@varlet/import-resolver";
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   plugins: [
@@ -20,7 +20,7 @@ export default defineConfig({
     autoImport({
       resolvers: [VarletImportResolver({ autoImport: true })],
     }),
-    inspect()
+    VitePWA({ registerType: 'autoUpdate'})
   ],
   resolve: {
     alias: {
@@ -30,11 +30,7 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    port: "10001",
-    https:{
-      key: fs.readFileSync('./localhost+2-key.pem'),
-      cert: fs.readFileSync('./localhost+2.pem')
-    }
+    port: "10001"
   },
   build: {
     sourcemap: "hidden",

@@ -1,5 +1,6 @@
 <script setup>
 
+import {ref} from "vue";
 import IdToName from "@/data/id_to_name.CHS.json";
 
 defineEmits(["select"]);
@@ -11,12 +12,17 @@ const props = defineProps({
     default: false,
   },
 });
+const img = ref(null);
 
+img.value,
+  addEventListener("load", function () {
+    console.log("图片加载完成");
+  });
 </script>
 
 <template>
   <div class="banner" style="display: flex; flex-direction: column; gap: 10px">
-    <img :src="banner.img" :alt="banner.name" style="width: 100%" />
+    <img ref="img" :src="banner.img" :alt="banner.name" style="width: 100%" />
     <p>
       {{ new Date(banner.from).toLocaleString() }} -
       {{ new Date(banner.to).toLocaleString() }}
@@ -24,13 +30,18 @@ const props = defineProps({
     <div
       v-if="
         new Date(banner.from) < new Date() && new Date(banner.to) > new Date()
-      "
-    >
+      ">
       <p>
         进行中 - 还有
         {{ Math.floor((new Date(banner.to) - new Date()) / 86400000) }} 天
-        {{ Math.floor((new Date(banner.to) - new Date()) % 86400000/ 3600000) }} 小时
-        {{ Math.floor((new Date(banner.to) - new Date()) % 3600000 / 60000) }} 分钟
+        {{
+          Math.floor(((new Date(banner.to) - new Date()) % 86400000) / 3600000)
+        }}
+        小时
+        {{
+          Math.floor(((new Date(banner.to) - new Date()) % 3600000) / 60000)
+        }}
+        分钟
       </p>
       <p>
         <var-progress
@@ -38,8 +49,7 @@ const props = defineProps({
             ((new Date() - new Date(banner.from)) /
               (new Date(banner.to) - new Date(banner.from))) *
             100
-          "
-        />
+          " />
       </p>
     </div>
     <p>
@@ -51,7 +61,10 @@ const props = defineProps({
         {{ IdToName[star4] }}
       </var-chip>
     </p>
-    <var-button v-if="props.isNeedSelect" @click="$emit('select', banner)" block>
+    <var-button
+      v-if="props.isNeedSelect"
+      @click="$emit('select', banner)"
+      block>
       选择该卡池
     </var-button>
     <hr />

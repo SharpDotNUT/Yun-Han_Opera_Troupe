@@ -1,6 +1,7 @@
 <script setup>
 import { routes as _routes } from "@/router";
-import { t } from "@/locales/i18n.ts";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 import SvgIcon from "@jamescoyle/vue-icon";
 
 console.log(_routes);

@@ -14,7 +14,8 @@
     "about": "About",
     "yunjin": "Yun Jin",
     "dictionary": "Dictionary",
-    "notice": "Announcement"
+    "notice": "Announcement",
+    "song-player-old": "Susic Player (Old Version)"
   },
   "app-bar": {
     "subtitle": "\" Elegance on the stage, in decorous harmony. {'|'} 「红毹婵娟，庄谐并举」\""
@@ -70,6 +71,12 @@
     "forward-translation": "Forward Translation"
   },
   "dictionary": {
-    "search": "Search"
+    "search": "Search",
+    "en": "English",
+    "ja": "Japanese",
+    "zh-cn": "Simplified Chinese",
+    "search-text": "Text To Search For",
+    "view-more-info": "View Detailed Information",
+    "more-info": "Detailed Information"
   }
 }

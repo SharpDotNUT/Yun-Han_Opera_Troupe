@@ -16,7 +16,8 @@
     "about": "關於",
     "yunjin": "雲堇",
     "dictionary": "辭典",
-    "notice": "公告"
+    "notice": "公告",
+    "song-player-old": "音樂播放器（舊版）"
   },
   "index": {
     "description": "一個在 GitHub 部分開源的米哈遊遊戲工具箱。",
@@ -70,6 +71,12 @@
     "forward-translation": "正向翻譯"
   },
   "dictionary": {
-    "search": "搜尋"
+    "search": "搜尋",
+    "en": "英文",
+    "ja": "日文",
+    "zh-cn": "簡體中文",
+    "search-text": "要搜尋的文字",
+    "view-more-info": "查看詳情",
+    "more-info": "詳情資訊"
   }
 }

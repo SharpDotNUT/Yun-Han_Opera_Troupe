@@ -92,15 +92,6 @@ console.log(import.meta.env)
                         | <var-link href="https://github.com/CNChestnut">Chestnut</var-link>
                     </p>
                     <hr />
-                    <var-tooltip style="max-width:600px">
-                        <a style="width:100%" href="https://github.com/SharpDotNUT/Yun-Han_Opera_Troupe/">
-                            <img src="https://ghc.clait.sh/repo/SharpDotNUT/Yun-Han_Opera_Troupe/?bg_color=ffffff&title_color=0366d6&text_color=333333&icon_color=333333&show_user=true"
-                                style="width:100%" target="_blank" alt="GitHub Repo Card">
-                        </a>
-                        <template #content>
-                            {{ $t("setting.about.open-in-github") }}
-                        </template>
-                    </var-tooltip>
                     <p>{{ $t('setting.about.build-time', [new Date(BuildTime).toLocaleString()]) }}</p>
                     <p>Copyright © 2024 SharpDotNUT. All rights reserved.</p>
                 </div>

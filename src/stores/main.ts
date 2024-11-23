@@ -2,8 +2,8 @@
 import { ref } from "vue";
 //@ts-ignore
 import { defineStore } from "pinia";
-// @ts-ignore
-import { t } from "@/locales/i18n.ts";
+import { i18n } from "@/locales/i18n";
+const t = i18n.global.t;
 //@ts-ignore
 import { Themes, StyleProvider } from "@varlet/ui";
 
@@ -12,7 +12,7 @@ export const useMainStore = defineStore("main", () => {
   const host_name = import.meta.env.VITE_API_HOST as string;
 
   const title = ref("");
-  function setTitle(i18n_id) {
+  function setTitle(i18n_id:string) {
     title.value = "apps-name." + i18n_id;
     console.log(title.value);
     document.title = t("name") + " - " + t(title.value);

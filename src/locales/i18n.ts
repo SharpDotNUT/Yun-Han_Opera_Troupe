@@ -35,6 +35,7 @@ const i18n = createI18n({
   },
   warnHtmlMessage: true,
   globalInjection: true,
+  legacy: false
 });
 
 let loadedLanguages = {};
@@ -69,5 +70,4 @@ function setLanguage(locale) {
   };
 }
 
-const t = i18n.global.t;
-export { i18n, t, loadLanguage as loadAndSetLanguage, setLanguage };
+export { i18n, loadLanguage as loadAndSetLanguage, setLanguage };

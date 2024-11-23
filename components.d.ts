@@ -29,7 +29,6 @@ declare module 'vue' {
     VarDivider: typeof import('@varlet/ui')['_DividerComponent']
     VarFab: typeof import('@varlet/ui')['_FabComponent']
     VarIcon: typeof import('@varlet/ui')['_IconComponent']
-    VarImagePreview: typeof import('@varlet/ui')['_ImagePreviewComponent']
     VarInput: typeof import('@varlet/ui')['_InputComponent']
     VarLink: typeof import('@varlet/ui')['_LinkComponent']
     VarList: typeof import('@varlet/ui')['_ListComponent']

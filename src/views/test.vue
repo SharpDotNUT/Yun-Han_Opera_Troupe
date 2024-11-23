@@ -1,24 +1,24 @@
 <script lang="ts" setup>
 
-import PATH from './dictionary/words.json?url'
-import { fetchWithProgress } from '@/script/resource';
-import { ref } from 'vue';
+const path = 'https://yunhan-oss.oss-cn-hongkong.aliyuncs.com/TextMapCHS.json'
 
-const r = ref()
+// caches.open("dictionary").then((cache) => {
+//     cache.add(path).then(() => {
+//         console.log('add success')
+//     })
+// })
 
-function g() {
-    fetchWithProgress(PATH, {}, (a) => {
-        console.log(a)
-        r.value = a
-    })
-}
+caches.open("dictionary").then((cache) => {
+  cache.match(path).then((response) => {
+      response?.json().then((data) => {
+          console.log(data[5532])
+      })
+  })
+});
 
 </script>
 
 <template>
 
-    <button @click="r = 0">reset</button>
-    <button @click="g()">set</button>
-    <p>{{ r }}</p>
 
 </template>

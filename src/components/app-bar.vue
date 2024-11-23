@@ -1,7 +1,8 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useMainStore } from "@/stores/main";
-import { t } from "@/locales/i18n.ts";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiApps, mdiCog, mdiAccount, mdiGithub } from "@mdi/js";
 import RouterJump from "@/components/router-jump.vue";

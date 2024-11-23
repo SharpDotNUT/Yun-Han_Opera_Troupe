@@ -16,7 +16,8 @@
     "about": "について",
     "yunjin": "雲菫",
     "dictionary": "辞書",
-    "notice": "発表"
+    "notice": "発表",
+    "song-player-old": "音楽プレーヤー（旧バージョン）"
   },
   "index": {
     "description": "GitHub で部分的にオープンソース化された miHoYo ゲーム ツールボックス。",
@@ -70,6 +71,12 @@
     "forward-translation": "前方翻訳"
   },
   "dictionary": {
-    "search": "検索"
+    "search": "検索",
+    "en": "英語",
+    "ja": "日本語",
+    "zh-cn": "簡体字中国語",
+    "search-text": "検索するテキスト",
+    "view-more-info": "詳細情報を見る",
+    "more-info": "詳細情報"
   }
 }
