@@ -4,15 +4,24 @@ import { useRoute, useRouter } from "vue-router";
 import SvgIcon from "@jamescoyle/vue-icon";
 import Intro from "@/components/intro.vue";
 import LyricsView from "./lyrics-view.vue";
+import CommentView from "./comment-view.vue";
 import { copyToClipboard } from "@/script/tools";
 import { Dialog, ImagePreview, Snackbar } from "@varlet/ui";
 import Data from "./d.json";
 import intro from "./intro.md?raw";
+import { useMainStore } from "@/stores/main";
 
-import { open, fetchData as _fetchData, isNeedToTip, download } from "./index";
+import {
+  open,
+  fetchData as _fetchData,
+  isNeedToTip,
+  download,
+  viewComments,
+} from "./index";
 
 const route = useRoute();
 const router = useRouter();
+const mainStore = useMainStore();
 const _log = console.log;
 
 import {
@@ -41,7 +50,8 @@ const display_moreActions = ref(false);
 const songMetaData = Data.data;
 const selectedAlbum = ref(songMetaData.length - 74); // 空气蛹
 const selectedSong = ref(0);
-
+const comments = ref([]);
+const comments_loaded = ref(false);
 function copyLink() {
   let url = new URL(window.location.href);
   url.searchParams.set("album", songMetaData.length - selectedAlbum.value);
@@ -130,8 +140,15 @@ onMounted(() => {
   });
 });
 
-function fetchData() {
+async function fetchData() {
+  comments_loaded.value = false;
   _fetchData(songMetaData, data, songURL, selectedAlbum, selectedSong);
+  if (mainStore.plugin_version) {
+    comments.value = await viewComments(
+      songMetaData[selectedAlbum.value].songs[selectedSong.value].id
+    );
+    comments_loaded.value = true;
+  }
 }
 fetchData();
 </script>
@@ -161,10 +178,6 @@ fetchData();
         :src="songMetaData[selectedAlbum].picUrl"
         width="100%"
         style="border-radius: 20px" />
-      <!-- <Intro :content="intro" /> -->
-      <!-- <br /> -->
-      <!-- <p>数据更新时间 : {{ new Date(Data.update).toLocaleString() }}</p> -->
-      <!-- <br /> -->
       <var-select
         v-model="selectedAlbum"
         :placeholder="`请选择专辑 专辑ID:${
@@ -176,14 +189,17 @@ fetchData();
           :key="item.id"
           :value="index"
           :label="item.name">
-          <div style="display: flex; align-items: center;gap:10px">
-            <img :src="item.picUrl+'?param=90y90'" style="width: 40px;height: 40px;border-radius: 5px" />
-          <p>
-            <span>{{ item.name }} </span>
-            <span v-if="item.alias[0]" style="color: #999">
-              ({{ item.alias[0] }})
-            </span>
-          </p></div>
+          <div style="display: flex; align-items: center; gap: 10px">
+            <img
+              :src="item.picUrl + '?param=90y90'"
+              style="width: 40px; height: 40px; border-radius: 5px" />
+            <p>
+              <span>{{ item.name }} </span>
+              <span v-if="item.alias[0]" style="color: #999">
+                ({{ item.alias[0] }})
+              </span>
+            </p>
+          </div>
         </var-option>
       </var-select>
       <var-select
@@ -231,6 +247,12 @@ fetchData();
               "
               block>
               {{ $t("song-player.actions.open-in-wyy") }}
+            </var-button>
+            <var-button
+              :disable="!mainStore.plugin_version"
+              @click="viewComments()"
+              block>
+              查看评论区...
             </var-button>
           </div>
         </var-dialog>
@@ -300,6 +322,15 @@ fetchData();
         >
       </var-button-group>
       <br />
+      <br />
+      <div v-if="comments_loaded">
+        <CommentView :comments="comments" />
+      </div>
+      <p v-if="!comments_loaded">
+        由于浏览器的限制(同源政策),您需要安装插件,这里才会显示评论区.
+        请先下载Tampermonkey插件(安卓上可以用Edge,支持这个插件),
+        然后再点击<a href="/cors.user.js">这个链接</a>安装脚本,最后再刷新界面.
+      </p>
       <br />
       <audio :src="songURL" :muted="isMuted" ref="audio"></audio>
     </div>

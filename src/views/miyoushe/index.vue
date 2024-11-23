@@ -23,9 +23,9 @@ const d = ref({
   8: null,
 });
 
-const exist_fFetch = ref(false);
-if (typeof fFetch != "undefined") {
-  exist_fFetch.value = true;
+const exist_cors_request = ref(false);
+if (typeof cors_request != "undefined") {
+  exist_cors_request.value = true;
 } else {
   Dialog({
     title: "请安装用户脚本",
@@ -40,11 +40,11 @@ if (typeof fFetch != "undefined") {
     }
   });
 }
-console.log(exist_fFetch.value);
+console.log(exist_cors_request.value);
 
-if (exist_fFetch.value) {
+if (exist_cors_request.value) {
   for (let i in games) {
-    fFetch(
+    cors_request(
       "https://bbs-api.miyoushe.com/post/wapi/getNewsList?gids=" +
       i +
       "&type=1&page_size=50"

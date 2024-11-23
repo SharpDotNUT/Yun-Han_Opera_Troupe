@@ -49,7 +49,7 @@ export const useMainStore = defineStore("main", () => {
     }
     if (theme.value.startsWith("light")) {
       if (is_md2) {
-        StyleProvider(undefined);
+        StyleProvider(null);
       } else {
         StyleProvider(Themes.md3Light);
       }
@@ -57,7 +57,6 @@ export const useMainStore = defineStore("main", () => {
       document.documentElement.dataset.theme = "light";
     }
   }
-
   const logged = ref(false);
   const user_info = ref({});
   const token = ref("");
@@ -79,7 +78,9 @@ export const useMainStore = defineStore("main", () => {
       });
     }
   }
-
+  //----
+  const plugin_version = '1.0.0'
+  // const plugin_version = ref((window as any)?.["yunhan_plugin_version"] ?? undefined);
   return {
     host_name,
     title,
@@ -90,5 +91,6 @@ export const useMainStore = defineStore("main", () => {
     user_info,
     token,
     initUserInfo,
+    plugin_version
   };
 });

@@ -12,6 +12,7 @@ import {
   mdiBookAlphabet,
   mdiBulletinBoard
 } from "@mdi/js";
+import { mdiCalendar } from "@mdi/js";
 
 export const routes = [
   {
@@ -90,12 +91,18 @@ export const routes = [
     path: "/miyoushe",
     icon: mdiCloseOctagon,
     component: () => import("../views/miyoushe/index.vue"),
-  },,
+  },
   {
     name: "dictionary",
     path: "/dictionary",
     icon: mdiBookAlphabet,
     component: () => import("../views/dictionary/index.vue"),
+  },
+  {
+    name: "calendar",
+    path: "/calendar",
+    icon: mdiCalendar,
+    component: () => import("../views/calendar/index.vue"),
   },
   {
     name: "test",

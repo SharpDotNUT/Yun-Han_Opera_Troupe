@@ -8,11 +8,12 @@
 // @match        *://localhost:*/*
 // @connect      *.miyoushe.com
 // @connect      bbs-api.miyoushe.com
+// @connect      music.163.com
 // @grant        GM.xmlHttpRequest
 // @grant        unsafeWindow
 // ==/UserScript==
 
-function fFetch(url, method = 'GET') {
+function cors_request(url, method = 'GET') {
     return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
             method: method,
@@ -28,5 +29,5 @@ function fFetch(url, method = 'GET') {
 }
 
 // 将函数添加到 window 对象上，以便全局访问
-unsafeWindow._yunhan_cors_version = '0.0';
-unsafeWindow.fFetch = fFetch;
+unsafeWindow.yunhan_plugin_version = '0.0';
+unsafeWindow.cors_request = cors_request;
