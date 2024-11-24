@@ -67,10 +67,3 @@ export function download(songURL) {
       Snackbar.error("下载失败：" + error.message);
     });
 }
-
-export async function viewComments(id) {
-  const res = await cors_request('https://music.163.com/api/v1/resource/comments/R_SO_4_'+id+'?offset=0&limit=15')
-  const data = JSON.parse(res.response)
-  console.log('成功获取评论',data)
-  return data
-}

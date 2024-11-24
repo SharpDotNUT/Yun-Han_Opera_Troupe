@@ -17,6 +17,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TextFileInput: typeof import('./src/components/text-file-input/index.vue')['default']
+    VarAlert: typeof import('@varlet/ui')['_AlertComponent']
     VarAppBar: typeof import('@varlet/ui')['_AppBarComponent']
     VarBadge: typeof import('@varlet/ui')['_BadgeComponent']
     VarButton: typeof import('@varlet/ui')['_ButtonComponent']

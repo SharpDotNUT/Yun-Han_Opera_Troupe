@@ -16,7 +16,6 @@ import {
   fetchData as _fetchData,
   isNeedToTip,
   download,
-  viewComments,
 } from "./index";
 
 const route = useRoute();
@@ -50,8 +49,7 @@ const display_moreActions = ref(false);
 const songMetaData = Data.data;
 const selectedAlbum = ref(songMetaData.length - 74); // 空气蛹
 const selectedSong = ref(0);
-const comments = ref([]);
-const comments_loaded = ref(false);
+const currentSongID = ref(songMetaData[selectedAlbum.value].songs[selectedSong.value].id )
 function copyLink() {
   let url = new URL(window.location.href);
   url.searchParams.set("album", songMetaData.length - selectedAlbum.value);
@@ -68,9 +66,11 @@ function randomASong() {
 watch(selectedAlbum, () => {
   selectedSong.value = 0;
   fetchData();
+  currentSongID.value = songMetaData[selectedAlbum.value].songs[selectedSong.value].id
 });
 watch(selectedSong, () => {
   fetchData();
+  currentSongID.value = songMetaData[selectedAlbum.value].songs[selectedSong.value].id
   if (selectedSong.value >= songMetaData[selectedAlbum.value].songs.length) {
     selectedSong.value = 0;
   } else if (selectedSong.value < 0) {
@@ -141,12 +141,8 @@ onMounted(() => {
 });
 
 async function fetchData() {
-  comments_loaded.value = false;
   _fetchData(songMetaData, data, songURL, selectedAlbum, selectedSong);
   if (mainStore.plugin_version) {
-    comments.value = await viewComments(
-      songMetaData[selectedAlbum.value].songs[selectedSong.value].id
-    );
     comments_loaded.value = true;
   }
 }
@@ -248,12 +244,6 @@ fetchData();
               block>
               {{ $t("song-player.actions.open-in-wyy") }}
             </var-button>
-            <var-button
-              :disable="!mainStore.plugin_version"
-              @click="viewComments()"
-              block>
-              查看评论区...
-            </var-button>
           </div>
         </var-dialog>
       </var-button-group>
@@ -323,14 +313,7 @@ fetchData();
       </var-button-group>
       <br />
       <br />
-      <div v-if="comments_loaded">
-        <CommentView :comments="comments" />
-      </div>
-      <p v-if="!comments_loaded">
-        由于浏览器的限制(同源政策),您需要安装插件,这里才会显示评论区.
-        请先下载Tampermonkey插件(安卓上可以用Edge,支持这个插件),
-        然后再点击<a href="/cors.user.js">这个链接</a>安装脚本,最后再刷新界面.
-      </p>
+      <CommentView :id="currentSongID" />
       <br />
       <audio :src="songURL" :muted="isMuted" ref="audio"></audio>
     </div>

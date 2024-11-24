@@ -4,16 +4,25 @@ import { ref } from 'vue'
 import { i18n } from '@/locales/i18n';
 import { useMainStore } from '@/stores/main';
 import { useRoute } from 'vue-router';
+import Markdown from '@/components/markdown.vue';
 
 const mainStore = useMainStore();
 const route = useRoute();
 const API_HOST = mainStore.host_name
 
-const articlesImport = import.meta.glob("./articles/*/*.md", {
+const props = defineProps({
+    article_name: {
+        type: String,
+        default: "cors"
+    }
+})
+
+const articlesImport = import.meta.glob("../../../docs/*/*.md", {
     query: "?raw"
 })
+console.log(articlesImport)
 let articles = ref({})
-let article_name = ref("")
+let article_name = ref(props.article_name)
 let article_lang = ref(i18n.global.locale)
 let is_fallback_lang = ref(false)
 let content = ref("")
@@ -26,8 +35,9 @@ if (route.query.article_lang) {
 }
 
 for (let path in articlesImport) {
-    const article_name = path.split("/")[2]
-    const article_lang = path.slice(0, -3).split("/")[3]
+    const article = path.slice(0, -3).split("/")
+    const article_name = article[article.length - 2]
+    const article_lang = article[article.length - 1]
     articles.value[article_name] = articles.value[article_name] || {}
     articles.value[article_name][article_lang] = articlesImport[path]
 }
@@ -52,26 +62,26 @@ readArticle("cors", "zh-CN")
 
 <template>
 
+    <br/>
     <var-select v-model="article_name" variant="outlined" placeholder="请选择文章">
         <var-option v-for="(article, article_name) in articles" :key="article_name" :label="article_name"
             @click="readArticle(article_name, article_lang)">
         </var-option>
     </var-select>
+    <br/>
     <var-select v-model="article_lang" variant="outlined" placeholder="请选择语言">
         <var-option v-for="(article, article_lang) in articles[article_name]" :key="article_lang" :label="article_lang"
             @click="readArticle(article_name, article_lang)">
         </var-option>
+        <template #append-icon></template>
     </var-select>
+    <br/>
     <div v-if="is_fallback_lang">
         <var-chip type="warning" size="small" round>当前语言没有找到，已切换到中文</var-chip>
     </div>
+    <br/>
     <div>
-        <h1>
-            {{ article_name }} - {{ article_lang }}
-        </h1>
-        <p>
-            {{ content }}
-        </p>
+        <Markdown :content="content"></Markdown>
     </div>
 
 </template>

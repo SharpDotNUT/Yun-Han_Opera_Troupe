@@ -18,8 +18,8 @@ importers:
         specifier: ^3.2.13
         version: 3.2.13
       '@varlet/ui':
-        specifier: ^3.2.13
-        version: 3.2.13(vue@3.4.27(typescript@5.6.2))
+        specifier: ^3.7.0
+        version: 3.7.0(vue@3.4.27(typescript@5.6.2))
       '@vue/tsconfig':
         specifier: ^0.5.1
         version: 0.5.1
@@ -1054,28 +1054,28 @@ packages:
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
 
-  '@varlet/icons@3.2.13':
-    resolution: {integrity: sha512-479tXO+YoLIuhV5AcQC+BcURkzxRB2+uQTUYQaj811HvmUWbrAJgIaUmV9dm1iNYCBlZtkYW/eQecJ8/eodcwQ==}
+  '@varlet/icons@3.7.0':
+    resolution: {integrity: sha512-wB/UwkTkNDEEBpJihmbngv0vVvtt4iP9W7qYV2vx5Dto3wkwqpyyudVomLSbmrMAprpfXhHShEMfrTqymCLAZg==}
 
   '@varlet/import-resolver@3.3.6':
     resolution: {integrity: sha512-rSpOhVl7I9AXMOX94z+d2k/eq9uYDZIPNZo4HmuUKJuP2impWjGYR3nyEujhII0PV99ONf8RqG7X7lnch1bpvg==}
 
-  '@varlet/shared@3.2.13':
-    resolution: {integrity: sha512-RaQP3USw5Z36Ic29zzZvlPq8ObsmQWlOy0Dds2MNjUv4vdZwYXaA3ja6IpMRtMrwjUiZJu0O/S+u9FqoTBQmvg==}
-
   '@varlet/shared@3.3.6':
     resolution: {integrity: sha512-FPSnVt0xhfWqSauCSnet8DngOw1SI6JrmO9mI3PtQk/eAZlEVU78bBsM2IEx1h56uqC1hur2/s7ZLUqWl6nGMQ==}
+
+  '@varlet/shared@3.7.0':
+    resolution: {integrity: sha512-tJ4U78iOOJ72Icq9zdpqVivE9TSBxc+HURm5d3kLlmEjwO/dfbgEm5+/TGUzt/1i72gXjrKq9AwCtmfafR/fqg==}
 
   '@varlet/touch-emulator@3.2.13':
     resolution: {integrity: sha512-pyZxFPinydEyVmqFgiDxaN9e8LDylWgw5u4GESiQSBV0jZbefjJMhN5F3ygVeTO2YVzVf5xN8vMlzIyM21LKcg==}
 
-  '@varlet/ui@3.2.13':
-    resolution: {integrity: sha512-4hEouhOi5PDy54jD7RMls/Yr+zeFD/9/uEiNFZkNPNblMZSKeNi8VIY//6w5IwoQHduD8Cg0+DkNxSecsv8ntg==}
+  '@varlet/ui@3.7.0':
+    resolution: {integrity: sha512-yr3V1Kxiv1HMWukosArzm0LiGxFGr7sYCGx7vTnWEg2mKtLm3vMlK7YUn0+rEAqmu+S/mXMjbJltMV6tY+EEsw==}
     peerDependencies:
       vue: ^3.2.0
 
-  '@varlet/use@3.2.13':
-    resolution: {integrity: sha512-w9z8KdLH3o3ihlX7ifq21qU3IVrEDPBLYVqIan1XTp1+xWeV7dJ2uzLgG8dnuV1w9GhoNjBuw9gTQ7XsgU7Eog==}
+  '@varlet/use@3.7.0':
+    resolution: {integrity: sha512-PLlWhUh1pnSxHMb4gBt88UwqmGOWu5bZ4a2gEnCryQMSFguq7FcLc2YGTAt4tYMfVE60tg5Dh1/ZBuu99mkGVg==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -1930,6 +1930,9 @@ packages:
     resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  mitt@3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
+
   mlly@1.7.1:
     resolution: {integrity: sha512-rrVRZRELyQzrIUAVMHxP97kv+G786pHmOKzuFII8zDYahFBS7qnHh2AlYSl1GAHhaMPCz6/oHjVMcfFYgFYHgA==}
 
@@ -2087,6 +2090,10 @@ packages:
   range-parser@1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
+
+  rattail@1.0.14:
+    resolution: {integrity: sha512-PWwwg843q7awJltAziDbET54VtIJ5JKm57QfMb6G6p1dTMJ+/BPcUaVRJXAqhqvWKdmZBplBt6SCC8qwCjqHzQ==}
+    engines: {pnpm: '>=9.0'}
 
   raw-body@2.5.2:
     resolution: {integrity: sha512-8zGqypfENjCIqGhgXToC8aB2r7YrBX+AQAfIPs/Mlk+BtPTztOvTS01NRW/3Eh60J+a48lt8qsCzirQ6loCVfA==}
@@ -3678,31 +3685,33 @@ snapshots:
 
   '@types/trusted-types@2.0.7': {}
 
-  '@varlet/icons@3.2.13': {}
+  '@varlet/icons@3.7.0': {}
 
   '@varlet/import-resolver@3.3.6':
     dependencies:
       '@varlet/shared': 3.3.6
 
-  '@varlet/shared@3.2.13': {}
-
   '@varlet/shared@3.3.6': {}
+
+  '@varlet/shared@3.7.0':
+    dependencies:
+      rattail: 1.0.14
 
   '@varlet/touch-emulator@3.2.13': {}
 
-  '@varlet/ui@3.2.13(vue@3.4.27(typescript@5.6.2))':
+  '@varlet/ui@3.7.0(vue@3.4.27(typescript@5.6.2))':
     dependencies:
       '@popperjs/core': 2.11.8
-      '@varlet/icons': 3.2.13
-      '@varlet/shared': 3.2.13
-      '@varlet/use': 3.2.13(vue@3.4.27(typescript@5.6.2))
+      '@varlet/icons': 3.7.0
+      '@varlet/shared': 3.7.0
+      '@varlet/use': 3.7.0(vue@3.4.27(typescript@5.6.2))
       dayjs: 1.11.11
       decimal.js: 10.4.3
       vue: 3.4.27(typescript@5.6.2)
 
-  '@varlet/use@3.2.13(vue@3.4.27(typescript@5.6.2))':
+  '@varlet/use@3.7.0(vue@3.4.27(typescript@5.6.2))':
     dependencies:
-      '@varlet/shared': 3.2.13
+      '@varlet/shared': 3.7.0
       vue: 3.4.27(typescript@5.6.2)
 
   '@vitejs/plugin-basic-ssl@1.1.0(vite@5.2.13(@types/node@20.12.7)(terser@5.31.6))':
@@ -4625,6 +4634,8 @@ snapshots:
     dependencies:
       brace-expansion: 2.0.1
 
+  mitt@3.0.1: {}
+
   mlly@1.7.1:
     dependencies:
       acorn: 8.11.3
@@ -4761,6 +4772,10 @@ snapshots:
       safe-buffer: 5.2.1
 
   range-parser@1.2.1: {}
+
+  rattail@1.0.14:
+    dependencies:
+      mitt: 3.0.1
 
   raw-body@2.5.2:
     dependencies:
