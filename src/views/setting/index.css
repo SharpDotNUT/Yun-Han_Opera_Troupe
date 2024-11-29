@@ -11,8 +11,6 @@
     height: 100%;
     padding: 10px;
     overflow-y: auto;
-    div {
-    }
 }
 
 @media screen and (max-width: 600px) {

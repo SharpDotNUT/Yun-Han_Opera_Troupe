@@ -18,6 +18,56 @@ p4.textContent = "#.NUT Studio © 2024 All Rights Reserved.";
 p4.style.textAlign = "center";
 const progressBar = document.createElement("div");
 progressBar.id = "progress-bar";
+const style = document.createElement("style");
+style.textContent = `
+body {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #f19ebe, #72c8d6);
+  color: #fff;
+  height: 100vh;
+}
+
+#loading {
+  padding: 20px;
+  border-radius: 20px;
+  background-color: transparent;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 90vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+}
+
+p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #666;
+}
+
+#progress-bar {
+  height: 20px;
+  background: linear-gradient(90deg, #72c8d6, #f19ebe);
+  border-radius: 10px;
+  width: 10%;
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.3);
+  transition: all 1s ease-in-out;
+}`
 loadingDiv.appendChild(h1);
 loadingDiv.appendChild(p1);
 loadingDiv.appendChild(p2);
@@ -25,14 +75,15 @@ loadingDiv.appendChild(hr);
 loadingDiv.appendChild(p3);
 loadingDiv.appendChild(p4);
 loadingDiv.appendChild(progressBar);
+loadingDiv.appendChild(style);
 appDiv.appendChild(loadingDiv);
-document.getElementById('app').appendChild(appDiv);
+document.getElementById('app')?.appendChild(appDiv);
 
 let _progressBar = document.getElementById("progress-bar");
 let startTime = new Date().getTime();
 let forward = 1;
 const update = () => {
-  if (new Date().getTime() - startTime > 1000) {
+  if (new Date().getTime() - startTime > 1000 && _progressBar) {
     _progressBar.style.left = forward > 0 ? "90%" : "0%";
     forward = -forward;
     startTime = new Date().getTime();

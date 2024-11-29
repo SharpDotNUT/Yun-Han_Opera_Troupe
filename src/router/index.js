@@ -13,6 +13,7 @@ import {
   mdiBulletinBoard
 } from "@mdi/js";
 import { mdiCalendar } from "@mdi/js";
+import { mdiUpdate } from "@mdi/js";
 
 export const routes = [
   {
@@ -32,6 +33,12 @@ export const routes = [
     name: "about",
     icon: mdiInformation,
     component: () => import("../views/setting/index.vue"),
+  },,
+  {
+    path: "/update-log",
+    name: "update-log",
+    icon: mdiUpdate,
+    component: () => import("../views/update_log/index.vue"),
   },
   {
     path: "/yunjin",

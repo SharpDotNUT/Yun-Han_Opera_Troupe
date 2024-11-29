@@ -56,7 +56,8 @@ async function loadLanguage(locale, namespace) {
   return locale;
 }
 
-function setLanguage(locale) {
+function setLanguage(locale:string) {
+  console.log(locale);
   i18n.global.locale = locale;
   document.documentElement.classList.remove(
     ...Object.values(language_font_class)

@@ -17,7 +17,7 @@ const props = defineProps({
     }
 })
 
-const articlesImport = import.meta.glob("../../../docs/*/*.md", {
+const articlesImport = import.meta.glob("../../../docs/docs/*/*.md", {
     query: "?raw"
 })
 console.log(articlesImport)
