@@ -19,7 +19,6 @@ router.beforeEach((to, from) => {
 })
 router.afterEach(() => {
   loading.value = false
-  console.log(route.name)
   mainStore.setTitle(route.name)
 })
 
@@ -60,7 +59,8 @@ onMounted(() => {
 #content {
   box-shadow: 0 0 10px var(--color-body);
   padding: 20px;
-  min-height: calc(100vh - var(--app-bar-height));
+  height: calc(100vh - var(--app-bar-height));
+  overflow: scroll;
   margin: 0 auto;
 }
 

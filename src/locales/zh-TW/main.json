@@ -18,7 +18,8 @@
     "dictionary": "辭典",
     "notice": "公告",
     "song-player-old": "音樂播放器（舊版）",
-    "update-log": "更新日誌"
+    "update-log": "更新日誌",
+    "calendar": "日曆"
   },
   "index": {
     "description": "一個在 GitHub 部分開源的米哈遊遊戲工具箱。",
@@ -79,5 +80,8 @@
     "search-text": "要搜尋的文字",
     "view-more-info": "查看詳情",
     "more-info": "詳情資訊"
+  },
+  "update-log": {
+    "only-chinese-and-english": "本頁只以簡體中文和英文展示。"
   }
 }

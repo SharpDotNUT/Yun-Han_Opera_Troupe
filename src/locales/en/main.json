@@ -16,7 +16,8 @@
     "dictionary": "Dictionary",
     "notice": "Announcement",
     "song-player-old": "Susic Player (Old Version)",
-    "update-log": "Update Log"
+    "update-log": "Update Log",
+    "calendar": "Calendar"
   },
   "app-bar": {
     "subtitle": "\" Elegance on the stage, in decorous harmony. {'|'} 「红毹婵娟，庄谐并举」\""
@@ -79,5 +80,8 @@
     "search-text": "Text To Search For",
     "view-more-info": "View Detailed Information",
     "more-info": "Detailed Information"
+  },
+  "update-log": {
+    "only-chinese-and-english": "This page is only displayed in Simplified Chinese and English."
   }
 }

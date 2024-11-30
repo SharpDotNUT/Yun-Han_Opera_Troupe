@@ -1,32 +1,54 @@
-<script setup lang="ts">
-import { ref } from "vue";
+<script setup>
+import { ref, watch } from "vue";
+import Markdown from "../../components/markdown.vue";
 
-//@ts-ignore
+const articles = ref({});
+const selected = ref("1.3");
+const content = ref();
+
 const articlesImport = import.meta.glob("../../../docs/update_log/*.md", {
   query: "?raw",
 });
-const articles = ref<{ [key: string]: Function }>({});
 for (let path in articlesImport) {
-    const article_name = path.split("/").pop()!.slice(0, -3);
-    articles.value[article_name] = await articlesImport[path]().default;
+  const article_name = path.split("/").pop().slice(0, -3);
+  articles.value[article_name] = articlesImport[path];
 }
-console.log(articles.value);
-
-
-const ui_showTips = ref(true);
-
+function load() {
+  articles.value[selected.value]().then((res) => {
+    console.log(res.default);
+    content.value = res.default;
+    console.log(content.value);
+  });
+}
+load();
 </script>
 
 <template>
-  <h1>{{ $t("apps-name.update-log") }}</h1>
-  <var-alert
-    title="关于翻译"
-    message="本页面只以简体中文和英文展示。"
-    closeable
-    @close="ui_showTips = false" />
-  <div>
-    <p v-for="article in articles">
-        {{ article }}
-    </p>
+  <div id="container">
+    <div id="head">
+      <h1>{{ $t("apps-name.update-log") }}</h1>
+      <p>{{ $t('update-log.only-chinese-and-english') }}</p>
+    </div>
+    <div id="main">
+      <div id="nav">
+        <var-cell
+          border
+          v-for="(article, version) in articles"
+          @click="
+            selected = version;
+            load();
+          "
+          :key="version">
+          {{ version }}
+        </var-cell>
+      </div>
+      <div id="content">
+        <Markdown :content="content"></Markdown>
+      </div>
+    </div>
   </div>
 </template>
+
+<style>
+@import url("./index.css");
+</style>

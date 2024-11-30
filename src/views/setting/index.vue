@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useMainStore } from "@/stores/main";
+const mainStore = useMainStore();
 import { useRoute, useRouter } from "vue-router";
 import PackageJSON from "@/../package.json";
 import SvgIcon from "@jamescoyle/vue-icon";
@@ -9,11 +10,9 @@ import { i18n } from "@/locales/i18n.ts";
 import { setLanguage as _setLanguage } from "@/locales/i18n.ts";
 import { useI18n } from "vue-i18n";
 const language = ref(i18n.global.locale);
-console.log(i18n.global.locale)
-const ui_isTeyvatFont = ref(false);
+const ui_isTeyvatFont = ref(mainStore.isUsingTeyvatFont);
 const tab = ref("language");
 const theme = ref("system");
-const mainStore = useMainStore();
 
 const props = defineProps({
   isAsComponent: {
@@ -22,23 +21,27 @@ const props = defineProps({
   },
 });
 
-const setLanguage = (locale) => {
-  _setLanguage(locale);
-  router.push({ query: { lang: locale } });
-};
 watch(theme, () => {
   mainStore.setTheme(theme.value);
 });
-watch(ui_isTeyvatFont,()=>{
-    if(ui_isTeyvatFont.value){
-        language.value = 'en'
-        document.body.classList.add('teyvat')
-    }else{
-        document.body.classList.remove('teyvat')
-    }
+watch(language, () => {
+  _setLanguage(language.value);
+  router.push({ query: { lang: language.value } });
 })
+watch(ui_isTeyvatFont, () => {
+  if (ui_isTeyvatFont.value) {
+    _setLanguage('en');
+    language.value = 'en';
+    mainStore.isUsingTeyvatFont = true;
+    router.push({ query: { lang: language.value } });
+    document.body.classList.add("teyvat");
+  } else {
+    mainStore.isUsingTeyvatFont = false;
+    document.body.classList.remove("teyvat");
+  }
+});
 
-const BuildTime = BUILD_TIME;
+const BuildTime = window.BUILD_TIME;
 const route = useRoute();
 const router = useRouter();
 onMounted(() => {
@@ -49,7 +52,6 @@ onMounted(() => {
   }
 });
 
-console.log(import.meta.env);
 </script>
 
 <template>
@@ -107,26 +109,15 @@ console.log(import.meta.env);
           v-model="language"
           :placeholder="$t('setting.language.selector.title')">
           <template #prepend-icon><var-icon name="translate" /></template>
-          <var-option
-            label="English"
-            value="en"></var-option>
-          <var-option
-            label="中文（简体）"
-            value="zh-CN"
-            @click="setLanguage('zh-CN')"></var-option>
-          <var-option
-            label="中文（繁体）"
-            value="zh-TW"
-            @click="setLanguage('zh-TW')"></var-option>
-          <var-option
-            label="日本語"
-            value="ja"
-            @click="setLanguage('ja')"></var-option>
+          <var-option label="English" value="en"></var-option>
+          <var-option label="中文（简体）" value="zh-CN"></var-option>
+          <var-option label="中文（繁体）" value="zh-TW"></var-option>
+          <var-option label="日本語" value="ja"></var-option>
         </var-select>
         <br />
-        <p>
-          <var-switch v-model="ui_isTeyvatFont" :variant="true" />
+        <p style="display: flex;justify-content: space-between;align-items:center">
           <span>使用提瓦特语言字体</span>
+          <var-switch v-model="ui_isTeyvatFont" :variant="true" />
         </p>
       </div>
       <div v-if="tab === 'about'">

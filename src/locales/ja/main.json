@@ -18,7 +18,8 @@
     "dictionary": "辞書",
     "notice": "発表",
     "song-player-old": "音楽プレーヤー（旧バージョン）",
-    "update-log": "変更ログ"
+    "update-log": "変更ログ",
+    "calendar": "カレンダー"
   },
   "index": {
     "description": "GitHub で部分的にオープンソース化された miHoYo ゲーム ツールボックス。",
@@ -79,5 +80,8 @@
     "search-text": "検索するテキスト",
     "view-more-info": "詳細情報を見る",
     "more-info": "詳細情報"
+  },
+  "update-log": {
+    "only-chinese-and-english": "このページは簡体字中国語と英語でのみ表示されます。"
   }
 }

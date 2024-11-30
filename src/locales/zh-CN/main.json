@@ -16,7 +16,8 @@
     "yunjin": "云堇",
     "notice": "公告",
     "dictionary": "辞典",
-    "update-log": "更新日志"
+    "update-log": "更新日志",
+    "calendar": "日历"
   },
   "app-bar": {
     "subtitle": "「红毹婵娟，庄谐并举」"
@@ -79,5 +80,8 @@
     "search-text": "要搜索的文本",
     "view-more-info": "查看详情信息",
     "more-info": "详情信息"
+  },
+  "update-log": {
+    "only-chinese-and-english": "本页面只以简体中文和英文展示。"
   }
 }

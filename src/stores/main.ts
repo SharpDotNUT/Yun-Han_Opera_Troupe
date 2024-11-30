@@ -14,13 +14,11 @@ export const useMainStore = defineStore("main", () => {
   const title = ref("");
   function setTitle(i18n_id:string) {
     title.value = "apps-name." + i18n_id;
-    console.log(title.value);
     document.title = t("name") + " - " + t(title.value);
   }
   const theme = ref(document.documentElement.dataset.theme);
   const themeMode = ref(document.documentElement.dataset.theme);
   function setTheme(themeToSet) {
-    console.log(themeToSet);
     themeMode.value = themeToSet;
     const is_md2 = themeMode.value.endsWith("md2");
     if (
@@ -59,6 +57,7 @@ export const useMainStore = defineStore("main", () => {
   }
   const logged = ref(false);
   const user_info = ref({});
+  const isUsingTeyvatFont = ref(false);
   const token = ref("");
   function initUserInfo() {
     try {
@@ -91,6 +90,7 @@ export const useMainStore = defineStore("main", () => {
     user_info,
     token,
     initUserInfo,
-    plugin_version
+    plugin_version,
+    isUsingTeyvatFont
   };
 });
