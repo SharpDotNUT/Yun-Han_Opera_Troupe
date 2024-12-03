@@ -83,5 +83,8 @@
   },
   "update-log": {
     "only-chinese-and-english": "このページは簡体字中国語と英語でのみ表示されます。"
+  },
+  "main": {
+    "github-os-repo": "Github オープンソース リポジトリ"
   }
 }

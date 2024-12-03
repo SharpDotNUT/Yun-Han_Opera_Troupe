@@ -122,10 +122,14 @@ onMounted(() => {
       </div>
       <div v-if="tab === 'about'">
         <div style="display: flex; flex-direction: column; gap: 10px">
-          <p style="font-size: 32px; text-align: center">
-            {{ $t("name") }}
-            <var-badge :value="'v ' + PackageJSON.version"></var-badge>
-          </p>
+          <div style="display: flex;flex-direction: column;align-items: center">
+            <br/>
+            <img src="/src/img/sdn_logo.svg" alt="#.NUT Logo"></img>
+            <p style="font-size: 32px;text-align: center">
+              {{ $t("name") }}
+              <var-badge :value="'v ' + PackageJSON.version"></var-badge>
+            </p>
+          </div>
           <p style="text-align: center">
             <var-link href="https://github.com/SharpDotNUT">
               #.NUT Studio

@@ -15,10 +15,6 @@ const display_setting = ref(false);
 const mainStore = useMainStore();
 const host_name = mainStore.host_name;
 
-function openGithub() {
-  window.open("https://github.com/SharpDotNUT/Yun-Han_Opera_Troupe");
-}
-
 fetch(`${host_name}/api/notice`)
   .then((res) => res.json())
   .then((data) => {
@@ -46,9 +42,6 @@ watch(
   <div style="height: var(--app-bar-height);">
     <var-app-bar :title="$t('name') + ' - ' + t(title)" style="position: fixed; top: 0; left: 0; right: 0">
       <template #right>
-        <var-button round text color="transparent" @click="openGithub()">
-          <svg-icon type="mdi" :path="mdiGithub"></svg-icon>
-        </var-button>
         <var-button round text color="transparent" @click="display_account = !display_account">
           <svg-icon type="mdi" :path="mdiAccount"></svg-icon>
         </var-button>
