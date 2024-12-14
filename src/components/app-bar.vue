@@ -6,7 +6,7 @@ const { t } = useI18n();
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiApps, mdiCog, mdiAccount, mdiGithub } from "@mdi/js";
 import RouterJump from "@/components/router-jump.vue";
-import Setting from '@/views/setting/index.vue'
+import Setting from '@/components/settings/index.vue'
 import Account from "./account.vue";
 
 const title = ref("");
@@ -42,19 +42,8 @@ watch(
   <div style="height: var(--app-bar-height);">
     <var-app-bar :title="$t('name') + ' - ' + t(title)" style="position: fixed; top: 0; left: 0; right: 0">
       <template #right>
-        <var-button round text color="transparent" @click="display_account = !display_account">
-          <svg-icon type="mdi" :path="mdiAccount"></svg-icon>
-        </var-button>
-        <var-button v-if="$route.name != 'setting'" round text color="transparent"
-          @click="display_setting = !display_setting">
-          <svg-icon type="mdi" :path="mdiCog"></svg-icon>
-          <var-popup v-model:show="display_setting"
-            style="position: fixed; top: var(--app-bar-height); right: 0;bottom:0;left:0;padding:5%" :overlay="false">
-            <Setting />
-          </var-popup>
-        </var-button>
         <var-menu placement="bottom-end">
-          <var-button round text @click="display_setting = false">
+          <var-button round text>
             <svg-icon type="mdi" :path="mdiApps"></svg-icon>
           </var-button>
           <template #menu>
@@ -75,8 +64,4 @@ watch(
   top: var(--app-bar-height);
 }
 
-.var-popup__overlay {
-  top: var(--app-bar-height);
-  height: calc(100vh - var(--app-bar-height));
-}
 </style>

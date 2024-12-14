@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    About: typeof import('./src/components/about.vue')['default']
     Account: typeof import('./src/components/account.vue')['default']
     AppBar: typeof import('./src/components/app-bar.vue')['default']
     Footer: typeof import('./src/components/footer.vue')['default']
@@ -16,6 +17,7 @@ declare module 'vue' {
     RouterJump: typeof import('./src/components/router-jump.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Settings: typeof import('./src/components/settings/index.vue')['default']
     TextFileInput: typeof import('./src/components/text-file-input/index.vue')['default']
     VarAlert: typeof import('@varlet/ui')['_AlertComponent']
     VarAppBar: typeof import('@varlet/ui')['_AppBarComponent']
@@ -24,6 +26,8 @@ declare module 'vue' {
     VarButtonGroup: typeof import('@varlet/ui')['_ButtonGroupComponent']
     VarCard: typeof import('@varlet/ui')['_CardComponent']
     VarCell: typeof import('@varlet/ui')['_CellComponent']
+    VarCheckbox: typeof import('@varlet/ui')['_CheckboxComponent']
+    VarCheckboxGroup: typeof import('@varlet/ui')['_CheckboxGroupComponent']
     VarChip: typeof import('@varlet/ui')['_ChipComponent']
     VarCounter: typeof import('@varlet/ui')['_CounterComponent']
     VarDialog: typeof import('@varlet/ui')['_DialogComponent']
@@ -40,6 +44,8 @@ declare module 'vue' {
     VarPaper: typeof import('@varlet/ui')['_PaperComponent']
     VarPopup: typeof import('@varlet/ui')['_PopupComponent']
     VarProgress: typeof import('@varlet/ui')['_ProgressComponent']
+    VarRadio: typeof import('@varlet/ui')['_RadioComponent']
+    VarResult: typeof import('@varlet/ui')['_ResultComponent']
     VarSelect: typeof import('@varlet/ui')['_SelectComponent']
     VarSlider: typeof import('@varlet/ui')['_SliderComponent']
     VarSpace: typeof import('@varlet/ui')['_SpaceComponent']

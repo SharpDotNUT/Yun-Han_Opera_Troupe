@@ -2,7 +2,6 @@
   "name": "云翰社",
   "apps-name": {
     "home": "首页",
-    "setting": "设置",
     "translator": "翻译器",
     "song-player": "音乐播放器",
     "song-player-old": "音乐播放器（旧版）",
@@ -41,11 +40,7 @@
       },
       "title": "语言"
     },
-    "about": {
-      "title": "关于",
-      "build-time": "构建时间 : {0}",
-      "open-in-github": "点击在 GitHub 打开"
-    }
+    "about": {}
   },
   "index": {
     "s0": "「 云婵娟来花婵娟，风流尽在山水间。 」",
@@ -85,6 +80,11 @@
     "only-chinese-and-english": "本页面只以简体中文和英文展示。"
   },
   "main": {
-    "github-os-repo": "Github 开源仓库"
+    "github-os-repo": "Github 开源仓库",
+    "settings": "设置",
+    "about": "关于"
+  },
+  "about": {
+    "build-time": "构建时间 : {0}"
   }
 }

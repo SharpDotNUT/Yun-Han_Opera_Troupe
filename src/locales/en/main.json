@@ -2,7 +2,6 @@
   "name": "Yun-Han Opera Troupe",
   "apps-name": {
     "home": "Home",
-    "setting": "Setting",
     "translator": "Translator",
     "song-player": "Song Player",
     "achievement": "Achievement Tool",
@@ -41,11 +40,7 @@
       },
       "title": "Language"
     },
-    "about": {
-      "title": "About",
-      "build-time": "Build Time: {0}",
-      "open-in-github": "Click to open on GitHub"
-    }
+    "about": {}
   },
   "index": {
     "s0": "(Translated) \" How gently do the clouds and flowers sway, as dancing winds meander through the vales. {'|'} 「云婵娟来花婵娟，风流尽在山水间。」\"",
@@ -85,6 +80,11 @@
     "only-chinese-and-english": "This page is only displayed in Simplified Chinese and English."
   },
   "main": {
-    "github-os-repo": "Github Open Source Repository"
+    "github-os-repo": "Github Open Source Repository",
+    "settings": "Settings",
+    "about": "About"
+  },
+  "about": {
+    "build-time": "Build Time: {0}"
   }
 }

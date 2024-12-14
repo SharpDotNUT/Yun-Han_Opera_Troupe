@@ -9,7 +9,6 @@
     "gacha-view": "祈り・歴史カードプールの閲覧",
     "home": "フロントページ",
     "miyoushe": "ミヨウシェ",
-    "setting": "設定",
     "song-player": "音楽プレーヤー",
     "test": "テスト",
     "translator": "翻訳者",
@@ -45,11 +44,7 @@
       },
       "title": "言語"
     },
-    "about": {
-      "title": "について",
-      "build-time": "ビルド時間: {0}",
-      "open-in-github": "クリックして GitHub で開きます"
-    }
+    "about": {}
   },
   "song-player": {
     "actions": {
@@ -85,6 +80,11 @@
     "only-chinese-and-english": "このページは簡体字中国語と英語でのみ表示されます。"
   },
   "main": {
-    "github-os-repo": "Github オープンソース リポジトリ"
+    "github-os-repo": "Github オープンソース リポジトリ",
+    "settings": "設定",
+    "about": "について"
+  },
+  "about": {
+    "build-time": "ビルド時間: {0}"
   }
 }

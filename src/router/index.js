@@ -14,6 +14,7 @@ import {
 } from "@mdi/js";
 import { mdiCalendar } from "@mdi/js";
 import { mdiUpdate } from "@mdi/js";
+import { mdiMessageQuestion } from "@mdi/js";
 
 export const routes = [
   {
@@ -22,18 +23,6 @@ export const routes = [
     icon: mdiHome,
     component: () => import("../views/index.vue"),
   },
-  {
-    path: "/setting",
-    name: "setting",
-    icon: mdiCog,
-    component: () => import("../views/setting/index.vue"),
-  },
-  {
-    path: "/setting/about",
-    name: "about",
-    icon: mdiInformation,
-    component: () => import("../views/setting/index.vue"),
-  },,
   {
     path: "/update-log",
     name: "update-log",
@@ -68,6 +57,17 @@ export const routes = [
     path: "/song/player/old",
     icon: mdiMusic,
     component: () => import("../views/song/player/old_index.vue"),
+  },
+  {
+    name: "question",
+    path: "/question",
+    icon: mdiMessageQuestion,
+    component: () => import("../views/question/index.vue"),
+  },
+  {
+    path: "/question/answer",
+    notShow: true,
+    component: () => import("../views/question/answer.vue"),
   },
   {
     name: "achievement",

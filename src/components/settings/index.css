@@ -1,0 +1,26 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    --padding: min(10vw, 10vh);
+    top: var(--padding);
+    left: var(--padding);
+    right: var(--padding);
+    bottom: var(--padding);
+    background-color: var(--popup-content-background-color);
+    border-radius: 20px;
+    padding: 20px;
+    height: auto;
+}
+
+#tabs {
+    padding: 10px;
+}
+
+#views {
+    height: 100%;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 600px) {}

@@ -9,7 +9,6 @@
     "gacha-view": "祈願·歷史卡池瀏覽",
     "home": "首頁",
     "miyoushe": "米遊社",
-    "setting": "設定",
     "song-player": "音樂播放器",
     "test": "測試",
     "translator": "翻譯器",
@@ -45,11 +44,7 @@
       },
       "title": "語言"
     },
-    "about": {
-      "title": "關於",
-      "build-time": "建置時間 : {0}",
-      "open-in-github": "點擊在 GitHub 打開"
-    }
+    "about": {}
   },
   "song-player": {
     "actions": {
@@ -85,6 +80,11 @@
     "only-chinese-and-english": "本頁只以簡體中文和英文展示。"
   },
   "main": {
-    "github-os-repo": "Github 開源倉庫"
+    "github-os-repo": "Github 開源倉庫",
+    "settings": "設定",
+    "about": "關於"
+  },
+  "about": {
+    "build-time": "建置時間 : {0}"
   }
 }
