@@ -18,7 +18,8 @@
     "notice": "発表",
     "song-player-old": "音楽プレーヤー（旧バージョン）",
     "update-log": "変更ログ",
-    "calendar": "カレンダー"
+    "calendar": "カレンダー",
+    "question": "質問に答える"
   },
   "index": {
     "description": "GitHub で部分的にオープンソース化された miHoYo ゲーム ツールボックス。",
@@ -86,5 +87,15 @@
   },
   "about": {
     "build-time": "ビルド時間: {0}"
+  },
+  "question": {
+    "answer-right": "正解する",
+    "answer-wrong": "不正解",
+    "question-number": "質問{0}",
+    "submit-answer": "この質問への回答を送信する",
+    "question-rank-is": "質問バンク:",
+    "result": {
+      "tip": "合計 {0} 問ありますが、あなたは {1} 問に正解しました。"
+    }
   }
 }

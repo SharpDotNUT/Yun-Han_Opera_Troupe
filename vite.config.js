@@ -29,8 +29,7 @@ export default defineConfig({
     },
   },
   server: {
-    host: "0.0.0.0",
-    port: "10001"
+    host: "0.0.0.0"
   },
   build: {
     sourcemap: "hidden",

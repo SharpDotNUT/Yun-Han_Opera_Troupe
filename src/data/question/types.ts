@@ -1,3 +1,12 @@
+export interface QuestionsList {
+  name?: string;
+  author?: string;
+  link?:{
+    [key: string]: URL;
+  }
+  questions: Question[];
+}
+
 export interface Question {
   id: number;
   question: string;
@@ -6,8 +15,4 @@ export interface Question {
     [key: string]: string;
   };
   tag?: string[];
-}
-
-export interface QuestionsList {
-  questions: Question[];
 }

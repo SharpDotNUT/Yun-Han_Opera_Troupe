@@ -16,7 +16,8 @@
     "notice": "公告",
     "dictionary": "辞典",
     "update-log": "更新日志",
-    "calendar": "日历"
+    "calendar": "日历",
+    "question": "答题"
   },
   "app-bar": {
     "subtitle": "「红毹婵娟，庄谐并举」"
@@ -86,5 +87,16 @@
   },
   "about": {
     "build-time": "构建时间 : {0}"
+  },
+  "question": {
+    "answer-right": "回答正确",
+    "answer-wrong": "回答错误",
+    "question-number": "第 {0} 题",
+    "submit-answer": "提交本题答案",
+    "next-question": "下一题",
+    "question-rank-is": "题库：",
+    "result": {
+      "tip": "一共 {0} 题， 您答对了 {1} 题。"
+    }
   }
 }

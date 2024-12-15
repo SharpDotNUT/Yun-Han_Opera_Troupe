@@ -16,7 +16,8 @@
     "notice": "Announcement",
     "song-player-old": "Susic Player (Old Version)",
     "update-log": "Update Log",
-    "calendar": "Calendar"
+    "calendar": "Calendar",
+    "question": "Quiz"
   },
   "app-bar": {
     "subtitle": "\" Elegance on the stage, in decorous harmony. {'|'} 「红毹婵娟，庄谐并举」\""
@@ -86,5 +87,15 @@
   },
   "about": {
     "build-time": "Build Time: {0}"
+  },
+  "question": {
+    "answer-right": "Answer correctly",
+    "answer-wrong": "Wrong answer",
+    "question-number": "Question {0}",
+    "submit-answer": "Submit answer",
+    "question-rank-is": "Question bank :",
+    "result": {
+      "tip": "There are {0} questions in total, and you answered {1} correctly."
+    }
   }
 }

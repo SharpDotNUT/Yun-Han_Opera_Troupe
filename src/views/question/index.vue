@@ -1,5 +1,14 @@
 
-<template>
-    <h1>临时界面</h1>
-    <var-button @click="$router.push('/question/answer')" type="primary">开始答题，题库「星月银0」</var-button>
+<script setup>
+
+import { RouterView } from 'vue-router';
+import { useMainStore } from '@/stores/main';
+
+const mainStore = useMainStore();
+mainStore.setTitle('question')
+
+</script>
+
+<template>sad
+    <RouterView />
 </template>

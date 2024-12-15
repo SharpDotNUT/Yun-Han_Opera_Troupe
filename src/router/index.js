@@ -10,7 +10,7 @@ import {
   mdiCog,
   mdiCloseOctagon,
   mdiBookAlphabet,
-  mdiBulletinBoard
+  mdiBulletinBoard,
 } from "@mdi/js";
 import { mdiCalendar } from "@mdi/js";
 import { mdiUpdate } from "@mdi/js";
@@ -37,7 +37,7 @@ export const routes = [
   {
     path: "/notice",
     name: "notice",
-    icon: mdiBulletinBoard ,
+    icon: mdiBulletinBoard,
     component: () => import("../views/notice/index.vue"),
   },
   {
@@ -51,7 +51,8 @@ export const routes = [
     path: "/song/player",
     icon: mdiMusic,
     component: () => import("../views/song/player/index.vue"),
-  },,
+  },
+  ,
   {
     name: "song-player-old",
     path: "/song/player/old",
@@ -60,14 +61,23 @@ export const routes = [
   },
   {
     name: "question",
-    path: "/question",
+    path: "/quiz",
     icon: mdiMessageQuestion,
     component: () => import("../views/question/index.vue"),
-  },
-  {
-    path: "/question/answer",
-    notShow: true,
-    component: () => import("../views/question/answer.vue"),
+    children: [
+      {
+        path: "",
+        component: () => import("../views/question/home.vue"),
+      },
+      {
+        path: "answer",
+        component: () => import("../views/question/answer.vue"),
+      },
+      {
+        path: "result",
+        component: () => import("../views/question/result.vue"),
+      }
+    ],
   },
   {
     name: "achievement",

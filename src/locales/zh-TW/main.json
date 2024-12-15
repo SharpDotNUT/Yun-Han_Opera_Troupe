@@ -18,7 +18,8 @@
     "notice": "公告",
     "song-player-old": "音樂播放器（舊版）",
     "update-log": "更新日誌",
-    "calendar": "日曆"
+    "calendar": "日曆",
+    "question": "答題"
   },
   "index": {
     "description": "一個在 GitHub 部分開源的米哈遊遊戲工具箱。",
@@ -86,5 +87,15 @@
   },
   "about": {
     "build-time": "建置時間 : {0}"
+  },
+  "question": {
+    "answer-right": "回答正確",
+    "answer-wrong": "回答錯誤",
+    "question-number": "第 {0} 題",
+    "submit-answer": "提交本題答案",
+    "question-rank-is": "題庫：",
+    "result": {
+      "tip": "共 {0} 題， 您答對了 {1} 題。"
+    }
   }
 }
