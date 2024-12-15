@@ -74,7 +74,6 @@ function clickAnswer(index: string) {
 
 <template>
   <!--题号，题目，ABCD-->
-  {{ isMultiple }}
   <div id="container">
     <var-progress :value="(currentIndex / data.questions.length) * 100" />
     <h2>

@@ -9,6 +9,6 @@ mainStore.setTitle('question')
 
 </script>
 
-<template>sad
+<template>
     <RouterView />
 </template>

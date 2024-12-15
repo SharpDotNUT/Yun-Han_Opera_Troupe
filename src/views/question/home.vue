@@ -8,7 +8,7 @@ import Articles from "../../../docs/views/question/zh-CN.md?raw";
   <var-button block 
   round="false"
   class="question-bank"
-  @click="$router.push('/question/answer')" type="primary">
+  @click="$router.push('/quiz/answer')" type="primary">
     <h3>「星月银0」</h3>
     <br/>
     <p>共 40 题</p>
