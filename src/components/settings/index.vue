@@ -3,12 +3,9 @@ import { ref, watch, onMounted } from "vue";
 import { useMainStore } from "@/stores/main";
 const mainStore = useMainStore();
 import { useRoute, useRouter } from "vue-router";
-import PackageJSON from "@/../package.json";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiBrightness6, mdiTranslate, mdiInformation } from "@mdi/js";
 import { i18n } from "@/locales/i18n.ts";
-import { setLanguage as _setLanguage } from "@/locales/i18n.ts";
-import { useI18n } from "vue-i18n";
 const language = ref(i18n.global.locale);
 const ui_isTeyvatFont = ref(mainStore.isUsingTeyvatFont);
 const tab = ref("language");
@@ -25,13 +22,8 @@ const show = defineModel("show", { type: Boolean, default: true });
 watch(theme, () => {
   mainStore.setTheme(theme.value);
 });
-watch(language, () => {
-  _setLanguage(language.value);
-  router.push({ query: { lang: language.value } });
-});
 watch(ui_isTeyvatFont, () => {
   if (ui_isTeyvatFont.value) {
-    _setLanguage("en");
     language.value = "en";
     mainStore.isUsingTeyvatFont = true;
     router.push({ query: { lang: language.value } });

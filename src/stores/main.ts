@@ -10,12 +10,6 @@ import { Themes, StyleProvider } from "@varlet/ui";
 export const useMainStore = defineStore("main", () => {
   // @ts-ignore
   const host_name = import.meta.env.VITE_API_HOST as string;
-
-  const title = ref("");
-  function setTitle(i18n_id:string) {
-    title.value = "apps-name." + i18n_id;
-    document.title = t("name") + " - " + t(title.value);
-  }
   const theme = ref(document.documentElement.dataset.theme);
   const themeMode = ref(document.documentElement.dataset.theme);
   function setTheme(themeToSet) {
@@ -82,8 +76,6 @@ export const useMainStore = defineStore("main", () => {
   // const plugin_version = ref((window as any)?.["yunhan_plugin_version"] ?? undefined);
   return {
     host_name,
-    title,
-    setTitle,
     theme,
     setTheme,
     logged,
@@ -92,5 +84,5 @@ export const useMainStore = defineStore("main", () => {
     initUserInfo,
     plugin_version,
     isUsingTeyvatFont
-  };
+  }
 });

@@ -40,7 +40,7 @@ watch(
 
 <template>
   <div style="height: var(--app-bar-height);">
-    <var-app-bar :title="$t('name') + ' - ' + t(title)" style="position: fixed; top: 0; left: 0; right: 0">
+    <var-app-bar :title="$t('name')" style="position: fixed; top: 0; left: 0; right: 0">
       <template #right>
         <var-menu placement="bottom-end">
           <var-button round text>

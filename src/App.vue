@@ -1,13 +1,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { RouterView, useRoute, useRouter } from "vue-router";
-import { i18n } from "./locales/i18n.ts";
 import { useMainStore } from "./stores/main";
-import { setLanguage } from "./locales/i18n";
 import AppBar from '@/components/app-bar.vue'
+import { useI18n } from "vue-i18n";
 
-const isFullWidth = ref(false)
-
+const locale = useI18n().locale
 const mainStore = useMainStore()
 mainStore.initUserInfo()
 const route = useRoute()
@@ -19,13 +17,12 @@ router.beforeEach((to, from) => {
 })
 router.afterEach(() => {
   loading.value = false
-  mainStore.setTitle(route.name)
 })
 
 onMounted(() => {
   const lang = route.query.lang || 'request'
   if (lang !== 'request') {
-    setLanguage(lang)
+    locale.value = lang
   }
 })
 
@@ -34,9 +31,9 @@ onMounted(() => {
 <template>
   <div id="app">
   <div id="app-bar">
-    <AppBar @changeIsFullWidth="isFullWidth = !isFullWidth" />
+    <AppBar/>
   </div>
-  <div id="content" class="elevation-12" :style="{ width: isFullWidth ? '100%' : 'min(100%, 1000px)' }">
+  <div id="content" class="elevation-12">
     <RouterView />
     <div id="router-loading" v-if="loading">
       <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">

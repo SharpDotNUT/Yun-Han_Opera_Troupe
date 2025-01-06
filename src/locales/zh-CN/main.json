@@ -4,7 +4,6 @@
     "home": "首页",
     "translator": "翻译器",
     "song-player": "音乐播放器",
-    "song-player-old": "音乐播放器（旧版）",
     "achievement": "成就工具",
     "XP": "XP 分析工具",
     "gacha-view": "祈愿·历史卡池浏览",
@@ -17,7 +16,8 @@
     "dictionary": "辞典",
     "update-log": "更新日志",
     "calendar": "日历",
-    "question": "答题"
+    "question": "答题",
+    "database": "数据库（测试版）"
   },
   "app-bar": {
     "subtitle": "「红毹婵娟，庄谐并举」"

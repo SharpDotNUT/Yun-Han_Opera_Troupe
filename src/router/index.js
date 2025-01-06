@@ -52,13 +52,6 @@ export const routes = [
     icon: mdiMusic,
     component: () => import("../views/song/player/index.vue"),
   },
-  ,
-  {
-    name: "song-player-old",
-    path: "/song/player/old",
-    icon: mdiMusic,
-    component: () => import("../views/song/player/old_index.vue"),
-  },
   {
     name: "question",
     path: "/quiz",
@@ -76,8 +69,13 @@ export const routes = [
       {
         path: "result",
         component: () => import("../views/question/result.vue"),
-      }
+      },
     ],
+  },
+  {
+    name: "database",
+    path: "/database",
+    component: () => import("../views/database/index.vue"),
   },
   {
     name: "achievement",

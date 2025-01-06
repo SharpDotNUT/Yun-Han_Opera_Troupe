@@ -1,24 +1,16 @@
 @import url("./g-font.css");
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-th,
-td,
-.text-color {
-  color: var(--color-text)
+body {
+  transition: background-color .25s, color .25s;
+  color: var(--color-text);
+  background-color: var(--color-body);
 }
 
 :root {
   --base-width: min(100%, 1000px)
 }
 .base-width {
-  width: min(100%, 1000px)
+  width: var(--base-width)
 }
 
 .option-style{

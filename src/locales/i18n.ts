@@ -56,17 +56,4 @@ async function loadLanguage(locale, namespace) {
   return locale;
 }
 
-function setLanguage(locale:string) {
-  document.documentElement.classList.remove(
-    ...Object.values(language_font_class)
-  );
-  document.documentElement.classList.add(language_font_class[locale]);
-  window.onload = () => {
-    document.documentElement.classList.remove(
-      ...Object.values(language_font_class)
-    );
-    document.documentElement.classList.add(language_font_class[locale]);
-  };
-}
-
-export { i18n, loadLanguage as loadAndSetLanguage, setLanguage };
+export { i18n, loadLanguage as loadAndSetLanguage };

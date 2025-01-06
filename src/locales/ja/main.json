@@ -16,10 +16,10 @@
     "yunjin": "雲菫",
     "dictionary": "辞書",
     "notice": "発表",
-    "song-player-old": "音楽プレーヤー（旧バージョン）",
     "update-log": "変更ログ",
     "calendar": "カレンダー",
-    "question": "質問に答える"
+    "question": "質問に答える",
+    "database": "データベース（ベータ版）"
   },
   "index": {
     "description": "GitHub で部分的にオープンソース化された miHoYo ゲーム ツールボックス。",

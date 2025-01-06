@@ -16,10 +16,10 @@
     "yunjin": "雲堇",
     "dictionary": "辭典",
     "notice": "公告",
-    "song-player-old": "音樂播放器（舊版）",
     "update-log": "更新日誌",
     "calendar": "日曆",
-    "question": "答題"
+    "question": "答題",
+    "database": "資料庫（測試版）"
   },
   "index": {
     "description": "一個在 GitHub 部分開源的米哈遊遊戲工具箱。",

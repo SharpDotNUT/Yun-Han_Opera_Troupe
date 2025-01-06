@@ -1,3 +1,6 @@
+
+import { Snackbar } from "@varlet/ui";
+
 /**
  *
  * @param {String} url 要打开的 URL
