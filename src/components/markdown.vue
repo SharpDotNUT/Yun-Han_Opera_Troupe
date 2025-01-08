@@ -6,21 +6,6 @@ const md = new MarkdownIt({
   html: true,
 });
 
-import mdit_anchor from "markdown-it-anchor";
-md.use(mdit_anchor, {
-  level: [1, 2, 3],
-  slugify: (s) => {
-    return s;
-  },
-});
-let markdown_toc = "";
-import mdit_toc from "markdown-it-toc-done-right";
-md.use(mdit_toc, {
-  callback: (tocMarkdown, tocArray) => {
-    markdown_toc = tocMarkdown;
-  },
-});
-
 const props = defineProps({
   content: String,
   height: {

@@ -1,15 +1,13 @@
 {
   "name": "yunhan-toolbox",
-  "version": "1.5.0 - pre.1",
+  "version": "1.5.0 - pre.2",
   "description": "A HoYo Game Toolbox",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "app-build": "node app/build.js",
-    "test": "pkg -i meta.mjs -t node20-win-x64 -c --out-path dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@jamescoyle/vue-icon": "^0.1.2",

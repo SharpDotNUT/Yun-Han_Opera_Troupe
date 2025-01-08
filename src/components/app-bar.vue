@@ -6,23 +6,24 @@ const { t } = useI18n();
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiApps, mdiCog, mdiAccount, mdiGithub } from "@mdi/js";
 import RouterJump from "@/components/router-jump.vue";
-import Setting from '@/components/settings/index.vue'
 import Account from "./account.vue";
+import Markdown from "./markdown.vue";
 
 const title = ref("");
 const display_account = ref(false);
-const display_setting = ref(false);
 const mainStore = useMainStore();
 const host_name = mainStore.host_name;
 
+const notice_show = ref(false);
+const notice_content = ref("");
 fetch(`${host_name}/api/notice`)
   .then((res) => res.json())
   .then((data) => {
-    if (data.show == "true")
-      Dialog({
-        title: "提示",
-        message: data.text,
-      });
+    console.log(data)
+    if (data.show == "true"){
+      notice_show.value = true;
+      notice_content.value = data.text;
+    };
   })
   .catch((err) => {
   });
@@ -39,6 +40,11 @@ watch(
 </script>
 
 <template>
+  <var-dialog v-model:show="notice_show" style="max-height: 80vh;">
+    <div style="height: 50vh;overflow-y: auto;">
+    <Markdown :content="notice_content"></Markdown>
+    </div>
+  </var-dialog>
   <div style="height: var(--app-bar-height);">
     <var-app-bar :title="$t('name')" style="position: fixed; top: 0; left: 0; right: 0">
       <template #right>
