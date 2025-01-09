@@ -8,11 +8,18 @@ import Tags from "@/data/dictionary/tags.json";
 
 const WordsPath = "https://dataset.genshin-dictionary.com/words.json";
 let Words = [];
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // 交换元素
+    }
+    return array;
+  }
 caches.open("dictionary").then((cache) => {
   cache.match(WordsPath).then(async (res) => {
     if (res) {
       res.json().then((data) => {
-        Words = data;
+        Words = shuffleArray(data);
         Words_loaded = true;
         load();
         search();
@@ -21,7 +28,7 @@ caches.open("dictionary").then((cache) => {
       const res = await fetch(WordsPath);
       cache.put(WordsPath, res.clone());
       res.json().then((data) => {
-        Words = data;
+        Words = shuffleArray(data);
         Words_loaded = true;
         load();
         search();
@@ -31,19 +38,20 @@ caches.open("dictionary").then((cache) => {
 });
 
 let Words_loaded = false;
-let searchString = ref("");
-let pre_words = ref([]);
-let words = ref([]);
-let ref_words = ref({});
+const lastSearchString = ref(undefined);
+const searchString = ref("");
+const pre_words = ref([]);
+const words = ref([]);
+const ref_words = ref({});
 const load = () => {
   words.value = pre_words.value.slice(0, words.value.length + 100);
 };
 
 const search = () => {
-  if (!Words_loaded) {
+  if (!Words_loaded || searchString.value === lastSearchString.value) {
     return;
   }
-  console.log(Words.length);
+  lastSearchString.value = searchString.value;
   pre_words.value = Words.filter((word) => {
     let _ = false;
     if (word.zhCN) {
@@ -60,13 +68,6 @@ const search = () => {
   load();
 };
 
-function showInfo(word) {
-  Dialog({
-    title: t("dictionary.more-info"),
-    message: JSON.stringify(word),
-    cancelButton: false,
-  });
-}
 </script>
 
 <template>
@@ -76,7 +77,9 @@ function showInfo(word) {
       <var-input
         variant="outlined"
         v-model="searchString"
-        :placeholder="$t('dictionary.search-text')" />
+        :placeholder="$t('dictionary.search-text')"
+        @blur="search"
+        @keydown.enter="search" />
       <br />
       <var-button @click="search" type="default" block>
         {{ $t("dictionary.search") }}
@@ -94,8 +97,7 @@ function showInfo(word) {
           <h5>{{ $t("dictionary.en") }}</h5>
           <p class="lang-en">{{ word.en }}</p>
           <h5 class="lang-ja">{{ $t("dictionary.ja") }}</h5>
-          <p
-            style="display: flex; align-items: baseline; flex-wrap: wrap">
+          <p style="display: flex; align-items: baseline; flex-wrap: wrap">
             <span class="lang-ja">{{ word.ja }}</span>
             <span class="kana lang-ja" v-if="word.pronunciationJa">
               ({{ word.pronunciationJa }})
@@ -106,9 +108,6 @@ function showInfo(word) {
               {{ Tags[locale][tag] }}
             </var-chip>
           </div>
-          <var-button @click="showInfo(word)">
-            {{ $t("dictionary.view-more-info") }}
-          </var-button>
         </div>
         <hr />
       </div>
